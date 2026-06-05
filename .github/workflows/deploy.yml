@@ -38,12 +38,16 @@ jobs:
           cp -r public .next/standalone/
           cp -r .next/static .next/standalone/.next/
           
-          # 2. INYECCIÓN MANUAL (Corregida)
+          # 2. INYECCIÓN MANUAL DE DEPENDENCIAS PERDIDAS POR NEXT.JS
+          # Parche para @swc/helpers
           mkdir -p .next/standalone/node_modules/@swc
-          # 👇 Destruimos el rastro corrupto que dejó Next.js
           rm -rf .next/standalone/node_modules/@swc/helpers
-          # 👇 Ahora sí, inyectamos la carpeta real limpiamente
           cp -rL node_modules/@swc/helpers .next/standalone/node_modules/@swc/
+          
+          # 👇 NUEVO: Parche para @next/env
+          mkdir -p .next/standalone/node_modules/@next
+          rm -rf .next/standalone/node_modules/@next/env
+          cp -rL node_modules/@next/env .next/standalone/node_modules/@next/
           
           # 3. PRE-SYMLINK de Caché 
           rm -rf .next/standalone/.next/cache
