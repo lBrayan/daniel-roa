@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@next/env": "^16.2.7",
     "@swc/helpers": "^0.5.23",
     "aws-cdk-lib": "^2.258.0",
     "constructs": "^10.6.0",

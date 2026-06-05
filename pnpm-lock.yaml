@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@next/env':
+        specifier: ^16.2.7
+        version: 16.2.7
       '@swc/helpers':
         specifier: ^0.5.23
         version: 0.5.23
