@@ -31,6 +31,20 @@ jobs:
       - name: Build Next.js App
         run: pnpm build
 
+      # 👇 AÑADE ESTE BLOQUE EXACTAMENTE AQUÍ 👇
+      - name: Prepare Standalone Build
+        run: |
+          # 1. Copiar carpetas para evitar errores de metadata interna
+          cp -r public .next/standalone/
+          cp -r .next/static .next/standalone/.next/
+          
+          # 2. Crear el script de arranque (run.sh) que exige el Web Adapter
+          echo '#!/bin/bash' > .next/standalone/run.sh
+          echo 'exec node server.js' >> .next/standalone/run.sh
+          
+          # 3. Darle permisos de ejecución al script
+          chmod +x .next/standalone/run.sh
+
       - name: 🔑 Configurar AWS
         uses: aws-actions/configure-aws-credentials@v4
         with:
