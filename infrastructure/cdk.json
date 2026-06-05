@@ -1,5 +1,5 @@
 {
-    "app": "pnpm exec tsx bin/infrastructure.ts",
+    "app": "pnpm exec tsx bin/portfolio-stack.ts",
     "watch": {
         "include": [
             "**"
