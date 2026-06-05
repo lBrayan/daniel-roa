@@ -37,11 +37,13 @@ jobs:
           cp -r public .next/standalone/
           cp -r .next/static .next/standalone/.next/
           
-          # Script avanzado para engañar al sistema de caché en AWS Lambda
+          # Script definitivo para esquivar la restricción de "Solo Lectura"
           echo '#!/bin/bash' > .next/standalone/run.sh
-          echo 'rm -rf .next/cache' >> .next/standalone/run.sh
-          echo 'mkdir -p /tmp/cache' >> .next/standalone/run.sh
-          echo 'ln -s /tmp/cache .next/standalone/.next/cache' >> .next/standalone/run.sh
+          # Copiamos todo (incluyendo ocultos) a /tmp solo si no existe ya
+          echo 'if [ ! -f /tmp/server.js ]; then cp -a /var/task/. /tmp/; fi' >> .next/standalone/run.sh
+          # Entramos al directorio temporal con permisos de escritura
+          echo 'cd /tmp' >> .next/standalone/run.sh
+          # Encendemos Next.js
           echo 'exec node server.js' >> .next/standalone/run.sh
           
           chmod +x .next/standalone/run.sh
