@@ -10,6 +10,8 @@ import { MobileChat } from "@/components/MobileChat";
 import { SplitTextReveal } from "@/components/SplitTextReveal";
 import { Magnetic } from "@/components/Magnetic";
 import { ClientParallax } from "./ClientParallax";
+import { LanguageToggle } from "./LanguageToggle";
+import { useTranslation } from "@/i18n/useTranslation";
 
 export function PortfolioClient() {
     const [response, setResponse] = useState<AIResponse | null>(null);
@@ -20,6 +22,7 @@ export function PortfolioClient() {
     const [pendingQuery, setPendingQuery] = useState<string | null>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const [hasMounted, setHasMounted] = useState(false);
+    const { t } = useTranslation();
 
     useEffect(() => {
         setHasMounted(true);
@@ -147,13 +150,16 @@ export function PortfolioClient() {
                                 <span className="font-mono text-[10px] text-slate-400" aria-hidden="true">
                                     brayan-roa://portfolio
                                 </span>
-                                {loading && (
-                                    <span className="ml-auto flex items-center gap-1.5">
-                                        <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-ping" aria-hidden="true" />
-                                        <span className="sr-only">Procesando respuesta</span>
-                                        <span className="font-mono text-[10px] text-cyan-400" aria-hidden="true">procesando...</span>
-                                    </span>
-                                )}
+                                <div className="ml-auto flex items-center gap-3">
+                                    <LanguageToggle />
+                                    {loading && (
+                                        <span className="ml-auto flex items-center gap-1.5">
+                                            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-ping" aria-hidden="true" />
+                                            <span className="sr-only">Procesando respuesta</span>
+                                            <span className="font-mono text-[10px] text-cyan-400" aria-hidden="true">procesando...</span>
+                                        </span>
+                                    )}
+                                </div>
                             </div>
 
                             <div className="flex-1 pb-16">
@@ -210,6 +216,9 @@ export function PortfolioClient() {
                             <p className="font-mono text-[11px] text-cyan-300/80">
                                 Senior Fullstack & IA Engineer
                             </p>
+                            <div className="mt-3 flex justify-center">
+                                <LanguageToggle />
+                            </div>
                         </header>
 
                         <div className="flex flex-1 items-center justify-center px-4 py-4">
@@ -229,24 +238,22 @@ export function PortfolioClient() {
                                     onClick={() => { setPendingQuery(null); setMobileOpen(true); }}
                                     className="w-full rounded-xl border border-cyan-700/40 bg-cyan-950/40 py-3.5 font-mono text-sm text-cyan-300 backdrop-blur-sm transition-all"
                                     whileTap={{ scale: 0.97 }}
-                                    aria-label="Abrir chat con Daniel Roa"
+                                    aria-label="Pregúntame algo"
                                     aria-expanded={mobileOpen}
                                     aria-controls="mobile-chat-dialog"
-                                >
-                                    ▶ Pregúntame algo
-                                </motion.button>
+                                >Pregúntame algo</motion.button>
                             </Magnetic>
 
                             <nav aria-label="Accesos rápidos al portfolio">
                                 <div className="flex flex-wrap gap-1.5 justify-center">
-                                    {QUICK_ACTIONS.map((a) => (
+                                    {QUICK_ACTIONS.map(({ labelKey, queryKey }) => (
                                         <button
                                             type="button"
-                                            key={a.label}
-                                            onClick={() => handleMobileBadge(a.query)}
+                                            key={labelKey}
+                                            onClick={() => handleMobileBadge(t(queryKey))}
                                             className="rounded-full border border-cyan-900/40 bg-cyan-950/30 px-3 py-1 font-mono text-[10px] text-cyan-300/80 transition-all hover:border-cyan-600/50 hover:text-cyan-300"
                                         >
-                                            {a.label}
+                                            {t(labelKey)}
                                         </button>
                                     ))}
                                 </div>

@@ -1,20 +1,25 @@
 "use client";
-
 // src/components/ChatInput.tsx
-import React, { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback } from "react";
 import type { AIResponse } from "@/components/ResponsePanel";
 import { getFallback } from "@/lib/fallbacks";
 import { STATIC_RESPONSES } from "@/data/staticResponses";
+import { useTranslation } from "@/i18n/useTranslation";
+import type { TranslationKey } from "@/i18n/locales/es";
 
-export const QUICK_ACTIONS = [
-    { label: "Proyectos", query: "¿Qué proyectos has realizado?" },
-    { label: "Experiencia", query: "Cuéntame tu experiencia laboral" },
-    { label: "Skills", query: "¿Cuáles son tus habilidades técnicas?" },
-    { label: "Sobre mí", query: "¿Quién eres y cuál es tu perfil?" },
-    { label: "Historia en la programación", query: "¿Como es tu historia en la programción?" },
-    { label: "Contacto", query: "¿Cómo puedo contactarte?" },
-    { label: "IA & Cloud", query: "¿Cuál es tu experiencia con IA y Cloud?" },
-];
+// Quick actions definidas por claves de traducción
+export const QUICK_ACTIONS: Array<{
+    labelKey: TranslationKey;
+    queryKey: TranslationKey;
+}> = [
+        { labelKey: "qa_projects", queryKey: "qa_projects_query" },
+        { labelKey: "qa_experience", queryKey: "qa_experience_query" },
+        { labelKey: "qa_skills", queryKey: "qa_skills_query" },
+        { labelKey: "qa_about", queryKey: "qa_about_query" },
+        { labelKey: "qa_story", queryKey: "qa_story_query" },
+        { labelKey: "qa_contact", queryKey: "qa_contact_query" },
+        { labelKey: "qa_ai_cloud", queryKey: "qa_ai_cloud_query" },
+    ];
 
 interface ChatInputProps {
     onResponse: (res: AIResponse) => void;
@@ -24,132 +29,113 @@ interface ChatInputProps {
     sendRef?: React.MutableRefObject<((query: string, fromButton?: boolean) => void) | null>;
 }
 
-export function ChatInput({ onResponse, onLoadingChange, onError, onTalkStart, sendRef }: ChatInputProps) {
-    const [value, setValue] = useState("");
-    const [sending, setSending] = useState(false);
+export function ChatInput({
+    onResponse,
+    onLoadingChange,
+    onError,
+    onTalkStart,
+    sendRef,
+}: ChatInputProps) {
+    const { t, locale } = useTranslation(); // ← consume idioma activo
+    const [input, setInput] = useState("");
+    const [isSending, setIsSending] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
 
     const send = useCallback(
         async (query: string, fromButton = false) => {
-            if (!query.trim() || sending) return;
+            const q = query.trim();
+            if (!q || isSending) return;
 
+            setIsSending(true);
+            onLoadingChange(true);
+            onError(null);
+            if (!fromButton) setInput("");
+            onTalkStart?.();
+
+            // Botones quick action → respuesta estática directa, nunca van a la IA
             if (fromButton) {
-                const staticResponse = STATIC_RESPONSES[query];
+                const staticResponse = STATIC_RESPONSES[q];
                 if (staticResponse) {
-                    onTalkStart?.();
                     onResponse(staticResponse);
-                    onError(null);
+                    onLoadingChange(false);
+                    setIsSending(false);
                     return;
                 }
             }
 
-            setSending(true);
-            onLoadingChange(true);
-            onError(null);
-            onTalkStart?.();
-
+            // Texto libre → siempre va a la IA primero
             try {
                 const res = await fetch("/api/chat", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ message: query }),
+                    body: JSON.stringify({ message: q, locale }),
                 });
-
-                if (res.status === 503 || res.status === 429) {
-                    const fallback = getFallback(query);
-                    if (fallback) {
-                        onResponse(fallback);
-                        onError(null);
-                    } else {
-                        onError("No entiendo esa pregunta. Prueba con los botones de arriba para explorar mis proyectos, experiencia, skills y más.");
-                    }
-                    return;
-                }
-
-                if (!res.ok) throw new Error("Error del servidor");
-
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 const data: AIResponse = await res.json();
                 onResponse(data);
-
             } catch {
-                const fallback = getFallback(query);
+                // La IA falló → ahora sí intentamos el fallback como último recurso
+                const fallback = getFallback(q, locale);
                 if (fallback) {
                     onResponse(fallback);
-                    onError(null);
                 } else {
-                    onError("No entiendo esa pregunta. Prueba con los botones de arriba para explorar mis proyectos, experiencia, skills y más.");
+                    onError(t("chat_error"));
                 }
             } finally {
-                setSending(false);
                 onLoadingChange(false);
-                setValue("");
+                setIsSending(false);
             }
         },
-        [sending, onResponse, onLoadingChange, onError, onTalkStart]
+        [isSending, locale, onError, onLoadingChange, onResponse, onTalkStart, t]
     );
 
-    useEffect(() => {
-        if (sendRef) sendRef.current = send;
-    }, [send, sendRef]);
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        send(value, false);
-    };
+    // Exponer send para MobileChat via ref
+    if (sendRef) sendRef.current = send;
 
     return (
-        <div className="border-t border-cyan-900/20 bg-[#020818]/95 backdrop-blur-sm">
-            {/* Quick-action badges */}
-            <nav aria-label="Preguntas rápidas" className="flex gap-1.5 flex-wrap px-4 pt-3 pb-1">
-                {QUICK_ACTIONS.map((a) => (
+        <div className="border-t border-cyan-900/20 p-4 space-y-3">
+            {/* Quick action buttons */}
+            <div className="flex flex-wrap gap-1.5" role="group" aria-label={t("open_chat")}>
+                {QUICK_ACTIONS.map(({ labelKey, queryKey }) => (
                     <button
-                        type="button"
-                        key={a.label}
-                        onClick={() => send(a.query, true)}
-                        disabled={sending}
-                        className="rounded-full border border-cyan-900/40 bg-cyan-950/30 px-2.5 py-1 font-mono text-[10px] text-cyan-300/80 transition-all hover:border-cyan-500/50 hover:text-cyan-200 disabled:opacity-40 disabled:cursor-not-allowed"
+                        key={labelKey}
+                        onClick={() => send(t(queryKey), true)}
+                        disabled={isSending}
+                        className="rounded-lg border border-cyan-900/30 bg-[#040f1e] px-3 py-1.5 font-mono text-[10px] text-cyan-400/70 transition-all hover:border-cyan-700/50 hover:text-cyan-300 disabled:opacity-40"
                     >
-                        {a.label}
+                        {t(labelKey)}
                     </button>
                 ))}
-            </nav>
+            </div>
 
             {/* Text input */}
-            <form onSubmit={handleSubmit} className="flex items-center gap-2 px-4 pb-4 pt-2" role="search">
-                <label htmlFor="chat-input" className="sr-only">
-                    Escribe una pregunta para Daniel
-                </label>
+            <div className="flex gap-2">
                 <input
-                    id="chat-input"
                     ref={inputRef}
-                    value={value}
-                    onChange={(e) => setValue(e.target.value)}
-                    disabled={sending}
-                    placeholder="Pregúntame algo..."
-                    className="flex-1 rounded-lg border border-cyan-900/30 bg-[#040f1e] px-3 py-2.5 font-mono text-xs text-slate-200 placeholder-slate-500 transition-all focus-visible:border-cyan-500/60 focus-visible:ring-1 focus-visible:ring-cyan-500/30 disabled:opacity-50"
-                    autoComplete="off"
+                    type="text"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && send(input)}
+                    placeholder={t("chat_placeholder")}
+                    aria-label={t("chat_placeholder")}
+                    disabled={isSending}
+                    className="flex-1 rounded-lg border border-cyan-900/30 bg-[#040f1e] px-3 py-2 font-mono text-xs text-slate-300 placeholder-slate-600 outline-none transition-colors focus:border-cyan-700/60 focus:ring-1 focus:ring-cyan-700/30 disabled:opacity-40"
                 />
                 <button
-                    type="submit"
-                    disabled={sending || !value.trim()}
-                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-cyan-700/30 bg-cyan-950/50 text-cyan-400 transition-all hover:bg-cyan-900/50 hover:text-cyan-200 disabled:opacity-30 disabled:cursor-not-allowed"
-                    aria-label={sending ? "Enviando mensaje" : "Enviar mensaje"}
+                    onClick={() => send(input)}
+                    disabled={isSending || !input.trim()}
+                    aria-label={isSending ? t("chat_sending") : t("chat_send")}
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-cyan-900/30 bg-[#040f1e] text-cyan-400/70 transition-all hover:border-cyan-700/50 hover:text-cyan-300 disabled:opacity-40"
                 >
-                    {sending ? (
-                        <>
-                            <svg className="h-3.5 w-3.5 animate-spin" fill="none" viewBox="0 0 24 24" aria-hidden="true">
-                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                            </svg>
-                            <span className="sr-only">Enviando...</span>
-                        </>
+                    {isSending ? (
+                        <span className="h-3 w-3 rounded-full border-2 border-cyan-400/40 border-t-cyan-400 animate-spin" />
                     ) : (
-                        <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                         </svg>
                     )}
                 </button>
-            </form>
+            </div>
         </div>
     );
 }

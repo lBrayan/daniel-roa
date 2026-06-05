@@ -1,155 +1,122 @@
-import data from "@/data/daniel.json";
+// src/lib/danielContext.ts
+import dataEs from "@/data/daniel.json";
+import dataEn from "@/data/daniel.en.json";
+import type { Locale } from "@/i18n/LanguageContext";
 
-// Índice completo para que el modelo pueda razonar
-const experienceIndex = data.experience
-  .map((e) => [
-    `ID: "${e.id}" | ${e.role} @ ${e.company} (${e.period})`,
-    `  Highlights: ${e.highlights.join(" · ")}`,
-  ].join("\n"))
-  .join("\n\n");
+function buildContext(locale: Locale = "es") {
+  const data = locale === "en" ? dataEn : dataEs;
 
-const projectsIndex = data.projects
-  .map((p) => [
-    `ID: "${p.id}" | [${p.type.toUpperCase()}] ${p.name}${p.url ? ` — ${p.url}` : ""}`,
-    `  Descripción: ${p.description}`,
-    `  Stack: ${p.tech.join(", ")}`,
-    `  USAR EXACTAMENTE ESTE ID: "${p.id}"`,
-  ].join("\n"))
-  .join("\n\n");
+  const experienceIndex = data.experience
+    .map((e) => [
+      `ID: "${e.id}" | ${e.role} @ ${e.company} (${e.period})`,
+      `  Highlights: ${e.highlights.join(" · ")}`,
+    ].join("\n"))
+    .join("\n\n");
 
-const timelineIndex = data.story.timeline
-  .map((t) => [
-    `ID: "${t.id}" | ${t.year} — ${t.title}`,
-    `  ${t.description}`,
-    `  Tags: ${t.tags.join(", ")}`,
-  ].join("\n"))
-  .join("\n\n");
+  const projectsIndex = data.projects
+    .map((p) => [
+      `ID: "${p.id}" | [${p.type.toUpperCase()}] ${p.name}${p.url ? ` — ${p.url}` : ""}`,
+      `  Description: ${p.description}`,
+      `  Stack: ${p.tech.join(", ")}`,
+      `  USE EXACTLY THIS ID: "${p.id}"`,
+    ].join("\n"))
+    .join("\n\n");
 
-const skillsIndex = data.skills.categories
-  .map((c) => `ID: "${c.id}" | ${c.name}: ${c.items.join(", ")}`)
-  .join("\n");
+  const timelineIndex = data.story.timeline
+    .map((t) => [
+      `ID: "${t.id}" | ${t.year} — ${t.title}`,
+      `  ${t.description}`,
+      `  Tags: ${t.tags.join(", ")}`,
+    ].join("\n"))
+    .join("\n\n");
 
-export const DANIEL_CONTEXT = `
-Eres el asistente personal de ${data.personal.name}, desarrollador Senior Fullstack & IA Engineer con ${data.personal.yearsOfExperience}+ años de experiencia profesional y ${data.personal.yearsCoding}+ años programando. Hablas en primera persona, tono profesional y cercano.
+  const skillsIndex = data.skills.categories
+    .map((c) => `ID: "${c.id}" | ${c.name}: ${c.items.join(", ")}`)
+    .join("\n");
 
-DATOS DE CONTACTO:
+  const lang = locale === "en" ? "English" : "Spanish";
+
+  return `
+You are the personal assistant of ${data.personal.name}, Senior Fullstack Developer & AI Engineer with ${data.personal.yearsOfExperience}+ years of professional experience. You speak in first person, professional and friendly tone. ALWAYS respond in ${lang}.
+
+CONTACT:
 - Email: ${data.personal.email}
 - GitHub: ${data.personal.github}
 - LinkedIn: ${data.personal.linkedin}
-- Ubicación: ${data.personal.location}
-- Rol actual: ${data.about.current}
-- Disponible para proyectos: ${data.personal.available ? "Sí" : "No"}
+- Location: ${data.personal.location}
+- Current role: ${data.about.current}
+- Available for projects: ${data.personal.available ? "Yes" : "No"}
 
 BIO:
 ${data.about.bio}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-EXPERIENCIA LABORAL
+WORK EXPERIENCE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ${experienceIndex}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-PROYECTOS (empresa + freelance)
+PROJECTS (company + freelance)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ${projectsIndex}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-HISTORIA / TIMELINE
+STORY / TIMELINE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ${timelineIndex}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SKILLS POR CATEGORÍA
+SKILLS BY CATEGORY
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ${skillsIndex}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-INSTRUCCIONES CRÍTICAS
+CRITICAL INSTRUCTIONS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Tu respuesta debe:
-1. Comenzar DIRECTAMENTE con "{" y terminar con "}"
-2. Ser JSON válido — sin markdown, sin texto antes ni después
-3. Usar SOLO los IDs listados arriba para referenciar datos
-4. NUNCA repetir el contenido — solo devolver IDs relevantes
-5. El mensaje: conversacional, corto, primera persona, máx 2 oraciones
+Your response MUST:
+1. Start DIRECTLY with "{" and end with "}"
+2. Be valid JSON — no markdown, no text before or after
+3. Use ONLY the IDs listed above
+4. NEVER repeat content — only return relevant IDs
+5. The message: conversational, short, first person, max 2 sentences, in ${lang}
 
-FORMATO DE RESPUESTA:
+RESPONSE FORMAT:
 
-Para experience, projects, story, skills:
+For experience, projects, story, skills:
 {
   "type": "experience" | "projects" | "story" | "skills",
-  "message": "respuesta conversacional corta",
-  "data": { "ids": ["id1", "id2", "id3"] }
+  "message": "short conversational response in ${lang}",
+  "data": { "ids": ["id1", "id2"] }
 }
 
-Para about:
+For about:
 {
   "type": "about",
-  "message": "respuesta conversacional corta",
+  "message": "short conversational response in ${lang}",
   "data": { "key": "about" }
 }
 
-Para contact:
+For contact:
 {
   "type": "contact",
-  "message": "respuesta conversacional corta",
+  "message": "short conversational response in ${lang}",
   "data": { "key": "contact" }
 }
 
-Para preguntas que no encajan en ningún tipo:
+For questions that don't fit any type:
 {
   "type": "general",
-  "message": "respuesta conversacional corta",
-  "data": { "text": "respuesta libre aquí" }
+  "message": "short conversational response in ${lang}",
+  "data": { "text": "free response in ${lang}" }
 }
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-EJEMPLOS DE RAZONAMIENTO → RESPUESTA
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-Pregunta: "¿En dónde usaste AWS?"
-→ Razona: Ormigga (migración a AWS), SQA (Lambda), Topaz (Amplify, Lambda, S3, etc), srg.com.co (serverless freelance)
-→ Responde:
-{
-  "type": "experience",
-  "message": "Usé AWS en tres empresas con distinto nivel de profundidad, y también en proyectos freelance.",
-  "data": { "ids": ["ormigga", "sqa", "topaz"] }
-}
-
-Pregunta: "¿Cuéntame tu historia en programación?"
-→ Razona: historia completa desde origen
-→ Responde:
-{
-  "type": "story",
-  "message": "Mi historia arranca a los 13 años rompiendo código ajeno por curiosidad — y nunca paré.",
-  "data": { "ids": ["origin", "college", "sena", "spira-era", "bcd-era", "ormigga-era", "assist-era", "sqa-era", "topaz-era", "freelance"] }
-}
-
-Pregunta: "¿Qué proyectos freelance tienes?"
-→ Razona: filtrar proyectos con type freelance
-→ Responde:
-{
-  "type": "projects",
-  "message": "He trabajado con varios clientes construyendo desde cero.",
-  "data": { "ids": ["colo", "vickycha", "srg", "sinners", "pola", "germania"] }
-}
-
-Pregunta: "¿Cuál es tu experiencia con IA?"
-→ Razona: TensorFlow en SQA, Claude+RAG en Topaz, skill categoria ai
-→ Responde:
-{
-  "type": "skills",
-  "message": "He aplicado IA en producción tanto en detección de bugs como en agentes y RAG.",
-  "data": { "ids": ["ai"] }
-}
-
-CUÁNDO USAR CADA TIPO:
-- "story": historia, cómo empecé, trayectoria, origen, camino, cuéntame
-- "experience": empresas, trabajos, empleos, dónde trabajé, qué usé en X empresa
-- "projects": proyectos, portafolio, freelance, clientes, qué construiste
-- "skills": tecnologías, stack, habilidades, qué sabes, con qué trabajas
-- "about": quién eres, perfil, bio, resumen, descripción
-- "contact": contacto, email, linkedin, github, cómo te contacto
-- "general": todo lo que no encaje arriba
 `;
+}
+
+// Export lazy — se llama con el locale en el momento del request
+export function getDanielContext(locale: Locale = "es"): string {
+  return buildContext(locale);
+}
+
+// Mantener compatibilidad con importaciones legadas que usaban DANIEL_CONTEXT directo
+export const DANIEL_CONTEXT = buildContext("es");

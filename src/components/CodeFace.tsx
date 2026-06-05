@@ -219,40 +219,17 @@ export default function CodeFace({
 
                 {/* Footer */}
                 <p
+
                     style={{
                         marginTop: 12,
-                        color: "rgba(60,214,245,.18)",
+                        color: "rgba(60,214,245)",
                         fontSize: 8,
                         letterSpacing: 3,
                     }}
                 >
-                    {"// I'm Dreaming"}
+                    {"// I'm Dreaming //"}
                 </p>
             </div>
         </>
     );
-}
-
-// ─── Style helpers (avoids Tailwind conflicts with exact pixel values) ────────
-
-function btnStyle(active: boolean): React.CSSProperties {
-    return {
-        background: active ? "rgba(60,214,245,.07)" : "transparent",
-        border: `1px solid ${active ? "rgba(60,214,245,.55)" : "rgba(60,214,245,.22)"}`,
-        color: active ? "#3dd6f5" : "rgba(60,214,245,.45)",
-        fontFamily: "'Fira Code', monospace",
-        fontSize: 9,
-        letterSpacing: 2,
-        padding: "6px 14px",
-        borderRadius: 5,
-        cursor: "pointer",
-        transition: "all .15s",
-    };
-}
-
-function applyHoverStyle(el: HTMLButtonElement, hover: boolean) {
-    if (el.disabled) return;
-    el.style.borderColor = hover ? "rgba(60,214,245,.55)" : "rgba(60,214,245,.22)";
-    el.style.color = hover ? "#3dd6f5" : "rgba(60,214,245,.45)";
-    el.style.background = hover ? "rgba(60,214,245,.07)" : "transparent";
 }

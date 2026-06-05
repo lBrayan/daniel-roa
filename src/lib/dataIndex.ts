@@ -1,51 +1,51 @@
-import data from "@/data/daniel.json";
+// src/lib/dataIndex.ts
+import dataEs from "@/data/daniel.json";
+import dataEn from "@/data/daniel.en.json";
+import type { Locale } from "@/i18n/LanguageContext";
 
-// Mapas de lookup por ID
-export const experienceById = Object.fromEntries(
-    data.experience.map((e) => [e.id, e])
-);
+function getData(locale: Locale = "es") {
+    return locale === "en" ? dataEn : dataEs;
+}
 
-export const projectsById = Object.fromEntries(
-    data.projects.map((p) => [p.id, p])
-);
+// ─── Lookup maps por locale ───────────────────────────────────────────────────
 
-export const timelineById = Object.fromEntries(
-    data.story.timeline.map((t) => [t.id, t])
-);
+export function getExperienceById(locale: Locale) {
+    return Object.fromEntries(getData(locale).experience.map((e) => [e.id, e]));
+}
 
-export const skillsById = Object.fromEntries(
-    data.skills.categories.map((c) => [c.id, c])
-);
+export function getProjectsById(locale: Locale) {
+    return Object.fromEntries(getData(locale).projects.map((p) => [p.id, p]));
+}
 
-// ─── Fuzzy match: si el ID no existe exacto, busca el más parecido ────────────
-// Cubre alucinaciones del modelo que inventa IDs cortos ("ormigga", "topaz", "srg")
+export function getTimelineById(locale: Locale) {
+    return Object.fromEntries(getData(locale).story.timeline.map((t) => [t.id, t]));
+}
 
-function fuzzyFindProject(id: string) {
-    // 1. Exact match
+export function getSkillsById(locale: Locale) {
+    return Object.fromEntries(getData(locale).skills.categories.map((c) => [c.id, c]));
+}
+
+// ─── Fuzzy match ──────────────────────────────────────────────────────────────
+
+function fuzzyFindProject(id: string, locale: Locale) {
+    const projectsById = getProjectsById(locale);
+    const data = getData(locale);
+
     if (projectsById[id]) return projectsById[id];
-
     const idLower = id.toLowerCase();
-
-    // 2. El ID del JSON contiene el ID inventado (ej: "ormigga" está en "IngenieroDesarrolloOrmigga2020T2020")
-    //    — pero ese es de experience, no projects. Buscar en projects primero.
-    const projectKeys = Object.keys(projectsById);
-
-    // Buscar proyecto cuyo ID o nombre contenga el término
-    const byIdMatch = projectKeys.find((k) => k.toLowerCase().includes(idLower));
+    const byIdMatch = Object.keys(projectsById).find((k) => k.toLowerCase().includes(idLower));
     if (byIdMatch) return projectsById[byIdMatch];
-
-    // 3. Buscar por nombre del proyecto (ej: "topaz" → "Herramienta de Despliegues + Agente IA" en Topaz)
-    const byNameMatch = data.projects.find(
+    return data.projects.find(
         (p) => p.name.toLowerCase().includes(idLower) ||
             p.description.toLowerCase().includes(idLower) ||
             p.tech.some((t) => t.toLowerCase().includes(idLower))
-    );
-    if (byNameMatch) return byNameMatch;
-
-    return null;
+    ) ?? null;
 }
 
-function fuzzyFindExperience(id: string) {
+function fuzzyFindExperience(id: string, locale: Locale) {
+    const experienceById = getExperienceById(locale);
+    const data = getData(locale);
+
     if (experienceById[id]) return experienceById[id];
     const idLower = id.toLowerCase();
     const key = Object.keys(experienceById).find((k) => k.toLowerCase().includes(idLower));
@@ -56,31 +56,48 @@ function fuzzyFindExperience(id: string) {
     ) ?? null;
 }
 
-// ─── Helpers de hidratación ───────────────────────────────────────────────────
+// ─── Hydrators con locale ─────────────────────────────────────────────────────
 
-export function hydrateExperience(ids: string[]) {
-    return ids.map((id) => fuzzyFindExperience(id)).filter(Boolean);
+export function hydrateExperience(ids: string[], locale: Locale = "es") {
+    return ids.map((id) => fuzzyFindExperience(id, locale)).filter(Boolean);
 }
 
-export function hydrateProjects(ids: string[]) {
-    return ids.map((id) => fuzzyFindProject(id)).filter(Boolean);
+export function hydrateProjects(ids: string[], locale: Locale = "es") {
+    return ids.map((id) => fuzzyFindProject(id, locale)).filter(Boolean);
 }
 
-export function hydrateTimeline(ids: string[]) {
+export function hydrateTimeline(ids: string[], locale: Locale = "es") {
+    const timelineById = getTimelineById(locale);
     return ids.map((id) => timelineById[id]).filter(Boolean);
 }
 
-export function hydrateSkills(ids: string[]) {
+export function hydrateSkills(ids: string[], locale: Locale = "es") {
+    const skillsById = getSkillsById(locale);
     return ids.map((id) => skillsById[id]).filter(Boolean);
 }
 
-// ─── Exports de listas completas para fallbacks ───────────────────────────────
+// ─── Exports de listas completas ──────────────────────────────────────────────
 
-export const allExperience = data.experience;
-export const allProjects = data.projects;
-export const allTimeline = data.story.timeline;
-export const allSkills = data.skills.categories;
-export const storyIntro = data.story.intro;
-export const personalData = data.personal;
-export const aboutData = data.about;
-export const contactData = data.contact;
+export function getAllData(locale: Locale = "es") {
+    const data = getData(locale);
+    return {
+        allExperience: data.experience,
+        allProjects: data.projects,
+        allTimeline: data.story.timeline,
+        allSkills: data.skills.categories,
+        storyIntro: data.story.intro,
+        personalData: data.personal,
+        aboutData: data.about,
+        contactData: data.contact,
+    };
+}
+
+// Compatibilidad con imports directos que ya existen en otros archivos
+export const allExperience = dataEs.experience;
+export const allProjects = dataEs.projects;
+export const allTimeline = dataEs.story.timeline;
+export const allSkills = dataEs.skills.categories;
+export const storyIntro = dataEs.story.intro;
+export const personalData = dataEs.personal;
+export const aboutData = dataEs.about;
+export const contactData = dataEs.contact;

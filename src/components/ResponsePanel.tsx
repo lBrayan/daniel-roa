@@ -12,11 +12,15 @@ import {
     storyIntro,
     aboutData,
     contactData,
+    getAllData,
 } from "@/lib/dataIndex";
 import { ScrollReveal } from "./ScrollReveal";
 import { Magnetic } from "@/components/Magnetic";
+import { useTranslation } from "@/i18n/useTranslation";
+import type { TranslationKey } from "@/i18n/locales/es";
+import { Locale } from "@/i18n/LanguageContext";
 
-// ─── Types ───────────────────────────────────────────────────────────────────
+// ─── Types ────────────────────────────────────────────────────────────────────
 
 export type AIResponseType =
     | "projects"
@@ -31,12 +35,9 @@ export interface AIResponse {
     type: AIResponseType;
     message: string;
     data: {
-        // ← Nuevo contrato: el modelo devuelve IDs o key
         ids?: string[];
         key?: string;
-        // Contrato legacy / general
         text?: string;
-        // Hidratado (relleno internamente por ResponsePanel)
         items?: ProjectItem[] | ExperienceItem[];
         categories?: SkillsCategory[];
         intro?: string;
@@ -81,35 +82,26 @@ function Skeleton() {
 
 // ─── Welcome / idle state ─────────────────────────────────────────────────────
 
-const STATS = [
-    { value: "8+", label: "años de experiencia" },
-    { value: "15+", label: "años programando" },
-    { value: "6", label: "empresas" },
-    { value: "6", label: "proyectos freelance" },
-];
+// Definidas como función para poder usar t() — no como constantes de módulo
+function useWelcomeContent() {
+    const { t } = useTranslation();
 
-const HIGHLIGHTS = [
-    {
-        icon: "⬡",
-        title: "IA & Automatización",
-        desc: "Reduje un equipo de 8 personas a 2 con una herramienta propia de deploys con agente IA.",
-    },
-    {
-        icon: "☁",
-        title: "AWS Serverless",
-        desc: "Lambda, S3, DynamoDB, CloudFormation, Amplify — arquitecturas cloud en producción.",
-    },
-    {
-        icon: "◈",
-        title: "Banca & Fintech",
-        desc: "Lideré Mis Finanzas en Casa para Davivienda y plataformas para IBM y Bancolombia.",
-    },
-    {
-        icon: "⌬",
-        title: "Fullstack desde el día uno",
-        desc: "React, Next.js, Angular, Node.js, C# Web API 2, PHP, Python Django — sin depender de un solo stack.",
-    },
-];
+    const STATS: Array<{ value: string; labelKey: TranslationKey }> = [
+        { value: "8+", labelKey: "stat_years_exp" },
+        { value: "15+", labelKey: "stat_years_coding" },
+        { value: "6", labelKey: "stat_companies" },
+        { value: "6", labelKey: "stat_freelance" },
+    ];
+
+    const HIGHLIGHTS: Array<{ icon: string; titleKey: TranslationKey; descKey: TranslationKey }> = [
+        { icon: "⬡", titleKey: "hl_ia_title", descKey: "hl_ia_desc" },
+        { icon: "☁", titleKey: "hl_aws_title", descKey: "hl_aws_desc" },
+        { icon: "◈", titleKey: "hl_fintech_title", descKey: "hl_fintech_desc" },
+        { icon: "⌬", titleKey: "hl_fullstack_title", descKey: "hl_fullstack_desc" },
+    ];
+
+    return { t, STATS, HIGHLIGHTS };
+}
 
 const STACK_PILLS = [
     "React", "Next.js", "TypeScript", "Node.js",
@@ -118,19 +110,20 @@ const STACK_PILLS = [
 ];
 
 function WelcomeState() {
+    const { t, STATS, HIGHLIGHTS } = useWelcomeContent();
+
     return (
         <div className="px-6 py-8 space-y-8">
             {/* Greeting */}
             <div className="space-y-1">
                 <p className="font-mono text-[10px] uppercase tracking-[5px] text-cyan-400/70">
-                    disponible para proyectos
+                    {t("available")}
                 </p>
                 <h2 className="font-mono text-xl font-semibold text-slate-100 leading-snug">
-                    Hola, soy Daniel.
+                    {t("welcome_title")}
                 </h2>
-                <p className="text-sm text-slate-400 leading-relaxed max-w-md">
-                    Desarrollador Senior Fullstack e Innovador en IA. Construyo productos que escalan,
-                    automatizo lo que otros hacen a mano y lidero equipos técnicos de alto impacto.
+                <p className="font-mono text-xs text-cyan-300/80">
+                    {t("welcome_subtitle")}
                 </p>
             </div>
 
@@ -138,11 +131,11 @@ function WelcomeState() {
             <div className="grid grid-cols-4 gap-3">
                 {STATS.map((s) => (
                     <div
-                        key={s.label}
+                        key={s.labelKey}
                         className="rounded-xl border border-cyan-900/25 bg-[#040f1e]/60 p-3 text-center"
                     >
                         <p className="font-mono text-lg font-bold text-cyan-400">{s.value}</p>
-                        <p className="text-[10px] text-slate-400 mt-0.5 leading-tight">{s.label}</p>
+                        <p className="text-[10px] text-slate-400 mt-0.5 leading-tight">{t(s.labelKey)}</p>
                     </div>
                 ))}
             </div>
@@ -151,14 +144,14 @@ function WelcomeState() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {HIGHLIGHTS.map((h) => (
                     <div
-                        key={h.title}
+                        key={h.titleKey}
                         className="rounded-xl border border-cyan-900/25 bg-[#040f1e]/60 p-4 space-y-1.5 transition-colors hover:border-cyan-700/40"
                     >
                         <div className="flex items-center gap-2">
                             <span className="font-mono text-base text-cyan-400/70">{h.icon}</span>
-                            <p className="font-mono text-xs font-semibold text-cyan-300">{h.title}</p>
+                            <p className="font-mono text-xs font-semibold text-cyan-300">{t(h.titleKey)}</p>
                         </div>
-                        <p className="text-xs text-slate-400 leading-relaxed">{h.desc}</p>
+                        <p className="text-xs text-slate-400 leading-relaxed">{t(h.descKey)}</p>
                     </div>
                 ))}
             </div>
@@ -166,7 +159,7 @@ function WelcomeState() {
             {/* Stack pills */}
             <div className="space-y-2">
                 <p className="font-mono text-[9px] uppercase tracking-[4px] text-cyan-400/60">
-                    stack principal
+                    {t("stack_label")}
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                     {STACK_PILLS.map((tech) => (
@@ -184,8 +177,7 @@ function WelcomeState() {
             <div className="rounded-xl border border-cyan-900/20 bg-cyan-950/20 px-4 py-3 flex items-center gap-3">
                 <span className="font-mono text-cyan-400/60 text-lg" aria-hidden="true">›</span>
                 <p className="text-xs text-slate-400 leading-relaxed">
-                    Usa los botones de abajo para explorar mis proyectos, experiencia, habilidades o historia.
-                    También puedes escribir libremente.
+                    {t("welcome_cta")}
                 </p>
             </div>
         </div>
@@ -195,6 +187,7 @@ function WelcomeState() {
 // ─── Content renderers ────────────────────────────────────────────────────────
 
 function AboutContent({ data }: { data: AIResponse["data"] }) {
+    const { t } = useTranslation();
     return (
         <div className="space-y-4">
             <div className="rounded-xl border border-cyan-900/30 bg-[#040f1e]/80 p-4">
@@ -203,19 +196,21 @@ function AboutContent({ data }: { data: AIResponse["data"] }) {
                     {data.years && (
                         <div className="text-center">
                             <p className="font-mono text-2xl font-bold text-cyan-400">{data.years}+</p>
-                            <p className="text-[10px] text-slate-500 mt-0.5">años exp.</p>
+                            <p className="text-[10px] text-slate-500 mt-0.5">{t("years_label")}</p>
                         </div>
                     )}
                     {data.location && (
                         <div className="text-center col-span-2">
                             <p className="font-mono text-xs text-slate-300">{data.location}</p>
-                            <p className="text-[10px] text-slate-500 mt-0.5">ubicación</p>
+                            <p className="text-[10px] text-slate-500 mt-0.5">{t("location_label")}</p>
                         </div>
                     )}
                 </div>
                 {data.current && (
                     <div className="mt-3 rounded-lg bg-cyan-950/30 p-3 border-l-2 border-cyan-500/50">
-                        <p className="text-[11px] text-cyan-400/80 font-mono">› actualmente: {data.current}</p>
+                        <p className="text-[11px] text-cyan-400/80 font-mono">
+                            › {t("currently_label")}: {data.current}
+                        </p>
                     </div>
                 )}
             </div>
@@ -224,18 +219,20 @@ function AboutContent({ data }: { data: AIResponse["data"] }) {
 }
 
 function ContactContent({ data }: { data: AIResponse["data"] }) {
+    const { t } = useTranslation();
+
     const links = [
-        { label: "Email", value: data.email, href: `mailto:${data.email}`, icon: "✉" },
-        { label: "GitHub", value: data.github, href: data.github, icon: "⌥" },
-        { label: "LinkedIn", value: data.linkedin, href: data.linkedin, icon: "◈" },
+        { label: t("contact_email"), value: data.email, href: `mailto:${data.email}`, icon: "✉" },
+        { label: t("contact_github"), value: data.github, href: data.github, icon: "⌥" },
+        { label: t("contact_linkedin"), value: data.linkedin, href: data.linkedin, icon: "◈" },
     ].filter((l) => l.value);
 
     return (
         <div className="space-y-2 flex flex-col items-start">
             {links.map((l) => (
                 <Magnetic key={l.label} intensity={0.4}>
-                    <a
-                        href={l.href ?? "#"}
+
+                    <a href={l.href ?? "#"}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-3 rounded-xl border border-cyan-900/30 bg-[#040f1e]/80 p-4 transition-all hover:border-cyan-500/40 hover:bg-[#071525]/90 w-full min-w-[280px]"
@@ -247,8 +244,9 @@ function ContactContent({ data }: { data: AIResponse["data"] }) {
                         </div>
                     </a>
                 </Magnetic>
-            ))}
-        </div>
+            ))
+            }
+        </div >
     );
 }
 
@@ -304,49 +302,38 @@ function StoryContent({ data }: { data: AIResponse["data"] }) {
 
 // ─── Hydration helper ─────────────────────────────────────────────────────────
 
-/**
- * Recibe la respuesta cruda de la API (con `ids` o `key`) y la hidrata
- * con los datos reales de daniel.json usando dataIndex.
- */
-function hydrateResponse(response: AIResponse): AIResponse {
+function hydrateResponse(response: AIResponse, locale: Locale): AIResponse {
     const { type, data } = response;
 
-    // Si ya viene hidratada (legado / fallbacks), no hacer nada
     if (data.items || data.categories || data.timeline || data.bio || data.email) {
         return response;
     }
 
     const ids = data.ids ?? [];
+    const { storyIntro, aboutData, contactData } = getAllData(locale); // ← locale-aware
 
     switch (type) {
         case "experience": {
-            const items = hydrateExperience(ids) as ExperienceItem[];
+            const items = hydrateExperience(ids, locale) as ExperienceItem[];
             return { ...response, data: { ...data, items } };
         }
-
         case "projects": {
-            // 1. Obtenemos los datos crudos de tu base de datos (daniel.json)
-            const rawProjects = hydrateProjects(ids);
-
-            // 2. Los mapeamos y convertimos estrictamente al tipo ProjectItem
+            const rawProjects = hydrateProjects(ids, locale);
             const items: ProjectItem[] = rawProjects.map((rawItem: any) => ({
                 title: rawItem.name,
                 imageUrl: rawItem.imageUrl || "/project-placeholder.png",
                 description: rawItem.description,
                 techStack: rawItem.tech,
-                features: [rawItem.type] // Usamos el type como un feature inicial
+                features: [rawItem.type],
             }));
-
             return { ...response, data: { ...data, items } };
         }
-
         case "skills": {
-            const categories = hydrateSkills(ids) as SkillsCategory[];
+            const categories = hydrateSkills(ids, locale) as SkillsCategory[];
             return { ...response, data: { ...data, categories } };
         }
-
         case "story": {
-            const rawTimeline = hydrateTimeline(ids);
+            const rawTimeline = hydrateTimeline(ids, locale);
             return {
                 ...response,
                 data: {
@@ -356,7 +343,6 @@ function hydrateResponse(response: AIResponse): AIResponse {
                 },
             };
         }
-
         case "about": {
             return {
                 ...response,
@@ -369,7 +355,6 @@ function hydrateResponse(response: AIResponse): AIResponse {
                 },
             };
         }
-
         case "contact": {
             return {
                 ...response,
@@ -381,7 +366,6 @@ function hydrateResponse(response: AIResponse): AIResponse {
                 },
             };
         }
-
         default:
             return response;
     }
@@ -390,6 +374,8 @@ function hydrateResponse(response: AIResponse): AIResponse {
 // ─── Main component ───────────────────────────────────────────────────────────
 
 export function ResponsePanel({ response, loading, error }: ResponsePanelProps) {
+    const { t, locale } = useTranslation();
+
     if (loading) {
         return (
             <div className="p-5">
@@ -412,15 +398,16 @@ export function ResponsePanel({ response, loading, error }: ResponsePanelProps) 
         return <WelcomeState />;
     }
 
-    // ← CLAVE: hidratar IDs antes de renderizar
-    const hydrated = hydrateResponse(response);
+    const hydrated = hydrateResponse(response, locale);
     const { type, message, data } = hydrated;
 
     return (
         <div className="p-5 space-y-4">
+            {/* Disclaimer — traducido */}
             <div className="px-2 py-1 bg-amber-300 flex">
-                <span className="text-[12px] text-black">La IA puede cometer errores, si la respuesta no se visualiza bien o completa, intenta nuevamnete.</span>
+                <span className="text-[12px] text-black">{t("ai_disclaimer")}</span>
             </div>
+
             {/* Model message */}
             {message && (
                 <p className="font-mono text-xs text-cyan-400/80 border-l-2 border-cyan-700/40 pl-3 py-0.5">
@@ -430,7 +417,6 @@ export function ResponsePanel({ response, loading, error }: ResponsePanelProps) 
 
             {/* Structured content */}
             {type === "projects" && Array.isArray(data.items) && (
-                // ✅ Le añadimos pt-2 (padding-top) y gap-5 para que al subir no choque con nada
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 pt-2 px-1">
                     {(data.items as ProjectItem[]).map((item, i) => (
                         <ScrollReveal key={i} delay={i * 0.15}>
