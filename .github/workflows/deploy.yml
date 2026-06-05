@@ -37,14 +37,20 @@ jobs:
           cp -r public .next/standalone/
           cp -r .next/static .next/standalone/.next/
           
-          # Script definitivo para esquivar la restricción de "Solo Lectura"
-          echo '#!/bin/bash' > .next/standalone/run.sh
-          # Copiamos todo (incluyendo ocultos) a /tmp solo si no existe ya
-          echo 'if [ ! -f /tmp/server.js ]; then cp -a /var/task/. /tmp/; fi' >> .next/standalone/run.sh
-          # Entramos al directorio temporal con permisos de escritura
-          echo 'cd /tmp' >> .next/standalone/run.sh
-          # Encendemos Next.js
-          echo 'exec node server.js' >> .next/standalone/run.sh
+          # Creamos el run.sh de forma limpia
+          cat << 'EOF' > .next/standalone/run.sh
+          #!/bin/bash
+          
+          # 1. Redirigir SOLO la caché a /tmp para evitar errores de solo lectura
+          mkdir -p /tmp/next-cache
+          rm -rf .next/cache
+          ln -s /tmp/next-cache .next/cache
+          
+          # 2. Configurar red e iniciar servidor
+          export HOSTNAME="0.0.0.0"
+          export PORT=8080
+          exec node server.js
+          EOF
           
           chmod +x .next/standalone/run.sh
 
