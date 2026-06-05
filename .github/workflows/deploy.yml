@@ -34,15 +34,16 @@ jobs:
       # 👇 AÑADE ESTE BLOQUE EXACTAMENTE AQUÍ 👇
       - name: Prepare Standalone Build
         run: |
-          # 1. Copiar carpetas para evitar errores de metadata interna
           cp -r public .next/standalone/
           cp -r .next/static .next/standalone/.next/
           
-          # 2. Crear el script de arranque (run.sh) que exige el Web Adapter
+          # Script avanzado para engañar al sistema de caché en AWS Lambda
           echo '#!/bin/bash' > .next/standalone/run.sh
+          echo 'rm -rf .next/cache' >> .next/standalone/run.sh
+          echo 'mkdir -p /tmp/cache' >> .next/standalone/run.sh
+          echo 'ln -s /tmp/cache .next/standalone/.next/cache' >> .next/standalone/run.sh
           echo 'exec node server.js' >> .next/standalone/run.sh
           
-          # 3. Darle permisos de ejecución al script
           chmod +x .next/standalone/run.sh
 
       - name: 🔑 Configurar AWS

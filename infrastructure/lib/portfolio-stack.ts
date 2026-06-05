@@ -38,14 +38,14 @@ export class PortfolioStack extends cdk.Stack {
         // 2. Lambda con Next.js Standalone + AWS Web Adapter Layer
         const nextJsLambda = new lambda.Function(this, 'PortfolioServer', {
             runtime: lambda.Runtime.NODEJS_20_X,
-            handler: 'run.sh', // El adapter toma el control
-            code: lambda.Code.fromAsset('../.next/standalone'), // Ruta al build standalone
-            memorySize: 1024,
-            timeout: cdk.Duration.seconds(15),
+            handler: 'run.sh', 
+            code: lambda.Code.fromAsset('../.next/standalone'), 
+            memorySize: 1536, // Subimos un poco la memoria para evitar timeouts en el arranque en frío
+            timeout: cdk.Duration.seconds(30), // Le damos más margen de tiempo de arranque
             environment: {
-                // Variables de entorno para tu Agente IA y configuración
-                AWS_LAMBDA_EXEC_WRAPPER: '/opt/bootstrap', // Activa el Web Adapter
+                AWS_LAMBDA_EXEC_WRAPPER: '/opt/bootstrap', 
                 PORT: '8080',
+                HOSTNAME: '0.0.0.0', // 👈 VITAL para que Next.js escuche el tráfico del Web Adapter
                 GROQ_API_KEY: process.env.GROQ_API_KEY || '',
                 ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY || '',
             },
@@ -104,7 +104,7 @@ export class PortfolioStack extends cdk.Stack {
             destinationBucket: staticAssetsBucket,
             destinationKeyPrefix: '_next/static',
             distribution,
-            distributionPaths: ['/_next/static/*'], // Solo invalida esta ruta
+            distributionPaths: ['/*'], // 👈 Forzamos limpiar TODO el sitio para borrar el 500 cacheado
         });
 
         // 6. Despliegue automático de la carpeta public (favicon, imágenes estáticas)
