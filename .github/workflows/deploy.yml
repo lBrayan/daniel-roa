@@ -17,13 +17,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node & pnpm
+      - name: Setup Node & Global Tools
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm install -g pnpm
+      - run: |
+          npm install -g pnpm
+          npm install -g aws-cdk
 
-      # 1. Instala dependencias de la raíz (Next.js)
       - name: Install Dependencies
         run: pnpm install
 
@@ -37,18 +38,15 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      # 2. ¡Recuperamos este paso vital para instalar CDK y tsx!
       - name: Install CDK Dependencies
         run: |
           cd infrastructure
           pnpm install
 
-      # 3. Despliegue
       - name: CDK Deploy
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           cd infrastructure
-          # Ahora el ejecutable local sí existe
-          pnpm exec cdk deploy --require-approval never
+          cdk deploy --require-approval never
