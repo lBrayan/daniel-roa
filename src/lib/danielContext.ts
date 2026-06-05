@@ -2,31 +2,32 @@ import data from "@/data/daniel.json";
 
 // Índice completo para que el modelo pueda razonar
 const experienceIndex = data.experience
-   .map((e) => [
-      `ID: "${e.id}" | ${e.role} @ ${e.company} (${e.period})`,
-      `  Highlights: ${e.highlights.join(" · ")}`,
-   ].join("\n"))
-   .join("\n\n");
+  .map((e) => [
+    `ID: "${e.id}" | ${e.role} @ ${e.company} (${e.period})`,
+    `  Highlights: ${e.highlights.join(" · ")}`,
+  ].join("\n"))
+  .join("\n\n");
 
 const projectsIndex = data.projects
-   .map((p) => [
-      `ID: "${p.id}" | [${p.type.toUpperCase()}] ${p.name}${p.url ? ` — ${p.url}` : ""}`,
-      `  Descripción: ${p.description}`,
-      `  Stack: ${p.tech.join(", ")}`,
-   ].join("\n"))
-   .join("\n\n");
+  .map((p) => [
+    `ID: "${p.id}" | [${p.type.toUpperCase()}] ${p.name}${p.url ? ` — ${p.url}` : ""}`,
+    `  Descripción: ${p.description}`,
+    `  Stack: ${p.tech.join(", ")}`,
+    `  USAR EXACTAMENTE ESTE ID: "${p.id}"`,
+  ].join("\n"))
+  .join("\n\n");
 
 const timelineIndex = data.story.timeline
-   .map((t) => [
-      `ID: "${t.id}" | ${t.year} — ${t.title}`,
-      `  ${t.description}`,
-      `  Tags: ${t.tags.join(", ")}`,
-   ].join("\n"))
-   .join("\n\n");
+  .map((t) => [
+    `ID: "${t.id}" | ${t.year} — ${t.title}`,
+    `  ${t.description}`,
+    `  Tags: ${t.tags.join(", ")}`,
+  ].join("\n"))
+  .join("\n\n");
 
 const skillsIndex = data.skills.categories
-   .map((c) => `ID: "${c.id}" | ${c.name}: ${c.items.join(", ")}`)
-   .join("\n");
+  .map((c) => `ID: "${c.id}" | ${c.name}: ${c.items.join(", ")}`)
+  .join("\n");
 
 export const DANIEL_CONTEXT = `
 Eres el asistente personal de ${data.personal.name}, desarrollador Senior Fullstack & IA Engineer con ${data.personal.yearsOfExperience}+ años de experiencia profesional y ${data.personal.yearsCoding}+ años programando. Hablas en primera persona, tono profesional y cercano.

@@ -1,12 +1,14 @@
 "use client";
 
 // src/components/PortfolioClient.tsx
-import React, { useState, useCallback } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useCallback, useRef, useEffect } from "react";
+import { motion, useScroll, useTransform, useMotionTemplate } from "framer-motion";
 import CodeFace from "@/components/CodeFace";
 import { ChatInput, QUICK_ACTIONS } from "@/components/ChatInput";
 import { ResponsePanel, type AIResponse } from "@/components/ResponsePanel";
 import { MobileChat } from "@/components/MobileChat";
+import { SplitTextReveal } from "@/components/SplitTextReveal";
+import { Magnetic } from "@/components/Magnetic";
 
 export function PortfolioClient() {
     const [response, setResponse] = useState<AIResponse | null>(null);
@@ -15,6 +17,20 @@ export function PortfolioClient() {
     const [isTalking, setIsTalking] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
     const [pendingQuery, setPendingQuery] = useState<string | null>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [hasMounted, setHasMounted] = useState(false);
+
+    useEffect(() => {
+        setHasMounted(true);
+    }, []);
+
+    const { scrollYProgress } = useScroll({
+        target: hasMounted ? containerRef : undefined, // Solo pasamos la ref si ya montó
+        offset: ["start start", "end end"]
+    });
+    const asideY = useTransform(scrollYProgress, [0, 1], [0, 150]);
+    const asideBlur = useTransform(scrollYProgress, [0, 0.4], [0, 8]);
+    const blurStyle = useMotionTemplate`blur(${asideBlur}px)`;
 
     const handleTalkStart = useCallback(() => setIsTalking(true), []);
     const handleTalkEnd = useCallback(() => setIsTalking(false), []);
@@ -25,51 +41,60 @@ export function PortfolioClient() {
 
     return (
         <div
-            className="relative w-full overflow-hidden"
+            className="relative w-full"
             style={{ background: "#020818", minHeight: "100dvh" }}
         >
 
             {/* ═══════════════════════════════════════
                 DESKTOP LAYOUT (lg+)
-                — left panel fijo en viewport, no crece
-                — right panel scrollea independiente
+                — left panel fijo en viewport con sticky
+                — right panel fluye natural para Lenis Scroll
             ═══════════════════════════════════════ */}
-            <div className="hidden lg:flex w-full" style={{ height: "100dvh" }}>
+            <div className="hidden lg:flex w-full items-start" style={{ minHeight: "100dvh" }}>
 
-                {/* LEFT PANEL — altura fija al viewport, no scrollea */}
+                {/* LEFT PANEL PARALLAX */}
                 <motion.aside
                     initial={{ opacity: 0, x: -24 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="relative flex flex-col border-r border-cyan-900/20 shrink-0"
+                    className="relative flex flex-col border-r border-cyan-900/20 shrink-0 z-30"
                     style={{
+                        y: asideY,             // <--- Parallax vertical
+                        filter: blurStyle,     // <--- Desenfoque dinámico
                         width: "420px",
-                        height: "100dvh",       // ancla al viewport
+                        height: "100dvh",
                         position: "sticky",
                         top: 0,
                         background: "#020818",
-                        overflow: "hidden",     // nunca scrollea
+                        overflow: "hidden",
                     }}
                 >
                     {/* Header */}
                     <header className="px-6 pt-8 pb-2 shrink-0">
-                        <p className="font-mono text-[9px] uppercase tracking-[6px] text-cyan-600/60 mb-1">
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 1, delay: 0.2 }}
+                            className="font-mono text-[9px] uppercase tracking-[6px] text-cyan-600/60 mb-1"
+                        >
                             Portfolio
-                        </p>
+                        </motion.p>
+
                         <h1 className="font-mono text-lg font-semibold text-slate-100 leading-tight">
-                            Brayan Daniel Roa
+                            <SplitTextReveal text="Brayan Daniel Roa" delay={0.3} />
                         </h1>
-                        <p className="font-mono text-xs text-cyan-500/70">
-                            Senior Fullstack & IA Engineer
+
+                        <p className="font-mono text-xs text-cyan-500/70 mt-1">
+                            <SplitTextReveal text="Senior Fullstack & IA Engineer" delay={0.6} />
                         </p>
                     </header>
 
-                    {/* CodeFace — ocupa el espacio disponible entre header y input */}
+                    {/* CodeFace */}
                     <div className="flex flex-1 items-center justify-center px-4 py-2 min-h-0">
                         <CodeFace isTalking={isTalking} onTalkEnd={handleTalkEnd} />
                     </div>
 
-                    {/* ChatInput — siempre pegado al fondo */}
+                    {/* ChatInput */}
                     <div className="shrink-0">
                         <ChatInput
                             onResponse={setResponse}
@@ -80,27 +105,40 @@ export function PortfolioClient() {
                     </div>
                 </motion.aside>
 
-                {/* RIGHT PANEL — scrollea independiente */}
+                {/* RIGHT PANEL — Empuja el scroll global hacia abajo */}
                 <motion.main
                     initial={{ opacity: 0, x: 24 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
                     className="flex flex-col flex-1 min-w-0"
-                    style={{
-                        height: "100dvh",
-                        overflow: "hidden",     // el scroll lo maneja ResponsePanel interno
-                    }}
                     aria-label="Respuestas del asistente"
                 >
-                    {/* Top bar */}
-                    <div className="flex items-center gap-3 border-b border-cyan-900/20 px-6 py-4 shrink-0">
+                    {/* Spotlight de Navegación Lateral */}
+                    <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-4">
+                        {['Inicio', 'Proyectos', 'Experiencia', 'Contacto'].map((section, i) => (
+                            <motion.div
+                                key={section}
+                                className="h-10 w-0.5 bg-cyan-900/20 relative"
+                            >
+                                <motion.div
+                                    className="absolute inset-0 bg-cyan-500 origin-top"
+                                    initial={{ scaleY: 0 }}
+                                    whileInView={{ scaleY: 1 }}
+                                    viewport={{ margin: "-50% 0px -50% 0px" }} // Se activa cuando la sección cruza el centro
+                                />
+                            </motion.div>
+                        ))}
+                    </div>
+
+                    {/* Top bar — Ahora tiene sticky para que se quede fija arriba al hacer scroll */}
+                    <div className="flex items-center gap-3 border-b border-cyan-900/20 px-6 py-4 shrink-0 sticky top-0 z-20 bg-[#020818]/80 backdrop-blur-md">
                         <div className="flex gap-1.5">
                             <div className="h-2.5 w-2.5 rounded-full bg-red-500/60" />
                             <div className="h-2.5 w-2.5 rounded-full bg-amber-500/60" />
                             <div className="h-2.5 w-2.5 rounded-full bg-emerald-500/60" />
                         </div>
                         <span className="font-mono text-[10px] text-slate-600">
-                            daniel-roa://portfolio
+                            brayan-roa://portfolio
                         </span>
                         {loading && (
                             <span className="ml-auto flex items-center gap-1.5">
@@ -110,15 +148,15 @@ export function PortfolioClient() {
                         )}
                     </div>
 
-                    {/* ResponsePanel ocupa el espacio restante y scrollea solo */}
-                    <div className="flex-1 min-h-0 overflow-y-auto">
+                    {/* ResponsePanel fluye naturalmente sin restricciones de altura */}
+                    <div className="flex-1 pb-16">
                         <ResponsePanel response={response} loading={loading} error={error} />
                     </div>
 
                     {/* Footer */}
-                    <footer className="border-t border-cyan-900/10 px-6 py-3 shrink-0">
+                    <footer className="border-t border-cyan-900/10 px-6 py-6 shrink-0 mt-auto bg-[#020818]">
                         <p className="font-mono text-[9px] text-slate-700">
-                            © 2025 Brayan Daniel Roa ·{" "}
+                            © 2026 Brayan Daniel Roa ·{" "}
 
                             <a href="mailto:lbrayan.roa@gmail.com" className="text-cyan-800/60 hover:text-cyan-600 transition-colors">
                                 lbrayan.roa@gmail.com
@@ -177,14 +215,15 @@ export function PortfolioClient() {
 
                 {/* CTA + badges */}
                 <div className="w-full px-5 pb-8 pt-2 space-y-3 shrink-0">
-                    <motion.button
-                        onClick={() => { setPendingQuery(null); setMobileOpen(true); }}
-                        className="w-full rounded-xl border border-cyan-700/40 bg-cyan-950/40 py-3.5 font-mono text-sm text-cyan-300 backdrop-blur-sm transition-all active:scale-[0.98]"
-                        whileTap={{ scale: 0.97 }}
-                        aria-label="Abrir chat con Daniel"
-                    >
-                        ▶ Pregúntame algo
-                    </motion.button>
+                    <Magnetic intensity={0.2} className="w-full block">
+                        <motion.button
+                            onClick={() => { setPendingQuery(null); setMobileOpen(true); }}
+                            className="w-full rounded-xl border border-cyan-700/40 bg-cyan-950/40 py-3.5 font-mono text-sm text-cyan-300 backdrop-blur-sm transition-all"
+                            whileTap={{ scale: 0.97 }}
+                        >
+                            ▶ Pregúntame algo
+                        </motion.button>
+                    </Magnetic>
 
                     {/* Todos los badges iguales que desktop */}
                     <div className="flex flex-wrap gap-1.5 justify-center">
@@ -201,7 +240,7 @@ export function PortfolioClient() {
 
                     <footer className="text-center pt-2">
                         <p className="font-mono text-[8px] text-slate-700">
-                            © 2025 Brayan Daniel Roa · Bogotá, Colombia
+                            © 2026 Brayan Daniel Roa · Bogotá, Colombia
                         </p>
                     </footer>
                 </div>

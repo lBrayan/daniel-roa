@@ -242,6 +242,7 @@
         {
             "id": "AgentDPLIATopaz2026",
             "name": "Herramienta de Despliegues + Agente IA",
+            "imageUrl": "private",
             "url": null,
             "description": "Plataforma visual interna en Topaz que automatiza ramas, cherry-picks, sincronización y diagnóstico de errores con IA. Redujo equipo de 8 a 2 personas. Agente IA genera flujos desde un requerimiento.",
             "tech": [
@@ -258,6 +259,7 @@
             "id": "IABugDetectorSQA2022",
             "name": "Bug Detector IA — SQA",
             "url": null,
+            "imageUrl": "private",
             "description": "Modelo TensorFlow.js para detección de bugs duplicados en plataforma Crowd Testing. Redujo tiempos de reporte de 4 días a 24 horas.",
             "tech": [
                 "TensorFlow.js",
@@ -269,7 +271,8 @@
         {
             "id": "MisFinanzasEnCasaDav2018",
             "name": "Mis Finanzas en Casa — Davivienda",
-            "url": null,
+            "url": "https://misfinanzasencasa.davivienda.com/",
+            "imageUrl": "/images/projects/davi.webp",
             "description": "App PWA para banca retail del Banco Davivienda (Grupo Bolívar). Angular + notificaciones push + seguridad RSA.",
             "tech": [
                 "Angular",
@@ -283,6 +286,7 @@
             "id": "ClinicaVentas360Spira",
             "name": "Clínica de Ventas 360",
             "url": null,
+            "imageUrl": "private",
             "description": "MVP con videollamadas en tiempo real usando WebRTC y RecordRTC. Primer proyecto Angular de Spira SAS, propuesto por iniciativa propia.",
             "tech": [
                 "Angular 2",
@@ -296,6 +300,7 @@
             "id": "ColoCoffeTheme",
             "name": "colo.com.co",
             "url": "https://colo.com.co",
+            "imageUrl": "/images/projects/colo.webp",
             "description": "Template completo construido desde mockup en Figma para Colo Coffee.",
             "tech": [
                 "Liquid",
@@ -308,6 +313,7 @@
             "id": "VickyChaPortfolio",
             "name": "vickycha.cl",
             "url": "https://vickycha.cl",
+            "imageUrl": "/images/projects/vicky.webp",
             "description": "Portafolio para arquitecta Vicky Cha. Desarrollado desde cero desde mockup en Figma — diseño, construcción y SEO 100% propios.",
             "tech": [
                 "Angular",
@@ -321,6 +327,7 @@
             "id": "SapiensResearchMig",
             "name": "srg.com.co",
             "url": "https://srg.com.co",
+            "imageUrl": "/images/projects/srg.webp",
             "description": "Migración y modernización de infraestructura WHM tradicional a AWS serverless con mejoras en rendimiento, escalabilidad y costos.",
             "tech": [
                 "React",
@@ -336,6 +343,7 @@
             "id": "SinnersSupport",
             "name": "sinners.beer",
             "url": "https://sinners.beer",
+            "imageUrl": "/images/projects/sinners.webp",
             "description": "Soporte, diseño y funcionalidad para aliado de Colo Coffee.",
             "tech": [
                 "Shopify",
@@ -348,6 +356,7 @@
             "id": "PolaThePubSupport",
             "name": "poladelpub.com",
             "url": "https://poladelpub.com",
+            "imageUrl": "/images/projects/pub.webp",
             "description": "Mejoras, soporte y ajustes en template WordPress para aliado de Colo Coffee.",
             "tech": [
                 "Shopify",
@@ -360,6 +369,7 @@
             "id": "GermaniaLanding",
             "name": "Cervecería Germania",
             "url": null,
+            "imageUrl": "/images/projects/germania.webp",
             "description": "Landing pages en WordPress para campañas, soporte y ajustes para aliado de Colo Coffee.",
             "tech": [
                 "Shopify",

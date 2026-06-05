@@ -18,7 +18,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -60,4 +60,27 @@ body {
 :focus-visible {
   outline: 2px solid rgba(61, 214, 245, 0.5);
   outline-offset: 2px;
+}
+
+/* Ocultar cursor nativo solo en dispositivos con ratón preciso (Desktop) */
+@media (pointer: fine) {
+
+  body,
+  a,
+  button,
+  input,
+  textarea {
+    cursor: none !important;
+  }
+}
+
+/* src/app/globals.css */
+.grain-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  opacity: 0.03;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAGFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/c2v/AAAACHRSTlMAZmZmZmZmZvpQ/ZkAAABRSURBVDjLzdABEQAgDAAxc0Cg/6Y6YM8E0B/cT2011bX1t/W39bf1t/W39bf1t/W39bf1t/W39bf1t/W39bf1t/W39bf1t/W39bf1t/W39ZfW4aK3/HqOAAAAABJRU5ErkJggg==");
+  background-size: 64px 64px;
 }

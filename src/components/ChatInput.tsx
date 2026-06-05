@@ -4,6 +4,7 @@
 import React, { useState, useRef, useCallback, useEffect } from "react";
 import type { AIResponse } from "@/components/ResponsePanel";
 import { getFallback } from "@/lib/fallbacks";
+import { STATIC_RESPONSES } from "@/data/staticResponses";
 
 // ─── Quick action badges ──────────────────────────────────────────────────────
 
@@ -12,7 +13,7 @@ export const QUICK_ACTIONS = [
     { label: "Experiencia", query: "Cuéntame tu experiencia laboral" },
     { label: "Skills", query: "¿Cuáles son tus habilidades técnicas?" },
     { label: "Sobre mí", query: "¿Quién eres y cuál es tu perfil?" },
-    { label: "Hitoria en la programción", query: "¿Como es tu historia en la programción?" },
+    { label: "Historia en la programación", query: "¿Como es tu historia en la programción?" },
     { label: "Contacto", query: "¿Cómo puedo contactarte?" },
     { label: "IA & Cloud", query: "¿Cuál es tu experiencia con IA y Cloud?" },
 ];
@@ -24,7 +25,7 @@ interface ChatInputProps {
     onLoadingChange: (loading: boolean) => void;
     onError: (err: string | null) => void;
     onTalkStart?: () => void;
-    sendRef?: React.MutableRefObject<((query: string, fromButton?: boolean) => void) | null>; // ← nuevo
+    sendRef?: React.MutableRefObject<((query: string, fromButton?: boolean) => void) | null>;
 }
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -37,6 +38,19 @@ export function ChatInput({ onResponse, onLoadingChange, onError, onTalkStart, s
     const send = useCallback(
         async (query: string, fromButton = false) => {
             if (!query.trim() || sending) return;
+
+            // ─── BADGES: respuesta estática instantánea, sin IA ─────────────
+            if (fromButton) {
+                const staticResponse = STATIC_RESPONSES[query];
+                if (staticResponse) {
+                    onTalkStart?.();
+                    onResponse(staticResponse);
+                    onError(null);
+                    return; // No fetch, no loading, instantáneo
+                }
+            }
+            // ────────────────────────────────────────────────────────────────
+
             setSending(true);
             onLoadingChange(true);
             onError(null);
@@ -49,20 +63,12 @@ export function ChatInput({ onResponse, onLoadingChange, onError, onTalkStart, s
                     body: JSON.stringify({ message: query }),
                 });
 
-                // IA no disponible (503) o rate limit (429)
                 if (res.status === 503 || res.status === 429) {
                     const fallback = getFallback(query);
-
-                    if (fromButton && fallback) {
-                        // Vino de un botón y hay fallback → mostrar silenciosamente
-                        onResponse(fallback);
-                        onError(null); // sin banner de error
-                    } else if (!fromButton && fallback) {
-                        // Texto libre pero coincide con algo conocido → fallback silencioso
+                    if (fallback) {
                         onResponse(fallback);
                         onError(null);
                     } else {
-                        // Texto libre que no coincide con nada → sí mostrar error
                         onError("No entiendo esa pregunta. Prueba con los botones de arriba para explorar mis proyectos, experiencia, skills y más.");
                     }
                     return;
@@ -74,14 +80,11 @@ export function ChatInput({ onResponse, onLoadingChange, onError, onTalkStart, s
                 onResponse(data);
 
             } catch {
-                // Error de red → intentar fallback
                 const fallback = getFallback(query);
-
                 if (fallback) {
                     onResponse(fallback);
-                    onError(null); // fallback silencioso
+                    onError(null);
                 } else {
-                    // Texto libre sin fallback → mostrar error
                     onError("No entiendo esa pregunta. Prueba con los botones de arriba para explorar mis proyectos, experiencia, skills y más.");
                 }
             } finally {
@@ -99,7 +102,6 @@ export function ChatInput({ onResponse, onLoadingChange, onError, onTalkStart, s
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // El texto del input NO es un botón
         send(value, false);
     };
 
@@ -110,7 +112,7 @@ export function ChatInput({ onResponse, onLoadingChange, onError, onTalkStart, s
                 {QUICK_ACTIONS.map((a) => (
                     <button
                         key={a.label}
-                        onClick={() => send(a.query, true /* fromButton */)}
+                        onClick={() => send(a.query, true)}
                         disabled={sending}
                         className="rounded-full border border-cyan-900/40 bg-cyan-950/30 px-2.5 py-1 font-mono text-[9px] text-cyan-500/70 transition-all hover:border-cyan-500/50 hover:text-cyan-300 disabled:opacity-40 disabled:cursor-not-allowed"
                     >

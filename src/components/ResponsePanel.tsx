@@ -13,6 +13,8 @@ import {
     aboutData,
     contactData,
 } from "@/lib/dataIndex";
+import { ScrollReveal } from "./ScrollReveal";
+import { Magnetic } from "@/components/Magnetic";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -229,24 +231,24 @@ function ContactContent({ data }: { data: AIResponse["data"] }) {
     ].filter((l) => l.value);
 
     return (
-        <div className="space-y-2">
+        <div className="space-y-2 flex flex-col items-start">
             {links.map((l) => (
-
-                <a key={l.label}
-                    href={l.href ?? "#"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 rounded-xl border border-cyan-900/30 bg-[#040f1e]/80 p-4 transition-all hover:border-cyan-500/40 hover:bg-[#071525]/90"
-                >
-                    <span className="font-mono text-lg text-cyan-500/70">{l.icon}</span>
-                    <div>
-                        <p className="text-[10px] text-slate-500 uppercase tracking-widest">{l.label}</p>
-                        <p className="font-mono text-xs text-cyan-300">{l.value}</p>
-                    </div>
-                </a>
-            ))
-            }
-        </div >
+                <Magnetic key={l.label} intensity={0.4}>
+                    <a
+                        href={l.href ?? "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 rounded-xl border border-cyan-900/30 bg-[#040f1e]/80 p-4 transition-all hover:border-cyan-500/40 hover:bg-[#071525]/90 w-full min-w-[280px]"
+                    >
+                        <span className="font-mono text-lg text-cyan-500/70">{l.icon}</span>
+                        <div>
+                            <p className="text-[10px] text-slate-500 uppercase tracking-widest">{l.label}</p>
+                            <p className="font-mono text-xs text-cyan-300">{l.value}</p>
+                        </div>
+                    </a>
+                </Magnetic>
+            ))}
+        </div>
     );
 }
 
@@ -323,7 +325,18 @@ function hydrateResponse(response: AIResponse): AIResponse {
         }
 
         case "projects": {
-            const items = hydrateProjects(ids) as ProjectItem[];
+            // 1. Obtenemos los datos crudos de tu base de datos (daniel.json)
+            const rawProjects = hydrateProjects(ids);
+
+            // 2. Los mapeamos y convertimos estrictamente al tipo ProjectItem
+            const items: ProjectItem[] = rawProjects.map((rawItem: any) => ({
+                title: rawItem.name,
+                imageUrl: rawItem.imageUrl || "/project-placeholder.png",
+                description: rawItem.description,
+                techStack: rawItem.tech,
+                features: [rawItem.type] // Usamos el type como un feature inicial
+            }));
+
             return { ...response, data: { ...data, items } };
         }
 
@@ -417,17 +430,22 @@ export function ResponsePanel({ response, loading, error }: ResponsePanelProps) 
 
             {/* Structured content */}
             {type === "projects" && Array.isArray(data.items) && (
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                // ✅ Le añadimos pt-2 (padding-top) y gap-5 para que al subir no choque con nada
+                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 pt-2 px-1">
                     {(data.items as ProjectItem[]).map((item, i) => (
-                        <ProjectCard key={i} item={item} />
+                        <ScrollReveal key={i} delay={i * 0.15}>
+                            <ProjectCard item={item} />
+                        </ScrollReveal>
                     ))}
                 </div>
             )}
 
             {type === "experience" && Array.isArray(data.items) && (
-                <div className="space-y-1">
+                <div className="space-y-4 border-l border-cyan-900/20 ml-2 pl-4">
                     {(data.items as ExperienceItem[]).map((item, i) => (
-                        <ExperienceCard key={i} item={item} index={i} />
+                        <ScrollReveal key={i} delay={i * 0.15}>
+                            <ExperienceCard item={item} index={i} />
+                        </ScrollReveal>
                     ))}
                 </div>
             )}
