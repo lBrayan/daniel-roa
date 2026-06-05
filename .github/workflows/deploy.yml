@@ -9,10 +9,6 @@ concurrency:
   group: deploy-production
   cancel-in-progress: false
 
-permissions:
-  id-token: write
-  contents: read
-
 jobs:
   deploy:
     name: Build & Deploy
@@ -27,6 +23,7 @@ jobs:
           node-version: 20
       - run: npm install -g pnpm
 
+      # Un solo install en la raíz orquesta todas las dependencias (Next.js e Infra)
       - name: Install Dependencies
         run: pnpm install
 
@@ -40,13 +37,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Install CDK Dependencies
-        run: cd infrastructure && pnpm install
-
       - name: CDK Deploy
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           cd infrastructure
-          npx cdk deploy --require-approval never
+          # Cambiamos npx por pnpm exec para respetar el árbol de dependencias
+          pnpm exec cdk deploy --require-approval never
