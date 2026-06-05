@@ -38,12 +38,14 @@ jobs:
           cp -r public .next/standalone/
           cp -r .next/static .next/standalone/.next/
           
-          # 2. INYECCIÓN MANUAL (Corregida para pnpm)
-          # La bandera -rL fuerza a copiar los archivos reales ignorando los symlinks
+          # 2. INYECCIÓN MANUAL (Corregida)
           mkdir -p .next/standalone/node_modules/@swc
+          # 👇 Destruimos el rastro corrupto que dejó Next.js
+          rm -rf .next/standalone/node_modules/@swc/helpers
+          # 👇 Ahora sí, inyectamos la carpeta real limpiamente
           cp -rL node_modules/@swc/helpers .next/standalone/node_modules/@swc/
           
-          # 3. PRE-SYMLINK de Caché (Ya comprobamos que esto funciona perfecto)
+          # 3. PRE-SYMLINK de Caché 
           rm -rf .next/standalone/.next/cache
           ln -s /tmp/next-cache .next/standalone/.next/cache
           
