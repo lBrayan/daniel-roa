@@ -38,21 +38,19 @@ jobs:
           cp -r public .next/standalone/
           cp -r .next/static .next/standalone/.next/
           
-          # 2. INYECCIÓN MANUAL: Forzar la copia de @swc/helpers para evadir el bug de Next.js
+          # 2. INYECCIÓN MANUAL (Corregida para pnpm)
+          # La bandera -rL fuerza a copiar los archivos reales ignorando los symlinks
           mkdir -p .next/standalone/node_modules/@swc
-          cp -r node_modules/@swc/helpers .next/standalone/node_modules/@swc/
+          cp -rL node_modules/@swc/helpers .next/standalone/node_modules/@swc/
           
-          # 3. PRE-SYMLINK: Creamos el enlace simbólico AQUÍ en GitHub (donde es escribible), 
-          # apuntando a /tmp. Cuando CDK lo suba, el enlace ya existirá.
+          # 3. PRE-SYMLINK de Caché (Ya comprobamos que esto funciona perfecto)
           rm -rf .next/standalone/.next/cache
           ln -s /tmp/next-cache .next/standalone/.next/cache
           
-          # 4. Script de arranque súper limpio y ligero
+          # 4. Script de arranque
           cat << 'EOF' > .next/standalone/run.sh
           #!/bin/bash
-          # Solo creamos la carpeta de destino en Lambda, el symlink ya existe
           mkdir -p /tmp/next-cache
-          
           export HOSTNAME="0.0.0.0"
           export PORT=8080
           exec node server.js
