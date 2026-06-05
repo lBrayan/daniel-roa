@@ -1,0 +1,92 @@
+import * as cdk from 'aws-cdk-lib';
+import { Construct } from 'constructs';
+import * as s3 from 'aws-cdk-lib/aws-s3';
+import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
+import * as origins from 'aws-cdk-lib/aws-cloudfront-origins';
+import * as lambda from 'aws-cdk-lib/aws-lambda';
+import * as s3deploy from 'aws-cdk-lib/aws-s3-deployment';
+
+export class PortfolioStack extends cdk.Stack {
+    constructor(scope: Construct, id: string, props?: cdk.StackProps) {
+        super(scope, id, props);
+
+        // 1. Bucket S3 para los estáticos (súper barato y rápido)
+        const staticAssetsBucket = new s3.Bucket(this, 'PortfolioStaticBucket', {
+            removalPolicy: cdk.RemovalPolicy.DESTROY,
+            autoDeleteObjects: true,
+            blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
+        });
+
+        // 2. Lambda con Next.js Standalone + AWS Web Adapter Layer
+        const nextJsLambda = new lambda.Function(this, 'PortfolioServer', {
+            runtime: lambda.Runtime.NODEJS_20_X,
+            handler: 'run.sh', // El adapter toma el control
+            code: lambda.Code.fromAsset('../.next/standalone'), // Ruta al build standalone
+            memorySize: 1024,
+            timeout: cdk.Duration.seconds(15),
+            environment: {
+                // Variables de entorno para tu Agente IA y configuración
+                AWS_LAMBDA_EXEC_WRAPPER: '/opt/bootstrap', // Activa el Web Adapter
+                PORT: '8080',
+                GROQ_API_KEY: process.env.GROQ_API_KEY || '',
+                ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY || '',
+            },
+        });
+
+        // Capa oficial de AWS para correr servidores Node/Express/Next en Lambda
+        nextJsLambda.addLayers(
+            lambda.LayerVersion.fromLayerVersionArn(
+                this,
+                'WebAdapterLayer',
+                `arn:aws:lambda:${this.region}:753240598075:layer:LambdaAdapterLayerX86:23`
+            )
+        );
+
+        // Function URL (Reemplaza a API Gateway y es GRATIS)
+        const lambdaUrl = nextJsLambda.addFunctionUrl({
+            authType: lambda.FunctionUrlAuthType.NONE,
+        });
+
+        // 3. CloudFront Distribution (Unifica el dominio y maneja caché para SEO)
+        const distribution = new cloudfront.Distribution(this, 'PortfolioCDN', {
+            defaultBehavior: {
+                // Todo el tráfico dinámico va al Lambda URL
+                origin: new origins.HttpOrigin(cdk.Fn.parseDomainName(lambdaUrl.url)),
+                viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+                allowedMethods: cloudfront.AllowedMethods.ALLOW_ALL,
+                cachePolicy: cloudfront.CachePolicy.CACHING_DISABLED,
+            },
+            additionalBehaviors: {
+                // Los assets estáticos van a S3 con caché agresivo (1 año)
+                '/_next/static/*': {
+                    origin: new origins.S3Origin(staticAssetsBucket),
+                    viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.HTTPS_ONLY,
+                    cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
+                },
+                '/public/*': {
+                    origin: new origins.S3Origin(staticAssetsBucket),
+                    viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.HTTPS_ONLY,
+                    cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
+                }
+            }
+        });
+
+        // 4. Despliegue automático de los assets físicos a S3 al correr CDK
+        new s3deploy.BucketDeployment(this, 'DeployStaticFiles', {
+            sources: [
+                s3deploy.Source.asset('../.next/static'),
+                s3deploy.Source.asset('../public') // Incluimos la carpeta public si existe
+            ],
+            destinationBucket: staticAssetsBucket,
+            destinationKeyPrefix: '_next/static', // Ajusta prefijos según corresponda
+            distribution,
+            distributionPaths: ['/*'], // Invalida el caché en cada despliegue
+        });
+
+        // Output para saber qué URL visitar al terminar
+        new cdk.CfnOutput(this, 'PortfolioUrl', {
+            value: distribution.domainName,
+            description: 'URL de CloudFront para el Portfolio',
+        });
+    }
+}

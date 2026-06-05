@@ -1,0 +1,473 @@
+{
+    "personal": {
+        "name": "Brayan Daniel Roa Rodriguez",
+        "birth": "1996-10-31",
+        "location": "Bogotá, Colombia",
+        "email": "lbrayan.roa@gmail.com",
+        "github": "https://github.com/lBrayan",
+        "linkedin": "https://www.linkedin.com/in/bdanielroar",
+        "title": "Senior Fullstack & IA Engineer",
+        "available": true,
+        "yearsOfExperience": 8,
+        "yearsCoding": 15
+    },
+    "story": {
+        "intro": "Empecé a programar a los 13 años por pura curiosidad, rompiendo un juego multiplataforma en Flash, PHP y JavaScript para entender cómo funcionaba. Nunca paré — cada empresa, cada proyecto freelance y cada problema técnico fue una excusa para aprender algo nuevo.",
+        "timeline": [
+            {
+                "id": "2009",
+                "year": "2009",
+                "title": "Los primeros pasos",
+                "description": "A los 13 años dupliqué un juego multiplataforma en Flash, PHP y JavaScript. No había tutorial — solo código ajeno para desmenuzar y entender desde cero. Ahí nació la obsesión.",
+                "tags": [
+                    "Flash",
+                    "PHP",
+                    "JavaScript"
+                ]
+            },
+            {
+                "id": "2013",
+                "year": "2013",
+                "title": "Proyecto de grado del colegio",
+                "description": "Mi proyecto fue una landing page en PHP con enfoque en performance y SEO. Desde el principio me importaba que las cosas funcionaran bien, no solo que funcionaran.",
+                "tags": [
+                    "PHP",
+                    "SEO",
+                    "Performance"
+                ]
+            },
+            {
+                "id": "20142015",
+                "year": "2014–2015",
+                "title": "SENA + primeras prácticas en Spira",
+                "description": "Estudié Tecnología en Análisis y Desarrollo en el SENA (enero 2014). Hice prácticas en Grupo Spira SAS (junio–diciembre 2015): PHP, jQuery, QA, pruebas funcionales y matrices de trazabilidad.",
+                "tags": [
+                    "SENA",
+                    "PHP",
+                    "jQuery",
+                    "QA",
+                    "Trazabilidad"
+                ]
+            },
+            {
+                "id": "20162019",
+                "year": "2016–2019",
+                "title": "Grupo Spira — de JR a líder de proyecto",
+                "description": "Regresé como JR y propuse por iniciativa propia adoptar Angular internamente. Construí el MVP de Clínica de Ventas 360 con Angular 2, WebRTC y RecordRTC. Luego lideré Mis Finanzas en Casa para Davivienda (Banco del Grupo Bolívar) con Angular, PWA, notificaciones push y seguridad RSA.",
+                "tags": [
+                    "Angular 2",
+                    "WebRTC",
+                    "RecordRTC",
+                    "PWA",
+                    "RSA",
+                    "PHP",
+                    "jQuery",
+                    "Encriptacion RSA",
+                    "Bootstrap",
+                    "Davivienda"
+                ]
+            },
+            {
+                "id": "20192020",
+                "year": "2019–2020",
+                "title": "BCD Travel — salto a Fullstack",
+                "description": "Entré como Frontend en Angular y en 3 meses construí la base de actualización de una plataforma .NET. Frontend en Angular + C# Web API 2 como backend REST, aplicando JWT y RSA desde el inicio.",
+                "tags": [
+                    "Angular",
+                    "C# Web API 2",
+                    "JWT",
+                    "RSA",
+                    ".NET"
+                ]
+            },
+            {
+                "id": "2020",
+                "year": "2020",
+                "title": "Ormigga — primer contacto profundo con AWS",
+                "description": "Desarrollé un marketplace con procesamiento de imágenes usando Canvas API y migré toda la infraestructura de Digital Ocean a AWS: Route53, EC2 y S3. También trabajé con Angular 7, Laravel, Ionic y Python Django.",
+                "tags": [
+                    "AWS",
+                    "Route53",
+                    "EC2",
+                    "S3",
+                    "Angular 7",
+                    "Laravel",
+                    "Ionic",
+                    "Python Django"
+                ]
+            },
+            {
+                "id": "20212022",
+                "year": "2021–2022",
+                "title": "Assist Consultores — clientes enterprise",
+                "description": "Trabajé con IBM y Bancolombia (grupo Semilla). Desarrollé APIs REST con Node.js para Betplay aplicando Clean Architecture y Feature Flags en entornos de alta exigencia.",
+                "tags": [
+                    "Node.js",
+                    "Angular",
+                    "Clean Architecture",
+                    "IBM",
+                    "Bancolombia",
+                    "Betplay"
+                ]
+            },
+            {
+                "id": "20222023",
+                "year": "2022–2023",
+                "title": "SQA SA — IA aplicada a QA",
+                "description": "Lideré la modernización de la plataforma Crowd Testing. Creé un modelo con TensorFlow.js que detecta bugs duplicados y redujo los tiempos de reporte de 4 días a 24 horas. Stack: Angular 12, Laravel 7, Jira y Bitbucket Pipelines.",
+                "tags": [
+                    "TensorFlow.js",
+                    "Angular 12",
+                    "Laravel 7",
+                    "Jira",
+                    "Bitbucket Pipelines"
+                ]
+            },
+            {
+                "id": "2023hoy",
+                "year": "2023–hoy",
+                "title": "Topaz SA — automatización con Agente IA",
+                "description": "Diseñé una herramienta visual de despliegues que redujo el equipo necesario de 8 personas a 2. La evolué con un Agente IA (AWS Lambda + Claude API + RAG) que genera flujos completos desde un solo requerimiento. También desarrollo con Java Spring Boot, Angular, y servicios AWS como CloudWatch, API Gateway, Route53 y SQS. Lidero un equipo de 4 desarrolladores.",
+                "tags": [
+                    "Java Spring Boot",
+                    "Angular",
+                    "Claude API",
+                    "AWS Lambda",
+                    "RAG",
+                    "Agente IA",
+                    "CloudWatch",
+                    "API Gateway",
+                    "SQS",
+                    "Azure Pipelines"
+                ]
+            },
+            {
+                "id": "2016hoy",
+                "year": "2016–hoy",
+                "title": "Proyectos freelance",
+                "description": "Desarrollé para Colo Coffee y sus aliados: Pola del Pub, Sinners Beer y Cervecería Germania (WordPress, landing pages, campañas). El portafolio de Vickycha (arquitecta) desde mockup en Figma con diseño, construcción y SEO propios. Y la migración de srg.com.co a AWS serverless.",
+                "tags": [
+                    "Next.js",
+                    "Angular",
+                    "Tailwind CSS",
+                    "Figma",
+                    "SEO",
+                    "WordPress",
+                    "Prestashop",
+                    "Shopify",
+                    "WooCommerce",
+                    "PHP",
+                    "AWS Serverless",
+                    "React"
+                ]
+            }
+        ]
+    },
+    "experience": [
+        {
+            "id": "TechnicalExpertTopaz2023TNOW",
+            "role": "Technical Expert",
+            "company": "Topaz SA",
+            "period": "Dic 2023 – Actualidad",
+            "highlights": [
+                "Herramienta visual de despliegues: redujo equipo de 8 personas a 2",
+                "Agente IA con RAG que genera flujos completos desde un requerimiento (HU o Issue Redmine)",
+                "Diagnóstico automático de errores de despliegue con IA",
+                "Desarrollo con Java Spring Boot, Angular y servicios AWS: CloudWatch, API Gateway, Route53, SQS",
+                "Liderazgo técnico de equipo de 4 desarrolladores",
+                "Stack: AWS Amplify, Lambda, S3, DynamoDB, CloudFormation, Claude API, Azure Pipelines, CI/CD"
+            ]
+        },
+        {
+            "id": "AnalistaProgramaciónLeadSQA2022T2023",
+            "role": "Analista de Programación → Líder Técnico",
+            "company": "SQA SA",
+            "period": "Feb 2022 – Oct 2023",
+            "highlights": [
+                "Modelo TensorFlow.js para detección de bugs duplicados: de 4 días a 24 horas",
+                "Modernización de plataforma Crowd Testing",
+                "Stack: Angular 12, Laravel 7, Material Design",
+                "Integración Jira + Bitbucket Pipelines, CI/CD"
+            ]
+        },
+        {
+            "id": "IngenieroDesarrolloSeniorAssist2021T2022",
+            "role": "Ingeniero de Desarrollo Senior",
+            "company": "Assist Consultores",
+            "period": "Ago 2021 – Mar 2022",
+            "highlights": [
+                "Clientes: IBM, Bancolombia (grupo Semilla)",
+                "APIs REST con Node.js para Betplay",
+                "Clean Architecture y Feature Flags",
+                "Stack: Angular, Node.js"
+            ]
+        },
+        {
+            "id": "IngenieroDesarrolloOrmigga2020T2020",
+            "role": "Ingeniero Desarrollador",
+            "company": "Ormigga S.A.S",
+            "period": "May 2020 – Dic 2020",
+            "highlights": [
+                "Marketplace con procesamiento de imágenes con Canvas API",
+                "Migración de Digital Ocean a AWS (Route53, EC2, S3)",
+                "Stack: Angular 7, Laravel, Ionic, Python Django"
+            ]
+        },
+        {
+            "id": "AnalistaBEFEBCD2019T2020",
+            "role": "Analista Backend/Frontend",
+            "company": "BCD Travel",
+            "period": "Dic 2019 – Mar 2020",
+            "highlights": [
+                "Ingresé como Frontend, en 3 meses construí base de plataforma .NET",
+                "C# Web API 2 + Angular con seguridad JWT y RSA",
+                "Arquitectura limpia aplicada desde el inicio"
+            ]
+        },
+        {
+            "id": "DesarrolladorJRLeadSpira2015T2019",
+            "role": "Desarrollador JR → Líder de Proyecto",
+            "company": "Grupo Spira SAS",
+            "period": "Jun 2015 – Sep 2019",
+            "highlights": [
+                "Prácticas jun–dic 2015: PHP, jQuery, QA, matrices de trazabilidad",
+                "Regresé como JR en abril 2016 en plataformas educativas con PHP, MySQL, jQuery",
+                "Propuse e implementé Angular internamente por iniciativa propia",
+                "MVP Clínica de Ventas 360: Angular 2, WebRTC, RecordRTC",
+                "Lideré Mis Finanzas en Casa para Davivienda: Angular, PWA, notificaciones push, RSA"
+            ]
+        }
+    ],
+    "projects": [
+        {
+            "id": "AgentDPLIATopaz2026",
+            "name": "Herramienta de Despliegues + Agente IA",
+            "url": null,
+            "description": "Plataforma visual interna en Topaz que automatiza ramas, cherry-picks, sincronización y diagnóstico de errores con IA. Redujo equipo de 8 a 2 personas. Agente IA genera flujos desde un requerimiento.",
+            "tech": [
+                "Claude API",
+                "AWS Lambda",
+                "RAG",
+                "Serverless",
+                "Azure Pipelines",
+                "Java Spring Boot"
+            ],
+            "type": "empresa"
+        },
+        {
+            "id": "IABugDetectorSQA2022",
+            "name": "Bug Detector IA — SQA",
+            "url": null,
+            "description": "Modelo TensorFlow.js para detección de bugs duplicados en plataforma Crowd Testing. Redujo tiempos de reporte de 4 días a 24 horas.",
+            "tech": [
+                "TensorFlow.js",
+                "Angular 12",
+                "Laravel 7"
+            ],
+            "type": "empresa"
+        },
+        {
+            "id": "MisFinanzasEnCasaDav2018",
+            "name": "Mis Finanzas en Casa — Davivienda",
+            "url": null,
+            "description": "App PWA para banca retail del Banco Davivienda (Grupo Bolívar). Angular + notificaciones push + seguridad RSA.",
+            "tech": [
+                "Angular",
+                "PWA",
+                "PHP",
+                "RSA"
+            ],
+            "type": "empresa"
+        },
+        {
+            "id": "ClinicaVentas360Spira",
+            "name": "Clínica de Ventas 360",
+            "url": null,
+            "description": "MVP con videollamadas en tiempo real usando WebRTC y RecordRTC. Primer proyecto Angular de Spira SAS, propuesto por iniciativa propia.",
+            "tech": [
+                "Angular 2",
+                "WebRTC",
+                "RecordRTC",
+                "Bootstrap"
+            ],
+            "type": "empresa"
+        },
+        {
+            "id": "ColoCoffeTheme",
+            "name": "colo.com.co",
+            "url": "https://colo.com.co",
+            "description": "Template completo construido desde mockup en Figma para Colo Coffee.",
+            "tech": [
+                "Liquid",
+                "CSS",
+                "Figma"
+            ],
+            "type": "freelance"
+        },
+        {
+            "id": "VickyChaPortfolio",
+            "name": "vickycha.cl",
+            "url": "https://vickycha.cl",
+            "description": "Portafolio para arquitecta Vicky Cha. Desarrollado desde cero desde mockup en Figma — diseño, construcción y SEO 100% propios.",
+            "tech": [
+                "Angular",
+                "Node.js",
+                "Figma",
+                "SEO"
+            ],
+            "type": "freelance"
+        },
+        {
+            "id": "SapiensResearchMig",
+            "name": "srg.com.co",
+            "url": "https://srg.com.co",
+            "description": "Migración y modernización de infraestructura WHM tradicional a AWS serverless con mejoras en rendimiento, escalabilidad y costos.",
+            "tech": [
+                "React",
+                "Tailwind CSS",
+                "AWS Lambda",
+                "S3",
+                "CloudFormation",
+                "Serverless"
+            ],
+            "type": "freelance"
+        },
+        {
+            "id": "SinnersSupport",
+            "name": "sinners.beer",
+            "url": "https://sinners.beer",
+            "description": "Soporte, diseño y funcionalidad para aliado de Colo Coffee.",
+            "tech": [
+                "Shopify",
+                "WordPress",
+                "PHP"
+            ],
+            "type": "freelance"
+        },
+        {
+            "id": "PolaThePubSupport",
+            "name": "poladelpub.com",
+            "url": "https://poladelpub.com",
+            "description": "Mejoras, soporte y ajustes en template WordPress para aliado de Colo Coffee.",
+            "tech": [
+                "Shopify",
+                "WordPress",
+                "PHP"
+            ],
+            "type": "freelance"
+        },
+        {
+            "id": "GermaniaLanding",
+            "name": "Cervecería Germania",
+            "url": null,
+            "description": "Landing pages en WordPress para campañas, soporte y ajustes para aliado de Colo Coffee.",
+            "tech": [
+                "Shopify",
+                "WordPress",
+                "PHP",
+                "SEO"
+            ],
+            "type": "freelance"
+        }
+    ],
+    "skills": {
+        "categories": [
+            {
+                "id": "Frontend",
+                "name": "Frontend",
+                "items": [
+                    "React",
+                    "Next.js",
+                    "Angular (2–12)",
+                    "TypeScript",
+                    "Tailwind CSS",
+                    "PWA",
+                    "WebRTC",
+                    "RecordRTC"
+                ]
+            },
+            {
+                "id": "Backend",
+                "name": "Backend",
+                "items": [
+                    "Node.js",
+                    "Java Spring Boot",
+                    "PHP (puro + Laravel)",
+                    "C# Web API 2",
+                    "Python Django"
+                ]
+            },
+            {
+                "id": "CloudDevOps",
+                "name": "Cloud & DevOps",
+                "items": [
+                    "AWS Lambda",
+                    "S3",
+                    "DynamoDB",
+                    "CloudFormation",
+                    "Amplify",
+                    "Route53",
+                    "EC2",
+                    "CloudWatch",
+                    "API Gateway",
+                    "SQS",
+                    "Azure Pipelines",
+                    "Docker",
+                    "CI/CD"
+                ]
+            },
+            {
+                "id": "IAML",
+                "name": "IA & ML",
+                "items": [
+                    "Claude API",
+                    "TensorFlow.js",
+                    "Prompt Engineering",
+                    "RAG",
+                    "Agentes IA",
+                    "Function Calling"
+                ]
+            },
+            {
+                "id": "DB",
+                "name": "Bases de datos",
+                "items": [
+                    "PostgreSQL",
+                    "MySQL",
+                    "DynamoDB",
+                    "SQL Server"
+                ]
+            },
+            {
+                "id": "Seguridad",
+                "name": "Seguridad",
+                "items": [
+                    "JWT",
+                    "RSA",
+                    "Feature Flags"
+                ]
+            },
+            {
+                "id": "CMSEcommerce",
+                "name": "CMS & E-commerce",
+                "items": [
+                    "WordPress",
+                    "WooCommerce",
+                    "Shopify"
+                ]
+            }
+        ]
+    },
+    "about": {
+        "bio": "Desarrollador Senior Fullstack e Innovador en IA con más de 8 años de experiencia profesional (y 15 años programando). Especializado en IA Generativa, arquitecturas cloud con AWS y liderazgo de equipos técnicos de alto rendimiento. Empecé a los 13 años rompiendo código ajeno por curiosidad — y nunca paré.",
+        "yearsExperience": 8,
+        "yearsCoding": 15,
+        "location": "Bogotá, Colombia",
+        "current": "Technical Expert en Topaz SA"
+    },
+    "contact": {
+        "email": "lbrayan.roa@gmail.com",
+        "github": "https://github.com/lBrayan",
+        "linkedin": "https://www.linkedin.com/in/bdanielroar"
+    }
+}
