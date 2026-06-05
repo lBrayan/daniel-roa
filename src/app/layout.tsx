@@ -5,9 +5,11 @@ import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { CustomCursor } from "@/components/CustomCursor";
 import { PageLoader } from "@/components/PageLoader";
+import { AccessibilityProvider } from "@/components/AccessibilityProvider";
+import { AccessibilityPanel } from "@/components/AccessibilityPanel";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://danielroa.dev"), // update with real domain
+  metadataBase: new URL("https://danielroa.dev"),
   title: {
     default: "Brayan Daniel Roa | Desarrollador Fullstack Senior & IA",
     template: "%s | Daniel Roa",
@@ -29,18 +31,32 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="es" className={spaceGrotesk.className}>
       <body className="bg-[#020818] text-white selection:bg-[#00d3f3]/30 selection:text-white relative antialiased">
 
-        <PageLoader />
+        {/* Skip navigation — primer elemento tabulable */}
+        <a href="#main-content" className="skip-to-content">
+          Ir al contenido principal
+        </a>
 
-        {/* El Cursor Premium Global */}
-        <CustomCursor />
+        {/*
+          AccessibilityProvider debe envolver todo para:
+          1. Poder aplicar clases en <html>
+          2. Exponer useA11y() a AccessibilityPanel
+        */}
+        <AccessibilityProvider>
+          <PageLoader />
+          <CustomCursor />
+          <PremiumCanvas />
 
-        {/* El motor de físicas y atmósfera de fondo */}
-        <PremiumCanvas />
+          <main id="main-content" className="relative z-40">
+            {children}
+          </main>
 
-        {/* El contenido de tu aplicación (debe tener un z-index para estar por encima de la luz pero por debajo del grano) */}
-        <main className="relative z-40">
-          {children}
-        </main>
+          {/*
+            AccessibilityPanel va DENTRO del provider (necesita el contexto)
+            y FUERA de main (es un widget de UI global, no contenido de la página)
+            z-index 9000 para estar sobre todo excepto overlays críticos
+          */}
+          <AccessibilityPanel />
+        </AccessibilityProvider>
 
       </body>
     </html>

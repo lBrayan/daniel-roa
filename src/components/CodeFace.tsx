@@ -226,7 +226,7 @@ export default function CodeFace({
                         letterSpacing: 3,
                     }}
                 >
-                    {"// rendered with {code}"}
+                    {"// I'm Dreaming"}
                 </p>
             </div>
         </>

@@ -6,8 +6,6 @@ import type { AIResponse } from "@/components/ResponsePanel";
 import { getFallback } from "@/lib/fallbacks";
 import { STATIC_RESPONSES } from "@/data/staticResponses";
 
-// ─── Quick action badges ──────────────────────────────────────────────────────
-
 export const QUICK_ACTIONS = [
     { label: "Proyectos", query: "¿Qué proyectos has realizado?" },
     { label: "Experiencia", query: "Cuéntame tu experiencia laboral" },
@@ -18,8 +16,6 @@ export const QUICK_ACTIONS = [
     { label: "IA & Cloud", query: "¿Cuál es tu experiencia con IA y Cloud?" },
 ];
 
-// ─── Props ────────────────────────────────────────────────────────────────────
-
 interface ChatInputProps {
     onResponse: (res: AIResponse) => void;
     onLoadingChange: (loading: boolean) => void;
@@ -27,8 +23,6 @@ interface ChatInputProps {
     onTalkStart?: () => void;
     sendRef?: React.MutableRefObject<((query: string, fromButton?: boolean) => void) | null>;
 }
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export function ChatInput({ onResponse, onLoadingChange, onError, onTalkStart, sendRef }: ChatInputProps) {
     const [value, setValue] = useState("");
@@ -39,17 +33,15 @@ export function ChatInput({ onResponse, onLoadingChange, onError, onTalkStart, s
         async (query: string, fromButton = false) => {
             if (!query.trim() || sending) return;
 
-            // ─── BADGES: respuesta estática instantánea, sin IA ─────────────
             if (fromButton) {
                 const staticResponse = STATIC_RESPONSES[query];
                 if (staticResponse) {
                     onTalkStart?.();
                     onResponse(staticResponse);
                     onError(null);
-                    return; // No fetch, no loading, instantáneo
+                    return;
                 }
             }
-            // ────────────────────────────────────────────────────────────────
 
             setSending(true);
             onLoadingChange(true);
@@ -108,44 +100,51 @@ export function ChatInput({ onResponse, onLoadingChange, onError, onTalkStart, s
     return (
         <div className="border-t border-cyan-900/20 bg-[#020818]/95 backdrop-blur-sm">
             {/* Quick-action badges */}
-            <div className="flex gap-1.5 flex-wrap px-4 pt-3 pb-1">
+            <nav aria-label="Preguntas rápidas" className="flex gap-1.5 flex-wrap px-4 pt-3 pb-1">
                 {QUICK_ACTIONS.map((a) => (
                     <button
+                        type="button"
                         key={a.label}
                         onClick={() => send(a.query, true)}
                         disabled={sending}
-                        className="rounded-full border border-cyan-900/40 bg-cyan-950/30 px-2.5 py-1 font-mono text-[9px] text-cyan-500/70 transition-all hover:border-cyan-500/50 hover:text-cyan-300 disabled:opacity-40 disabled:cursor-not-allowed"
+                        className="rounded-full border border-cyan-900/40 bg-cyan-950/30 px-2.5 py-1 font-mono text-[10px] text-cyan-300/80 transition-all hover:border-cyan-500/50 hover:text-cyan-200 disabled:opacity-40 disabled:cursor-not-allowed"
                     >
                         {a.label}
                     </button>
                 ))}
-            </div>
+            </nav>
 
             {/* Text input */}
-            <form onSubmit={handleSubmit} className="flex items-center gap-2 px-4 pb-4 pt-2">
+            <form onSubmit={handleSubmit} className="flex items-center gap-2 px-4 pb-4 pt-2" role="search">
+                <label htmlFor="chat-input" className="sr-only">
+                    Escribe una pregunta para Daniel
+                </label>
                 <input
+                    id="chat-input"
                     ref={inputRef}
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
                     disabled={sending}
                     placeholder="Pregúntame algo..."
-                    className="flex-1 rounded-lg border border-cyan-900/30 bg-[#040f1e] px-3 py-2.5 font-mono text-xs text-slate-200 placeholder-slate-600 outline-none transition-all focus:border-cyan-600/50 focus:ring-1 focus:ring-cyan-700/30 disabled:opacity-50"
+                    className="flex-1 rounded-lg border border-cyan-900/30 bg-[#040f1e] px-3 py-2.5 font-mono text-xs text-slate-200 placeholder-slate-500 transition-all focus-visible:border-cyan-500/60 focus-visible:ring-1 focus-visible:ring-cyan-500/30 disabled:opacity-50"
                     autoComplete="off"
-                    aria-label="Mensaje para Daniel"
                 />
                 <button
                     type="submit"
                     disabled={sending || !value.trim()}
                     className="flex h-9 w-9 items-center justify-center rounded-lg border border-cyan-700/30 bg-cyan-950/50 text-cyan-400 transition-all hover:bg-cyan-900/50 hover:text-cyan-200 disabled:opacity-30 disabled:cursor-not-allowed"
-                    aria-label="Enviar mensaje"
+                    aria-label={sending ? "Enviando mensaje" : "Enviar mensaje"}
                 >
                     {sending ? (
-                        <svg className="h-3.5 w-3.5 animate-spin" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                        </svg>
+                        <>
+                            <svg className="h-3.5 w-3.5 animate-spin" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                            </svg>
+                            <span className="sr-only">Enviando...</span>
+                        </>
                     ) : (
-                        <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>
                     )}

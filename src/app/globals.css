@@ -1,14 +1,15 @@
-/* src/app/globals.css */
 @import "tailwindcss";
-/*
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap');
-*/
 
+/* ─── Variables de diseño base ─────────────────────────────────────────────── */
 :root {
   --background: #020818;
   --foreground: #e2e8f0;
   --cyan-accent: #3dd6f5;
   --cyan-dim: rgba(61, 214, 245, 0.4);
+
+  /* A11y controllable vars */
+  --font-family-override: inherit;
+  --line-height-override: inherit;
 }
 
 *,
@@ -21,17 +22,39 @@ html {
   scroll-behavior: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* font-size is set dynamically by AccessibilityProvider via JS */
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'DM Sans', system-ui, sans-serif;
+  font-family: var(--font-family-override, 'DM Sans', system-ui, sans-serif);
   min-height: 100dvh;
   overscroll-behavior: none;
+  line-height: var(--line-height-override, inherit);
 }
 
-/* Scrollbar styling */
+/* ─── Skip to content ──────────────────────────────────────────────────────── */
+.skip-to-content {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.5rem 1.25rem;
+  background: #3dd6f5;
+  color: #020818;
+  font-size: 0.875rem;
+  font-weight: 700;
+  border-radius: 0 0 0.5rem 0.5rem;
+  text-decoration: none;
+  transition: top 0.15s;
+}
+
+.skip-to-content:focus {
+  top: 0;
+}
+
+/* ─── Scrollbar ────────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 4px;
   height: 4px;
@@ -50,19 +73,20 @@ body {
   background: rgba(61, 214, 245, 0.3);
 }
 
-/* Selection color */
+/* ─── Selection ────────────────────────────────────────────────────────────── */
 ::selection {
   background: rgba(61, 214, 245, 0.2);
   color: #e2e8f0;
 }
 
-/* Focus visible */
+/* ─── Focus visible — base ──────────────────────────────────────────────────── */
 :focus-visible {
-  outline: 2px solid rgba(61, 214, 245, 0.5);
-  outline-offset: 2px;
+  outline: 2px solid rgba(61, 214, 245, 0.8);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
-/* Ocultar cursor nativo solo en dispositivos con ratón preciso (Desktop) */
+/* ─── Cursor personalizado solo en mouse preciso ─────────────────────────────── */
 @media (pointer: fine) {
 
   body,
@@ -74,7 +98,7 @@ body {
   }
 }
 
-/* src/app/globals.css */
+/* ─── Grain overlay ────────────────────────────────────────────────────────── */
 .grain-overlay {
   pointer-events: none;
   position: fixed;
@@ -83,4 +107,137 @@ body {
   opacity: 0.03;
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAGFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/c2v/AAAACHRSTlMAZmZmZmZmZvpQ/ZkAAABRSURBVDjLzdABEQAgDAAxc0Cg/6Y6YM8E0B/cT2011bX1t/W39bf1t/W39bf1t/W39bf1t/W39bf1t/W39bf1t/W39bf1t/W39bf1t/W39ZfW4aK3/HqOAAAAABJRU5ErkJggg==");
   background-size: 64px 64px;
+}
+
+/* ─── Reducir movimiento (sistema operativo) ─────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   ACCESIBILIDAD AAA — Clases controladas por AccessibilityProvider
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. Reducir movimiento (activado desde UI, sobreescribe framer-motion) ───── */
+html.reduce-motion *,
+html.reduce-motion *::before,
+html.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* ── 2. Alto contraste ───────────────────────────────────────────────────────── */
+html.contrast-high {
+  --background: #000000;
+  --foreground: #ffffff;
+  --cyan-accent: #00ffff;
+  --cyan-dim: rgba(0, 255, 255, 0.6);
+}
+
+html.contrast-high body {
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+/* Forzar texto legible en elementos con colores hardcodeados */
+html.contrast-high [class*="text-slate-"],
+html.contrast-high [class*="text-cyan-"],
+html.contrast-high p,
+html.contrast-high span,
+html.contrast-high li,
+html.contrast-high h1,
+html.contrast-high h2,
+html.contrast-high h3,
+html.contrast-high h4,
+html.contrast-high label {
+  color: #ffffff !important;
+}
+
+html.contrast-high [class*="bg-[#"],
+html.contrast-high [class*="bg-cyan-"],
+html.contrast-high [class*="bg-slate-"] {
+  background-color: #000000 !important;
+}
+
+html.contrast-high [class*="border-cyan-"],
+html.contrast-high [class*="border-slate-"] {
+  border-color: rgba(0, 255, 255, 0.5) !important;
+}
+
+html.contrast-high a,
+html.contrast-high button {
+  color: #00ffff !important;
+}
+
+html.contrast-high a:focus-visible,
+html.contrast-high button:focus-visible {
+  outline-color: #ffff00 !important;
+}
+
+/* ── 3. Contraste invertido ──────────────────────────────────────────────────── */
+html.contrast-inverted {
+  --background: #e2e8f0;
+  --foreground: #020818;
+  --cyan-accent: #0077aa;
+  --cyan-dim: rgba(0, 119, 170, 0.4);
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* Excluir imágenes de la inversión */
+html.contrast-inverted img,
+html.contrast-inverted video,
+html.contrast-inverted canvas {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* ── 4. Resaltado de foco mejorado ───────────────────────────────────────────── */
+html.focus-highlight :focus-visible {
+  outline: 4px solid #ffff00 !important;
+  outline-offset: 4px !important;
+  border-radius: 4px !important;
+  box-shadow: 0 0 0 2px #000, 0 0 0 6px #ffff00 !important;
+}
+
+html.contrast-high.focus-highlight :focus-visible {
+  outline: 4px solid #ffff00 !important;
+  box-shadow: 0 0 0 2px #000, 0 0 0 6px #ffff00 !important;
+}
+
+/* ── 5. Fuente para dislexia ────────────────────────────────────────────────── */
+html.dyslexia-font,
+html.dyslexia-font body,
+html.dyslexia-font * {
+  font-family: 'OpenDyslexic', 'Comic Sans MS', 'Trebuchet MS', sans-serif !important;
+  letter-spacing: 0.05em !important;
+  word-spacing: 0.1em !important;
+}
+
+/* ── 6. Mayor interlineado ──────────────────────────────────────────────────── */
+html.line-spacing,
+html.line-spacing body {
+  --line-height-override: 1.8;
+}
+
+html.line-spacing p,
+html.line-spacing li,
+html.line-spacing span,
+html.line-spacing label,
+html.line-spacing div {
+  line-height: 1.8 !important;
+}
+
+html.line-spacing h1,
+html.line-spacing h2,
+html.line-spacing h3,
+html.line-spacing h4 {
+  line-height: 1.5 !important;
 }

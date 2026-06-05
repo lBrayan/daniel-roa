@@ -122,7 +122,7 @@ function WelcomeState() {
         <div className="px-6 py-8 space-y-8">
             {/* Greeting */}
             <div className="space-y-1">
-                <p className="font-mono text-[10px] uppercase tracking-[5px] text-cyan-600/50">
+                <p className="font-mono text-[10px] uppercase tracking-[5px] text-cyan-400/70">
                     disponible para proyectos
                 </p>
                 <h2 className="font-mono text-xl font-semibold text-slate-100 leading-snug">
@@ -142,7 +142,7 @@ function WelcomeState() {
                         className="rounded-xl border border-cyan-900/25 bg-[#040f1e]/60 p-3 text-center"
                     >
                         <p className="font-mono text-lg font-bold text-cyan-400">{s.value}</p>
-                        <p className="text-[9px] text-slate-500 mt-0.5 leading-tight">{s.label}</p>
+                        <p className="text-[10px] text-slate-400 mt-0.5 leading-tight">{s.label}</p>
                     </div>
                 ))}
             </div>
@@ -155,17 +155,17 @@ function WelcomeState() {
                         className="rounded-xl border border-cyan-900/25 bg-[#040f1e]/60 p-4 space-y-1.5 transition-colors hover:border-cyan-700/40"
                     >
                         <div className="flex items-center gap-2">
-                            <span className="font-mono text-base text-cyan-500/60">{h.icon}</span>
+                            <span className="font-mono text-base text-cyan-400/70">{h.icon}</span>
                             <p className="font-mono text-xs font-semibold text-cyan-300">{h.title}</p>
                         </div>
-                        <p className="text-[11px] text-slate-400 leading-relaxed">{h.desc}</p>
+                        <p className="text-xs text-slate-400 leading-relaxed">{h.desc}</p>
                     </div>
                 ))}
             </div>
 
             {/* Stack pills */}
             <div className="space-y-2">
-                <p className="font-mono text-[9px] uppercase tracking-[4px] text-cyan-700/60">
+                <p className="font-mono text-[9px] uppercase tracking-[4px] text-cyan-400/60">
                     stack principal
                 </p>
                 <div className="flex flex-wrap gap-1.5">
@@ -182,8 +182,8 @@ function WelcomeState() {
 
             {/* CTA hint */}
             <div className="rounded-xl border border-cyan-900/20 bg-cyan-950/20 px-4 py-3 flex items-center gap-3">
-                <span className="font-mono text-cyan-600/50 text-lg">›</span>
-                <p className="text-[11px] text-slate-500 leading-relaxed">
+                <span className="font-mono text-cyan-400/60 text-lg" aria-hidden="true">›</span>
+                <p className="text-xs text-slate-400 leading-relaxed">
                     Usa los botones de abajo para explorar mis proyectos, experiencia, habilidades o historia.
                     También puedes escribir libremente.
                 </p>
