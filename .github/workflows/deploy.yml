@@ -34,19 +34,25 @@ jobs:
       # 👇 AÑADE ESTE BLOQUE EXACTAMENTE AQUÍ 👇
       - name: Prepare Standalone Build
         run: |
+          # 1. Copiar public y static
           cp -r public .next/standalone/
           cp -r .next/static .next/standalone/.next/
           
-          # Creamos el run.sh de forma limpia
+          # 2. INYECCIÓN MANUAL: Forzar la copia de @swc/helpers para evadir el bug de Next.js
+          mkdir -p .next/standalone/node_modules/@swc
+          cp -r node_modules/@swc/helpers .next/standalone/node_modules/@swc/
+          
+          # 3. PRE-SYMLINK: Creamos el enlace simbólico AQUÍ en GitHub (donde es escribible), 
+          # apuntando a /tmp. Cuando CDK lo suba, el enlace ya existirá.
+          rm -rf .next/standalone/.next/cache
+          ln -s /tmp/next-cache .next/standalone/.next/cache
+          
+          # 4. Script de arranque súper limpio y ligero
           cat << 'EOF' > .next/standalone/run.sh
           #!/bin/bash
-          
-          # 1. Redirigir SOLO la caché a /tmp para evitar errores de solo lectura
+          # Solo creamos la carpeta de destino en Lambda, el symlink ya existe
           mkdir -p /tmp/next-cache
-          rm -rf .next/cache
-          ln -s /tmp/next-cache .next/cache
           
-          # 2. Configurar red e iniciar servidor
           export HOSTNAME="0.0.0.0"
           export PORT=8080
           exec node server.js
