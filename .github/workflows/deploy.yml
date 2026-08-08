@@ -29,6 +29,8 @@ jobs:
         run: |
           pnpm install
           pnpm build
+          # Verificamos que la carpeta dist exista y contenga archivos
+          ls -la dist
 
       - name: 🔑 Configurar AWS
         uses: aws-actions/configure-aws-credentials@v4
