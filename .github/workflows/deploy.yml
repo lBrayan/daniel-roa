@@ -17,19 +17,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node & Global Tools
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Setup Node (para pnpm/CDK)
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: |
+
+      - name: Install pnpm & aws-cdk
+        run: |
           npm install -g pnpm
           npm install -g aws-cdk
 
       - name: Install Root Dependencies & Build App
         run: |
-          pnpm install
-          pnpm build
-          # Verificamos que la salida de TanStack Start exista
+          bun install
+          bun run build
+          # Verificamos que la salida de TanStack Start exista antes de seguir
           ls -la .output/public
 
       - name: 🔑 Configurar AWS
@@ -45,9 +50,6 @@ jobs:
           pnpm install
 
       - name: CDK Deploy
-        env:
-          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           cd infrastructure
           cdk deploy --require-approval never
