@@ -68,9 +68,9 @@ export class PortfolioStack extends cdk.Stack {
             zone,
         });
 
-        // 4. Despliegue automático de la carpeta 'dist' generada por Vite hacia S3
+        // 4. Despliegue automático de la carpeta de salida generada por TanStack Start hacia S3
         new s3deploy.BucketDeployment(this, 'DeployViteWebsite', {
-            sources: [s3deploy.Source.asset('../dist')],
+            sources: [s3deploy.Source.asset('../.output/public')], // 👈 Apunta a la carpeta correcta de TanStack Start
             destinationBucket: siteBucket,
             distribution,
             distributionPaths: ['/*'], // Limpia la caché de CloudFront con cada despliegue
