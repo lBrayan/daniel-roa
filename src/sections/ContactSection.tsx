@@ -1,7 +1,9 @@
 import { useRef } from "react";
-import { Link } from "@tanstack/react-router";
 import { useGsapScene } from "@/hooks/useGsapScene";
 import { useTranslation } from "react-i18next"; // <-- 1. Importamos el hook
+// Mismo mecanismo de descarga que usa /cv: Vite resuelve esto a la URL
+// hasheada real del PDF dentro de .output/public/assets.
+import hvelempleoPdf from "@/downloads/HVElempleo.pdf";
 
 type Contact = { email: string; linkedin: string; github: string };
 
@@ -69,14 +71,15 @@ export function ContactSection({ contact }: { contact: Contact }) {
         >
           {t("contact.github")}
         </a>
-        <Link
+        <a
           data-final-item
-          to="/cv"
+          href={hvelempleoPdf}
+          download="CV Brayan Roa.pdf"
           className="mt-4 rounded-full border border-white/20 px-6 py-2.5 text-sm text-white transition-colors hover:border-arc hover:text-arc"
         >
           {/* <-- 5. Traducimos el botón de descarga del CV */}
           {t("contact.downloadResume")}
-        </Link>
+        </a>
       </div>
     </section>
   );

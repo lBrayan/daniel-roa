@@ -25,9 +25,14 @@ export class PortfolioStack extends cdk.Stack {
       domainName,
     });
 
-    // Certificado SSL con validación DNS automática contra esa zona
+    const wwwDomain = `www.${domainName}`;
+
+    // Certificado SSL con validación DNS automática contra esa zona.
+    // Incluye www.brayanroa.com como SAN para que el mismo certificado
+    // cubra ambos hostnames.
     const certificate = new acm.Certificate(this, "PortfolioCertificate", {
       domainName: siteDomain,
+      subjectAlternativeNames: [wwwDomain],
       validation: acm.CertificateValidation.fromDns(zone),
     });
 
@@ -41,7 +46,7 @@ export class PortfolioStack extends cdk.Stack {
     // CloudFront Distribution optimizada para SPA (TanStack Router)
     const distribution = new cloudfront.Distribution(this, "PortfolioCDN", {
       certificate,
-      domainNames: [siteDomain],
+      domainNames: [siteDomain, wwwDomain],
       defaultRootObject: "index.html",
       defaultBehavior: {
         origin: origins.S3BucketOrigin.withOriginAccessControl(siteBucket),
@@ -66,9 +71,19 @@ export class PortfolioStack extends cdk.Stack {
       ],
     });
 
-    // Registro "A" en Route 53 apuntando el dominio a CloudFront
+    // Registro "A" en Route 53 apuntando el dominio raíz a CloudFront
     new route53.ARecord(this, "SiteAliasRecord", {
       recordName: siteDomain,
+      target: route53.RecordTarget.fromAlias(new targets.CloudFrontTarget(distribution)),
+      zone,
+    });
+
+    // Mismo alias para www — sirve el mismo contenido, no es un redirect.
+    // Si más adelante prefieres que www redirija al dominio raíz (o viceversa)
+    // en vez de servir el mismo contenido en ambos, se puede armar con un
+    // CloudFront Function; por ahora ambos hostnames muestran el mismo sitio.
+    new route53.ARecord(this, "WwwAliasRecord", {
+      recordName: wwwDomain,
       target: route53.RecordTarget.fromAlias(new targets.CloudFrontTarget(distribution)),
       zone,
     });
