@@ -25,12 +25,12 @@ jobs:
           npm install -g pnpm
           npm install -g aws-cdk
 
-      - name: Install Root Dependencies & Build Vite App
+      - name: Install Root Dependencies & Build App
         run: |
           pnpm install
           pnpm build
-          # Verificamos que la carpeta dist exista y contenga archivos
-          ls -la dist
+          # Verificamos que la salida de TanStack Start exista
+          ls -la .output/public
 
       - name: 🔑 Configurar AWS
         uses: aws-actions/configure-aws-credentials@v4
