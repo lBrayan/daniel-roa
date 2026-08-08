@@ -25,11 +25,10 @@ jobs:
           npm install -g pnpm
           npm install -g aws-cdk
 
-      - name: Install Dependencies
-        run: pnpm install
-
-      - name: Build Vite App
-        run: pnpm build
+      - name: Install Root Dependencies & Build Vite App
+        run: |
+          pnpm install
+          pnpm build
 
       - name: 🔑 Configurar AWS
         uses: aws-actions/configure-aws-credentials@v4

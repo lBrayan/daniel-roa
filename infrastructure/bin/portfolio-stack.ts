@@ -70,7 +70,7 @@ export class PortfolioStack extends cdk.Stack {
 
         // 4. Despliegue automático de la carpeta 'dist' generada por Vite hacia S3
         new s3deploy.BucketDeployment(this, 'DeployViteWebsite', {
-            sources: [s3deploy.Source.asset('./dist')],
+            sources: [s3deploy.Source.asset('../dist')],
             destinationBucket: siteBucket,
             distribution,
             distributionPaths: ['/*'], // Limpia la caché de CloudFront con cada despliegue
