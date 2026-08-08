@@ -17,12 +17,12 @@ export const Route = createFileRoute("/")({
     head: () => ({
         meta: [
             // 2. Usamos i18n.t() para traducir el SEO directamente
-            { title: i18n.t("meta.title", { defaultValue: "Daniel — Software Architect, Full Stack & AI Engineer" }) },
+            { title: i18n.t("meta.title", { defaultValue: "Brayan — Software Architect, Full Stack & AI Engineer" }) },
             {
                 name: "description",
                 content: i18n.t("meta.description", { defaultValue: "Portafolio cinematográfico: de la idea a la arquitectura, de la arquitectura al producto. Sistemas escalables potenciados por IA." }),
             },
-            { property: "og:title", content: i18n.t("meta.title", { defaultValue: "Daniel — Software Architect, Full Stack & AI Engineer" }) },
+            { property: "og:title", content: i18n.t("meta.title", { defaultValue: "Brayan — Software Architect, Full Stack & AI Engineer" }) },
             {
                 property: "og:description",
                 content: i18n.t("meta.ogDescription", { defaultValue: "Una experiencia guiada por scroll que muestra cómo una idea se convierte en arquitectura, producto e impacto." }),
@@ -43,7 +43,7 @@ function LandingPage() {
     return (
         <div className="stage font-inter relative min-h-screen overflow-x-hidden bg-stage text-white antialiased">
             <header className="fixed top-0 right-0 left-0 z-40 flex items-center justify-between px-6 py-5 mix-blend-difference">
-                <span className="text-[11px] tracking-[0.4em] text-white uppercase">Daniel</span>
+                <span className="text-[11px] tracking-[0.4em] text-white uppercase">Brayan</span>
 
                 {/* 4. Agregamos el selector de idiomas en el centro del header */}
                 <div className="flex gap-4 text-[11px] tracking-[0.2em] text-white/50 uppercase">
