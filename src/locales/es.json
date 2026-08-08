@@ -1,0 +1,99 @@
+{
+    "hero": {
+        "greeting": "Hola, soy",
+        "role1": "Desarrollador Senior Fullstack | Lider",
+        "role2": "Arquitecto de Software",
+        "role3": "Innovador en IA",
+        "scrollHint": "Ir Abajo"
+    },
+    "meta": {
+        "title": "Brayan Roa — Lider Desarrollador Senior Fullstack | Arquitecto de Software | Innovador en IA"
+    },
+    "idea": {
+        "title": "Todo comienza con una idea.",
+        "diagramAria": "Diagrama de arquitectura: Usuario, Frontend, API, Base de Datos",
+        "nodes": {
+            "user": "Usuario",
+            "frontend": "Frontend",
+            "api": "API",
+            "database": "Base de Datos"
+        }
+    },
+    "system": {
+        "title": "Un sistema vivo, ensamblado conexión por conexión.",
+        "diagramAria": "Arquitectura distribuida con autenticación, microservicios, bus de eventos, caché, almacenamiento de objetos, monitoreo e IA",
+        "core": "CORE",
+        "pieces": {
+            "auth": "Autenticación",
+            "microservices": "Microservicios",
+            "eventBus": "Event Bus",
+            "cache": "Caché",
+            "storage": "Object Storage",
+            "monitoring": "Monitoreo",
+            "ai": "Inteligencia Artificial"
+        }
+    },
+    "product": {
+        "title": "De la Arquitectura al Producto",
+        "screens": {
+            "dashboard": "Panel de Control",
+            "marketplace": "Marketplace",
+            "pos": "Punto de Venta",
+            "inventory": "Inventario",
+            "analytics": "Analíticas",
+            "payments": "Pagos"
+        }
+    },
+    "process": {
+        "title": "Cómo construyo",
+        "steps": {
+            "discovery": {
+                "name": "Discovery",
+                "note": "Entender el problema antes que la solución."
+            },
+            "architecture": {
+                "name": "Architecture",
+                "note": "Definir límites, contratos y trade-offs."
+            },
+            "development": {
+                "name": "Development",
+                "note": "Código simple sobre código ingenioso."
+            },
+            "testing": {
+                "name": "Testing",
+                "note": "Confianza medible, no intuición."
+            },
+            "deployment": {
+                "name": "Deployment",
+                "note": "Entrega continua, sin ceremonias."
+            },
+            "optimization": {
+                "name": "Optimization",
+                "note": "Medir, ajustar, repetir."
+            }
+        }
+    },
+    "stack": {
+        "title": "Stack Tecnológico",
+        "diagramAria": "Red de tecnologías: React, TypeScript, Node, PostgreSQL, AWS, Docker, GitHub Actions e IA",
+        "nodes": {
+            "react": "React",
+            "typescript": "TypeScript",
+            "node": "Node.js",
+            "postgresql": "PostgreSQL",
+            "aws": "AWS",
+            "docker": "Docker",
+            "githubActions": "GitHub Actions",
+            "ai": "Inteligencia Artificial"
+        }
+    },
+    "projects": {
+        "selectedWork": "Trabajos seleccionados"
+    },
+    "contact": {
+        "headline": "Construyamos algo extraordinario.",
+        "linkedin": "LinkedIn",
+        "github": "GitHub",
+        "downloadResume": "Descargar Currículum"
+    }
+}

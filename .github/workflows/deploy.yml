@@ -28,41 +28,8 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
-      - name: Build Next.js App
+      - name: Build Vite App
         run: pnpm build
-
-      # 👇 AÑADE ESTE BLOQUE EXACTAMENTE AQUÍ 👇
-      - name: Prepare Standalone Build
-        run: |
-          # 1. Copiar public y static
-          cp -r public .next/standalone/
-          cp -r .next/static .next/standalone/.next/
-          
-          # 2. INYECCIÓN MANUAL DE DEPENDENCIAS PERDIDAS POR NEXT.JS
-          # Parche para @swc/helpers
-          mkdir -p .next/standalone/node_modules/@swc
-          rm -rf .next/standalone/node_modules/@swc/helpers
-          cp -rL node_modules/@swc/helpers .next/standalone/node_modules/@swc/
-          
-          # 👇 NUEVO: Parche para @next/env
-          mkdir -p .next/standalone/node_modules/@next
-          rm -rf .next/standalone/node_modules/@next/env
-          cp -rL node_modules/@next/env .next/standalone/node_modules/@next/
-          
-          # 3. PRE-SYMLINK de Caché 
-          rm -rf .next/standalone/.next/cache
-          ln -s /tmp/next-cache .next/standalone/.next/cache
-          
-          # 4. Script de arranque
-          cat << 'EOF' > .next/standalone/run.sh
-          #!/bin/bash
-          mkdir -p /tmp/next-cache
-          export HOSTNAME="0.0.0.0"
-          export PORT=8080
-          exec node server.js
-          EOF
-          
-          chmod +x .next/standalone/run.sh
 
       - name: 🔑 Configurar AWS
         uses: aws-actions/configure-aws-credentials@v4

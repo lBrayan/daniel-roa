@@ -1,0 +1,416 @@
+{
+    "profile": {
+        "firstName": "Brayan Daniel",
+        "lastName": "Roa Rodriguez",
+        "initials": "BR",
+        "headline": "Technical Lead - Software Architect - Senior Software Engineer",
+        "summary": "Ingeniero de software con más de 10 años de experiencia en desarrollo Full Stack, arquitectura de software y liderazgo técnico de equipos de ingeniería. Experiencia diseñando soluciones escalables utilizando Java, PHP, .Net, Spring Boot, Angular, Node.js, React, Python, AWS, microservicios, APIs REST, DevOps y metodologías ágiles. Especialista en modernización de plataformas empresariales, automatización de procesos, integración de sistemas, arquitecturas cloud e implementación de soluciones con Inteligencia Artificial Generativa, RAG y automatización inteligente.",
+        "contact": {
+            "email": "lbrayan.roa@gmail.com",
+            "phone": "3114740930",
+            "location": "Soacha, Colombia",
+            "linkedin": "linkedin.com/in/brayandroa",
+            "github": "github.com/brayandroa",
+            "website": "portafolio (opcional)"
+        }
+    },
+    "timeline": [
+        {
+            "period": "2015",
+            "title": "Prácticas y Desarrollo Inicial",
+            "description": "Desarrollo de funcionalidades con PHP y JavaScript, e investigación de plataformas cloud (IBM Bluemix).",
+            "icon": "code",
+            "color": "amber"
+        },
+        {
+            "period": "2016 - 2019",
+            "title": "Desarrollo Web y Liderazgo",
+            "description": "Liderazgo en desarrollo de Progressive Web Apps (PWA), APIs REST y adopción de Angular en proyectos estratégicos.",
+            "icon": "code",
+            "color": "purple"
+        },
+        {
+            "period": "2019 - 2020",
+            "title": "Full Stack y Migración Cloud",
+            "description": "Migración a arquitecturas REST, Server Side Rendering (Node.js) e infraestructura en AWS (EC2, S3).",
+            "icon": "cloud",
+            "color": "blue"
+        },
+        {
+            "period": "2021 - 2022",
+            "title": "Ingeniería Senior",
+            "description": "Soluciones para el sector financiero, implementación de Clean Architecture y automatización.",
+            "icon": "settings",
+            "color": "green"
+        },
+        {
+            "period": "2022 - 2026",
+            "title": "Liderazgo Técnico e IA",
+            "description": "Arquitectura cloud, Inteligencia Artificial Generativa, automatización de CI/CD y evolución de plataformas empresariales.",
+            "icon": "brain",
+            "color": "blue"
+        }
+    ],
+    "skillLayers": [
+        {
+            "name": "Arquitectura y Nube",
+            "icon": "layers",
+            "color": "blue",
+            "skills": [
+                "AWS",
+                "Microservicios",
+                "APIs REST",
+                "Clean Architecture",
+                "PWA",
+                "AWS Amplify",
+                "EC2",
+                "S3",
+                "DynamoDB",
+                "Lambda",
+                "Route 53",
+                "CloudFormation",
+                "IBM Bluemix",
+                "DigitalOcean"
+            ],
+            "topSkills": [
+                {
+                    "name": "AWS",
+                    "level": 90
+                },
+                {
+                    "name": "Microservicios & APIs REST",
+                    "level": 92
+                },
+                {
+                    "name": "Clean Architecture",
+                    "level": 85
+                }
+            ]
+        },
+        {
+            "name": "Desarrollo y DevOps",
+            "icon": "code",
+            "color": "green",
+            "skills": [
+                "Java",
+                "PHP",
+                ".Net",
+                ".NET MVC",
+                "C# Web API",
+                "Spring Boot",
+                "Angular",
+                "Node.js",
+                "React",
+                "Python",
+                "JavaScript",
+                "Laravel",
+                "Ionic",
+                "Azure DevOps",
+                "CI/CD",
+                "Bitbucket Pipelines",
+                "Jira",
+                "SQL",
+                "SQL Server",
+                "YAML",
+                "Material Design",
+                "jQuery"
+            ],
+            "topSkills": [
+                {
+                    "name": "Angular",
+                    "level": 95
+                },
+                {
+                    "name": "Java / Spring Boot",
+                    "level": 90
+                },
+                {
+                    "name": "Node.js & JavaScript",
+                    "level": 88
+                },
+                {
+                    "name": "CI/CD & Azure DevOps",
+                    "level": 85
+                }
+            ]
+        },
+        {
+            "name": "Inteligencia Artificial",
+            "icon": "brain",
+            "color": "purple",
+            "skills": [
+                "IA Generativa",
+                "RAG",
+                "Prompt Engineering",
+                "Claude",
+                "TensorFlow.js",
+                "GitHub Copilot"
+            ],
+            "topSkills": [
+                {
+                    "name": "IA Generativa & RAG",
+                    "level": 90
+                },
+                {
+                    "name": "Prompt Engineering",
+                    "level": 93
+                },
+                {
+                    "name": "TensorFlow.js",
+                    "level": 80
+                }
+            ]
+        }
+    ],
+    "experience": [
+        {
+            "period": "Diciembre 2023 - Julio 2026",
+            "role": "Technical expert",
+            "company": "Topaz - Bogotá",
+            "color": "blue",
+            "highlights": [
+                "Lideré la arquitectura y desarrollo de soluciones empresariales orientadas a automatización y eficiencia operativa.",
+                "Diseñé una plataforma cloud sobre AWS para automatización de procesos CI/CD, gestión de repositorios, Pull Requests, versionamiento y despliegues.",
+                "Implementé soluciones utilizando AWS Amplify, Lambda, S3, DynamoDB y CloudFormation.",
+                "Diseñé pipelines CI/CD utilizando Azure DevOps y YAML.",
+                "Lideré equipos técnicos mediante definición de arquitectura, revisión de código y acompañamiento técnico.",
+                "Implementé soluciones de Inteligencia Artificial Generativa usando RAG, Prompt Engineering y herramientas como GitHub Copilot y Claude."
+            ],
+            "technologies": [
+                "AWS",
+                "Java",
+                "Spring Boot",
+                "Angular",
+                "DynamoDB",
+                "Lambda",
+                "Azure DevOps",
+                "CI/CD",
+                "IA Generativa"
+            ]
+        },
+        {
+            "period": "Octubre 2022 - Octubre 2023",
+            "role": "Lider tecnico analista de desarrollo",
+            "company": "Sqa sa Bogotá",
+            "color": "green",
+            "highlights": [
+                "Lideré la evolución técnica de una plataforma de Crowd Testing, impulsando mejoras de arquitectura, experiencia de usuario y automatización de procesos internos.",
+                "Diseñé una Progressive Web App (PWA) basada en flujos guiados por etapas, mejorando la experiencia de ejecución de retos y facilitando la escalabilidad de la plataforma.",
+                "Implementé una solución de Inteligencia Artificial utilizando TensorFlow.js para detección automática de reportes duplicados mediante análisis de similitud semántica, reduciendo tiempos de validación de 4 días a 24 horas.",
+                "Diseñé algoritmos de clasificación y etiquetado automático para mejorar la precisión del proceso de validación de bugs.",
+                "Modernicé la plataforma utilizando Angular, Laravel y Material Design, mejorando mantenibilidad y evolución funcional.",
+                "Implementé automatización del ciclo de desarrollo mediante Jira y Bitbucket Pipelines, fortaleciendo procesos CI/CD."
+            ],
+            "technologies": [
+                "Angular",
+                "Laravel",
+                "TensorFlow.js",
+                "IA",
+                "PWA",
+                "JavaScript",
+                "CI/CD",
+                "Bitbucket",
+                "Jira"
+            ]
+        },
+        {
+            "period": "Agosto 2021 - Marzo 2022",
+            "role": "Ingeniero de desarrollo senior",
+            "company": "Assist consultores de sistemas s.a. Bogotá",
+            "color": "purple",
+            "highlights": [
+                "Participé en equipos de desarrollo para soluciones empresariales del sector financiero, trabajando bajo metodologías ágiles y estándares de ingeniería de software.",
+                "Desarrollé y evolucioné módulos web utilizando Angular y Node.js para plataformas empresariales.",
+                "Diseñé e implementé APIs REST para integración de sistemas internos y externos.",
+                "Participé en proyectos para clientes del sector financiero, aplicando buenas prácticas de seguridad, calidad y arquitectura.",
+                "Revisión mejoras técnicas basadas en Clean Architecture y estrategias de despliegue mediante Feature Flags.",
+                "Participé en espacios técnicos internos para fortalecer buenas prácticas de desarrollo y calidad de software."
+            ],
+            "technologies": [
+                "Angular",
+                "Node.js",
+                "JavaScript",
+                "APIs REST",
+                "Clean Architecture",
+                "SQL",
+                "Agile"
+            ]
+        },
+        {
+            "period": "Febrero 2021 - Agosto 2021",
+            "role": "Analista de programación",
+            "company": "Sqa sa Bogotá",
+            "color": "amber",
+            "highlights": [
+                "Participé en el desarrollo y evolución de una plataforma de Crowd Testing, asumiendo progresivamente responsabilidades técnicas y de liderazgo.",
+                "Identifiqué oportunidades de automatización dentro del proceso de validación de bugs y diseñé una solución basada en Inteligencia Artificial para detectar reportes duplicados.",
+                "Reduje tiempos de revisión de reportes mediante análisis de similitud semántica, optimizando la operación del equipo.",
+                "Modernicé componentes principales de la plataforma utilizando Angular y Laravel.",
+                "Implementé automatización del ciclo de vida del software mediante integración Jira y Bitbucket Pipelines.",
+                "Lideré técnicamente nuevas funcionalidades aplicando buenas prácticas de arquitectura y desarrollo."
+            ],
+            "technologies": [
+                "Angular",
+                "Laravel",
+                "IA",
+                "JavaScript",
+                "Bitbucket Pipelines",
+                "Jira",
+                "CI/CD"
+            ]
+        },
+        {
+            "period": "Mayo 2020 - Diciembre 2020",
+            "role": "Ingeniero desarrollador",
+            "company": "Ormigga s.a.s - Bogotá",
+            "color": "blue",
+            "highlights": [
+                "Responsable del desarrollo y evolución de soluciones digitales participando en arquitectura, backend, frontend, infraestructura e integraciones.",
+                "Evolucioné desde desarrollo frontend hacia responsabilidades full stack y arquitectura de soluciones.",
+                "Lideré técnicamente la transformación de una plataforma interna hacia un Marketplace con gestión de productos, procesamiento de imágenes e integración de servicios.",
+                "Migré infraestructura desde DigitalOcean hacia AWS utilizando EC2, S3 y Route 53, mejorando disponibilidad y capacidad de crecimiento.",
+                "Desarrollé soluciones Full Stack utilizando Angular, Laravel e lonic.",
+                "Implementé automatizaciones internas mediante Python e integraciones con APIs externas.",
+                "Optimicé consultas y procedimientos almacenados en SQL Server para mejorar procesos operativos."
+            ],
+            "technologies": [
+                "Angular",
+                "Laravel",
+                "lonic",
+                "Python",
+                "AWS",
+                "EC2",
+                "S3",
+                "SQL Server",
+                "APIs REST"
+            ]
+        },
+        {
+            "period": "Diciembre 2019 - Marzo 2020",
+            "role": "Analista de programacion backend y frontend",
+            "company": "Bcd travel - Bogotá",
+            "color": "green",
+            "highlights": [
+                "Me incorporé inicialmente como desarrollador Frontend, participando en la evolución de la plataforma de validación de vuelos utilizada por la compañía.",
+                "Asumí progresivamente responsabilidades de Backend, resolviendo incidencias y desarrollando nuevas funcionalidades más allá del alcance inicial del cargo.",
+                "Participé en la modernización de la plataforma mediante la migración desde una arquitectura basada en .NET MVC hacia una arquitectura REST utilizando C# Web API, mejorando la escalabilidad y mantenibilidad de la solución.",
+                "Implementé mecanismos de seguridad como autenticación JWT, cifrado RSA y filtros de autorización personalizados para fortalecer la protección de la información empresarial.",
+                "Refactoricé componentes de lógica de negocio heredada, optimizando el procesamiento de reglas relacionadas con la validación de condiciones de vuelo.",
+                "Desarrollé la nueva interfaz de usuario con Angular y Angular Material, construyendo una experiencia más moderna y mantenible para los usuarios internos.",
+                "Implementé Server Side Rendering con Node.js para optimizar el rendimiento inicial de la aplicación y fortalecer el manejo de solicitudes HTTP.",
+                "Compartí conocimiento sobre Angular con el equipo de desarrollo mediante sesiones técnicas y acompañamiento continuo."
+            ],
+            "technologies": [
+                ".NET MVC",
+                "C# Web API",
+                "JWT",
+                "RSA",
+                "Angular",
+                "Angular Material",
+                "Node.js"
+            ]
+        },
+        {
+            "period": "Abril 2016 - Septiembre 2019",
+            "role": "Desarrollador web lider de proyecto",
+            "company": "Grupo spira s.a.s - Bogotá",
+            "color": "purple",
+            "highlights": [
+                "Participé en el desarrollo de soluciones web para clientes de distintos sectores, contribuyendo tanto al diseño de nuevas funcionalidades como a la evolución de plataformas existentes.",
+                "Impulsé la adopción de Angular dentro de la organización tras investigar el framework y demostrar sus ventajas frente a tecnologías basadas en jQuery.",
+                "Extendí y personalicé librerías JavaScript para adaptar sus funcionalidades a necesidades específicas de negocio.",
+                "Lideré técnicamente el desarrollo de proyectos estratégicos como Mis Finanzas en Casa para Banco Davivienda, construyendo una Progressive Web App con Angular y una API REST en PHP con mecanismos de seguridad basados en RSA.",
+                "Diseñé y desarrollé un MVP para una plataforma de Clínica de Ventas, incorporando comunicación en tiempo real mediante WebRTC y grabación de sesiones para apoyar procesos comerciales.",
+                "Desarrollé aplicaciones con funcionamiento offline, sincronización automática, notificaciones push y almacenamiento local.",
+                "Construí la plataforma Encuestas 360, permitiendo la gestión de evaluaciones de clima organizacional mediante plantillas dinámicas, generación de indicadores y reportes gráficos."
+            ],
+            "technologies": [
+                "Angular",
+                "JavaScript",
+                "jQuery",
+                "PHP",
+                "RSA",
+                "WebRTC",
+                "PWA"
+            ]
+        },
+        {
+            "period": "Junio 2015 - Diciembre 2015",
+            "role": "Practicante analista desarollador",
+            "company": "Grupo spira s.a.s. - Bogotá",
+            "color": "amber",
+            "highlights": [
+                "Participé en el aseguramiento de calidad de aplicaciones web, validando el cumplimiento de requerimientos funcionales y apoyando la documentación técnica y elaboración de manuales de usuario.",
+                "Colaboré en el desarrollo de funcionalidades utilizando PHP y JavaScript, apoyando la construcción de soluciones web durante mi proceso de formación profesional.",
+                "Investigué la plataforma IBM Bluemix como parte de una iniciativa de innovación de la compañía tras obtener acceso al programa para startups de IBM.",
+                "Lideré de manera voluntaria el proceso de aprendizaje sobre IBM Bluemix, preparando y realizando sesiones de capacitación para el equipo de desarrollo."
+            ],
+            "technologies": [
+                "PHP",
+                "JavaScript",
+                "IBM Bluemix"
+            ]
+        }
+    ],
+    "projects": [
+        {
+            "name": "Mis Finanzas en Casa",
+            "description": "Progressive Web App con Angular y una API REST en PHP con mecanismos de seguridad basados en RSA para Banco Davivienda."
+        },
+        {
+            "name": "Clínica de Ventas (MVP)",
+            "description": "Plataforma incorporando comunicación en tiempo real mediante WebRTC y grabación de sesiones para apoyar procesos comerciales y de capacitación."
+        },
+        {
+            "name": "Encuestas 360",
+            "description": "Plataforma para la gestión de evaluaciones de clima organizacional mediante plantillas dinámicas, generación de indicadores y reportes gráficos."
+        }
+    ],
+    "certifications": [],
+    "education": [
+        {
+            "title": "Tecnologo en Analisis y desarrollo de sistemas de informacion",
+            "institution": "Sena",
+            "detail": "Diciembre 2013 - Diciembre 2015"
+        },
+        {
+            "title": "Bachillerato academico",
+            "institution": "Nicolas gomez davila",
+            "detail": "Enero 2007 - Diciembre 2013"
+        }
+    ],
+    "languages": [
+        {
+            "name": "Español",
+            "level": 100,
+            "label": "Nativo"
+        },
+        {
+            "name": "Inglés",
+            "level": 30,
+            "label": "Básico"
+        }
+    ],
+    "values": [
+        {
+            "icon": "lightbulb",
+            "label": "Innovación"
+        },
+        {
+            "icon": "settings",
+            "label": "Resolver problemas"
+        },
+        {
+            "icon": "brain",
+            "label": "Aprendizaje autónomo"
+        },
+        {
+            "icon": "rocket",
+            "label": "Pensamiento creativo"
+        },
+        {
+            "icon": "user",
+            "label": "Independencia"
+        }
+    ]
+}

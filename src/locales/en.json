@@ -1,0 +1,99 @@
+{
+    "hero": {
+        "greeting": "Hi, I am",
+        "role1": "Senior Fullstack Developer | Leader",
+        "role2": "Software Architect",
+        "role3": "AI Innovator",
+        "scrollHint": "Scroll Down"
+    },
+    "meta": {
+        "title": "Brayan Roa — Senior Fullstack Developer & Leader | Software Architect | AI Innovator"
+    },
+    "idea": {
+        "title": "Everything begins with an idea.",
+        "diagramAria": "Architecture diagram: User, Frontend, API, Database",
+        "nodes": {
+            "user": "User",
+            "frontend": "Frontend",
+            "api": "API",
+            "database": "Database"
+        }
+    },
+    "system": {
+        "title": "A living system, assembled connection by connection.",
+        "diagramAria": "Distributed architecture with authentication, microservices, event bus, cache, object storage, monitoring and AI",
+        "core": "CORE",
+        "pieces": {
+            "auth": "Authentication",
+            "microservices": "Microservices",
+            "eventBus": "Event Bus",
+            "cache": "Cache",
+            "storage": "Object Storage",
+            "monitoring": "Monitoring",
+            "ai": "Artificial Intelligence"
+        }
+    },
+    "product": {
+        "title": "From Architecture to Product",
+        "screens": {
+            "dashboard": "Dashboard",
+            "marketplace": "Marketplace",
+            "pos": "POS",
+            "inventory": "Inventory",
+            "analytics": "Analytics",
+            "payments": "Payments"
+        }
+    },
+    "process": {
+        "title": "How I Build",
+        "steps": {
+            "discovery": {
+                "name": "Discovery",
+                "note": "Understand the problem before the solution."
+            },
+            "architecture": {
+                "name": "Architecture",
+                "note": "Define boundaries, contracts, and trade-offs."
+            },
+            "development": {
+                "name": "Development",
+                "note": "Simple code over clever code."
+            },
+            "testing": {
+                "name": "Testing",
+                "note": "Measurable confidence, not intuition."
+            },
+            "deployment": {
+                "name": "Deployment",
+                "note": "Continuous delivery, no ceremonies."
+            },
+            "optimization": {
+                "name": "Optimization",
+                "note": "Measure, adjust, repeat."
+            }
+        }
+    },
+    "stack": {
+        "title": "Technology Stack",
+        "diagramAria": "Technology network: React, TypeScript, Node, PostgreSQL, AWS, Docker, GitHub Actions and AI",
+        "nodes": {
+            "react": "React",
+            "typescript": "TypeScript",
+            "node": "Node.js",
+            "postgresql": "PostgreSQL",
+            "aws": "AWS",
+            "docker": "Docker",
+            "githubActions": "GitHub Actions",
+            "ai": "Artificial Intelligence"
+        }
+    },
+    "projects": {
+        "selectedWork": "Selected work"
+    },
+    "contact": {
+        "headline": "Let's build something extraordinary.",
+        "linkedin": "LinkedIn",
+        "github": "GitHub",
+        "downloadResume": "Download Resume"
+    }
+}
