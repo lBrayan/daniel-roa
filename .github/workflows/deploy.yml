@@ -47,6 +47,7 @@ jobs:
       - name: Install CDK Dependencies
         run: |
           cd infrastructure
+          pnpm config set only-built-dependencies esbuild
           pnpm install
 
       - name: CDK Deploy
