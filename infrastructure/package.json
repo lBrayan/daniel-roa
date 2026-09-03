@@ -2,6 +2,11 @@
     "name": "portfolio-infrastructure",
     "version": "1.0.0",
     "private": true,
+    "pnpm": {
+        "onlyBuiltDependencies": [
+            "esbuild"
+        ]
+    },
     "scripts": {
         "build": "tsc",
         "watch": "tsc -w",
