@@ -28,7 +28,6 @@ jobs:
       - name: Install pnpm & aws-cdk
         run: |
           npm install -g pnpm
-          pnpm --version
           npm install -g aws-cdk
 
       - name: Install Root Dependencies & Build App
