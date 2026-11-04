@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 concurrency:
   group: deploy-production
@@ -48,6 +49,13 @@ jobs:
         run: |
           cd infrastructure
           pnpm install
+
+      # Idempotente: en una cuenta nueva crea el stack CDKToolkit; si ya existe, no cambia nada.
+      - name: CDK Bootstrap
+        run: |
+          cd infrastructure
+          ACCOUNT=$(aws sts get-caller-identity --query Account --output text)
+          cdk bootstrap "aws://${ACCOUNT}/us-east-1"
 
       - name: CDK Deploy
         run: |
