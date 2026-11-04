@@ -10,11 +10,25 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ChatbotWhatsappIaRouteImport } from './routes/chatbot-whatsapp-ia'
+import { Route as CrearPaginaWebRouteImport } from './routes/crear-pagina-web'
 import { Route as CvRouteImport } from './routes/cv'
+import { Route as DesarrolloWebBogotaRouteImport } from './routes/desarrollo-web-bogota'
+import { Route as ServiciosRouteImport } from './routes/servicios'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChatbotWhatsappIaRoute = ChatbotWhatsappIaRouteImport.update({
+  id: '/chatbot-whatsapp-ia',
+  path: '/chatbot-whatsapp-ia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CrearPaginaWebRoute = CrearPaginaWebRouteImport.update({
+  id: '/crear-pagina-web',
+  path: '/crear-pagina-web',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CvRoute = CvRouteImport.update({
@@ -22,31 +36,76 @@ const CvRoute = CvRouteImport.update({
   path: '/cv',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DesarrolloWebBogotaRoute = DesarrolloWebBogotaRouteImport.update({
+  id: '/desarrollo-web-bogota',
+  path: '/desarrollo-web-bogota',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServiciosRoute = ServiciosRouteImport.update({
+  id: '/servicios',
+  path: '/servicios',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/chatbot-whatsapp-ia': typeof ChatbotWhatsappIaRoute
+  '/crear-pagina-web': typeof CrearPaginaWebRoute
   '/cv': typeof CvRoute
+  '/desarrollo-web-bogota': typeof DesarrolloWebBogotaRoute
+  '/servicios': typeof ServiciosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/chatbot-whatsapp-ia': typeof ChatbotWhatsappIaRoute
+  '/crear-pagina-web': typeof CrearPaginaWebRoute
   '/cv': typeof CvRoute
+  '/desarrollo-web-bogota': typeof DesarrolloWebBogotaRoute
+  '/servicios': typeof ServiciosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/chatbot-whatsapp-ia': typeof ChatbotWhatsappIaRoute
+  '/crear-pagina-web': typeof CrearPaginaWebRoute
   '/cv': typeof CvRoute
+  '/desarrollo-web-bogota': typeof DesarrolloWebBogotaRoute
+  '/servicios': typeof ServiciosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/cv'
+  fullPaths:
+    | '/'
+    | '/chatbot-whatsapp-ia'
+    | '/crear-pagina-web'
+    | '/cv'
+    | '/desarrollo-web-bogota'
+    | '/servicios'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/cv'
-  id: '__root__' | '/' | '/cv'
+  to:
+    | '/'
+    | '/chatbot-whatsapp-ia'
+    | '/crear-pagina-web'
+    | '/cv'
+    | '/desarrollo-web-bogota'
+    | '/servicios'
+  id:
+    | '__root__'
+    | '/'
+    | '/chatbot-whatsapp-ia'
+    | '/crear-pagina-web'
+    | '/cv'
+    | '/desarrollo-web-bogota'
+    | '/servicios'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ChatbotWhatsappIaRoute: typeof ChatbotWhatsappIaRoute
+  CrearPaginaWebRoute: typeof CrearPaginaWebRoute
   CvRoute: typeof CvRoute
+  DesarrolloWebBogotaRoute: typeof DesarrolloWebBogotaRoute
+  ServiciosRoute: typeof ServiciosRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,6 +117,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/chatbot-whatsapp-ia': {
+      id: '/chatbot-whatsapp-ia'
+      path: '/chatbot-whatsapp-ia'
+      fullPath: '/chatbot-whatsapp-ia'
+      preLoaderRoute: typeof ChatbotWhatsappIaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/crear-pagina-web': {
+      id: '/crear-pagina-web'
+      path: '/crear-pagina-web'
+      fullPath: '/crear-pagina-web'
+      preLoaderRoute: typeof CrearPaginaWebRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cv': {
       id: '/cv'
       path: '/cv'
@@ -65,12 +138,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CvRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/desarrollo-web-bogota': {
+      id: '/desarrollo-web-bogota'
+      path: '/desarrollo-web-bogota'
+      fullPath: '/desarrollo-web-bogota'
+      preLoaderRoute: typeof DesarrolloWebBogotaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/servicios': {
+      id: '/servicios'
+      path: '/servicios'
+      fullPath: '/servicios'
+      preLoaderRoute: typeof ServiciosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ChatbotWhatsappIaRoute: ChatbotWhatsappIaRoute,
+  CrearPaginaWebRoute: CrearPaginaWebRoute,
   CvRoute: CvRoute,
+  DesarrolloWebBogotaRoute: DesarrolloWebBogotaRoute,
+  ServiciosRoute: ServiciosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

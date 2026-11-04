@@ -98,5 +98,14 @@
         "linkedin": "LinkedIn",
         "github": "GitHub",
         "downloadResume": "Descargar Currículum"
+    },
+    "header": {
+        "services": "Servicios"
+    },
+    "footer": {
+        "services": "Servicios y precios",
+        "bogota": "Desarrollador web en Bogotá",
+        "website": "Crear página web en Colombia",
+        "chatbot": "Chatbot con IA para WhatsApp"
     }
 }

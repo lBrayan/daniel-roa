@@ -15,7 +15,14 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { pathToFileURL } from "node:url";
 
-const ROUTES = ["/", "/cv"];
+const ROUTES = [
+  "/",
+  "/cv",
+  "/servicios",
+  "/desarrollo-web-bogota",
+  "/crear-pagina-web",
+  "/chatbot-whatsapp-ia",
+];
 const SERVER_ENTRY = join(process.cwd(), ".output/server/index.mjs");
 const PUBLIC_DIR = ".output/public";
 

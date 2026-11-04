@@ -69,9 +69,14 @@ function LandingPage() {
                     </button>
                 </div>
 
-                <Link to="/cv" className="text-[11px] tracking-[0.3em] text-white uppercase hover:text-white/70 transition-colors">
-                    {t("header.cv", { defaultValue: "CV" })}
-                </Link>
+                <div className="flex items-center gap-5">
+                    <Link to={"/servicios" as never} className="text-[11px] tracking-[0.3em] text-white uppercase hover:text-white/70 transition-colors">
+                        {t("header.services", { defaultValue: "Servicios" })}
+                    </Link>
+                    <Link to="/cv" className="text-[11px] tracking-[0.3em] text-white uppercase hover:text-white/70 transition-colors">
+                        {t("header.cv", { defaultValue: "CV" })}
+                    </Link>
+                </div>
             </header>
 
             <main>
@@ -85,6 +90,16 @@ function LandingPage() {
                 <ProjectsSection projects={projects} />
                 <ContactSection contact={profile.contact} />
             </main>
+
+            {/* Enlaces internos a las páginas de servicios (navegación + SEO). */}
+            <footer className="border-t border-white/10 px-6 py-12">
+                <nav aria-label="Servicios" className="mx-auto flex max-w-5xl flex-wrap justify-center gap-x-8 gap-y-3 text-sm text-mist">
+                    <Link to={"/servicios" as never} className="hover:text-white">{t("footer.services", { defaultValue: "Servicios y precios" })}</Link>
+                    <Link to={"/desarrollo-web-bogota" as never} className="hover:text-white">{t("footer.bogota", { defaultValue: "Desarrollador web en Bogotá" })}</Link>
+                    <Link to={"/crear-pagina-web" as never} className="hover:text-white">{t("footer.website", { defaultValue: "Crear página web en Colombia" })}</Link>
+                    <Link to={"/chatbot-whatsapp-ia" as never} className="hover:text-white">{t("footer.chatbot", { defaultValue: "Chatbot con IA para WhatsApp" })}</Link>
+                </nav>
+            </footer>
         </div>
     );
 }

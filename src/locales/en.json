@@ -98,5 +98,14 @@
         "linkedin": "LinkedIn",
         "github": "GitHub",
         "downloadResume": "Download Resume"
+    },
+    "header": {
+        "services": "Services"
+    },
+    "footer": {
+        "services": "Services & pricing",
+        "bogota": "Web developer in Bogotá",
+        "website": "Build a website in Colombia",
+        "chatbot": "AI chatbot for WhatsApp"
     }
 }
