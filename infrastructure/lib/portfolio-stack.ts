@@ -43,7 +43,25 @@ export class PortfolioStack extends cdk.Stack {
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
     });
 
-    // CloudFront Distribution optimizada para SPA (TanStack Router)
+    // Cada ruta se prerenderiza como carpeta: /servicios -> servicios/index.html.
+    // S3 no resuelve eso solo, así que esta función reescribe la URL antes de
+    // llegar al bucket. Sin esto, /servicios devolvía el HTML de la portada y
+    // Google veía el título y canonical del inicio en todas las páginas.
+    const rewriteFn = new cloudfront.Function(this, "PrettyUrlsFunction", {
+      runtime: cloudfront.FunctionRuntime.JS_2_0,
+      code: cloudfront.FunctionCode.fromInline(`
+function handler(event) {
+  var request = event.request;
+  var uri = request.uri;
+  if (uri.endsWith("/")) {
+    request.uri = uri + "index.html";
+  } else if (uri.lastIndexOf(".") <= uri.lastIndexOf("/")) {
+    request.uri = uri + "/index.html";
+  }
+  return request;
+}`),
+    });
+
     const distribution = new cloudfront.Distribution(this, "PortfolioCDN", {
       certificate,
       domainNames: [siteDomain, wwwDomain],
@@ -52,21 +70,25 @@ export class PortfolioStack extends cdk.Stack {
         origin: origins.S3BucketOrigin.withOriginAccessControl(siteBucket),
         viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
         cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
+        functionAssociations: [
+          { function: rewriteFn, eventType: cloudfront.FunctionEventType.VIEWER_REQUEST },
+        ],
       },
-      // Vital para TanStack Router: si recargas en una ruta como /cv,
-      // CloudFront redirige a index.html y el router maneja la navegación.
+      // Rutas que no existen: se sirve la app (que muestra su página 404)
+      // pero con estado HTTP 404, para que Google no las indexe como páginas reales.
+      // El bucket es privado (OAC), así que un archivo inexistente llega como 403.
       errorResponses: [
         {
           httpStatus: 403,
-          responseHttpStatus: 200,
+          responseHttpStatus: 404,
           responsePagePath: "/index.html",
-          ttl: cdk.Duration.seconds(0),
+          ttl: cdk.Duration.seconds(60),
         },
         {
           httpStatus: 404,
-          responseHttpStatus: 200,
+          responseHttpStatus: 404,
           responsePagePath: "/index.html",
-          ttl: cdk.Duration.seconds(0),
+          ttl: cdk.Duration.seconds(60),
         },
       ],
     });
