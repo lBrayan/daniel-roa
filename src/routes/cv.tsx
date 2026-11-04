@@ -45,8 +45,10 @@ export const Route = createFileRoute("/cv")({
                     "Arquitectura de software, cloud, DevOps e IA aplicada al negocio. Experiencia, proyectos y competencias.",
             },
             { property: "og:type", content: "profile" },
+            { property: "og:url", content: "https://brayanroa.com/cv" },
             { name: "twitter:card", content: "summary_large_image" },
         ],
+        links: [{ rel: "canonical", href: "https://brayanroa.com/cv" }],
     }),
     component: ResumePage,
 });

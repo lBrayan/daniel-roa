@@ -8,7 +8,9 @@
         "scrollHint": "Scroll Down"
     },
     "meta": {
-        "title": "Brayan Roa — Senior Fullstack Developer & Leader | Software Architect | AI Innovator"
+        "title": "Brayan Roa — Senior Fullstack Developer & Leader | Software Architect | AI Innovator",
+        "description": "Brayan Roa, software architect and Full Stack developer based in Colombia. I build websites, apps, custom systems, AI chatbots and AWS cloud solutions for companies and startups.",
+        "ogDescription": "Brayan Roa, software architect and Full Stack developer based in Colombia. I build websites, apps, custom systems, AI chatbots and AWS cloud solutions for companies and startups."
     },
     "idea": {
         "title": "Everything begins with an idea.",

@@ -8,7 +8,9 @@
         "scrollHint": "Rolar para Baixo"
     },
     "meta": {
-        "title": "Brayan Roa — Desenvolvedor Sênior Fullstack & Líder | Arquiteto de Software | Inovador em IA"
+        "title": "Brayan Roa — Desenvolvedor Sênior Fullstack & Líder | Arquiteto de Software | Inovador em IA",
+        "description": "Brayan Roa, arquiteto de software e desenvolvedor Full Stack na Colômbia. Desenvolvo sites, apps, sistemas sob medida, chatbots com IA e soluções em AWS para empresas.",
+        "ogDescription": "Brayan Roa, arquiteto de software e desenvolvedor Full Stack na Colômbia. Desenvolvo sites, apps, sistemas sob medida, chatbots com IA e soluções em AWS para empresas."
     },
     "idea": {
         "title": "Tudo começa com uma ideia.",

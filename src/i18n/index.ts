@@ -19,6 +19,11 @@ i18n
     .use(initReactI18next) // Pasa la instancia a react-i18next
     .init({
         resources,
+        // En el build (prerender en Node) no hay navegador real: Node expone
+        // navigator.language = "en-US" y el HTML estático salía en inglés.
+        // Forzamos español en servidor para que Google indexe el sitio en español;
+        // en el navegador sigue funcionando la detección automática.
+        lng: typeof window === 'undefined' ? 'es' : undefined,
         fallbackLng: 'es', // Idioma por defecto si falla la detección
         interpolation: {
             escapeValue: false, // React ya previene XSS por defecto

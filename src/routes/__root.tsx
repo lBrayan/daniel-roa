@@ -74,19 +74,64 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     );
 }
 
+export const SITE_URL = "https://brayanroa.com";
+
+const SITE_DESCRIPTION =
+    "Brayan Roa, arquitecto de software y desarrollador Full Stack en Colombia. Desarrollo páginas web, apps, sistemas a medida, chatbots con IA y soluciones en AWS para empresas y emprendedores.";
+
+const PERSON_SCHEMA = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Brayan Daniel Roa Rodríguez",
+    alternateName: "Brayan Roa",
+    url: SITE_URL,
+    image: `${SITE_URL}/og-image.jpg`,
+    jobTitle: "Arquitecto de Software y Desarrollador Full Stack",
+    description: SITE_DESCRIPTION,
+    address: { "@type": "PostalAddress", addressCountry: "CO" },
+    knowsAbout: [
+        "Arquitectura de software",
+        "Desarrollo web",
+        "React",
+        "Angular",
+        "Node.js",
+        "Java Spring Boot",
+        "PHP Laravel",
+        "AWS",
+        "Inteligencia Artificial",
+        "Chatbots",
+    ],
+    sameAs: ["https://www.linkedin.com/in/brayandroa", "https://github.com/lBrayan"],
+};
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
     head: () => ({
         meta: [
             { charSet: "utf-8" },
             { name: "viewport", content: "width=device-width, initial-scale=1" },
-            { title: "Lovable App" },
-            { name: "description", content: "Lovable Generated Project" },
-            { name: "author", content: "Lovable" },
-            { property: "og:title", content: "Lovable App" },
-            { property: "og:description", content: "Lovable Generated Project" },
+            { title: "Brayan Roa — Arquitecto de Software y Desarrollador Full Stack" },
+            { name: "description", content: SITE_DESCRIPTION },
+            { name: "author", content: "Brayan Daniel Roa Rodríguez" },
+            { name: "robots", content: "index, follow" },
+            { name: "theme-color", content: "#08080a" },
+            { property: "og:site_name", content: "Brayan Roa" },
+            { property: "og:locale", content: "es_CO" },
+            { property: "og:title", content: "Brayan Roa — Arquitecto de Software y Desarrollador Full Stack" },
+            { property: "og:description", content: SITE_DESCRIPTION },
             { property: "og:type", content: "website" },
+            { property: "og:image", content: `${SITE_URL}/og-image.jpg` },
+            { property: "og:image:width", content: "1200" },
+            { property: "og:image:height", content: "630" },
             { name: "twitter:card", content: "summary_large_image" },
-            { name: "twitter:site", content: "@Lovable" },
+            { name: "twitter:image", content: `${SITE_URL}/og-image.jpg` },
+        ],
+        // Datos estructurados (schema.org) para que Google entienda quién es la persona
+        // y lo relacione con sus perfiles. Se renderizan en el HTML prerenderizado.
+        scripts: [
+            {
+                type: "application/ld+json",
+                children: JSON.stringify(PERSON_SCHEMA),
+            },
         ],
         links: [
             { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -100,6 +145,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
                 href: appCss,
             },
             { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+            { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
         ],
     }),
     shellComponent: RootShell,

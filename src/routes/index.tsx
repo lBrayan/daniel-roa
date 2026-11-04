@@ -28,8 +28,10 @@ export const Route = createFileRoute("/")({
                 content: i18n.t("meta.ogDescription", { defaultValue: "Una experiencia guiada por scroll que muestra cómo una idea se convierte en arquitectura, producto e impacto." }),
             },
             { property: "og:type", content: "website" },
+            { property: "og:url", content: "https://brayanroa.com/" },
             { name: "twitter:card", content: "summary_large_image" },
         ],
+        links: [{ rel: "canonical", href: "https://brayanroa.com/" }],
     }),
     component: LandingPage,
 });
