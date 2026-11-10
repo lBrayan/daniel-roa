@@ -263,7 +263,7 @@ export function CtaBand({ title, text, waMessage }: { title: string; text: strin
 /** Bloque de texto largo (contenido SEO) con buena tipografía. */
 export function Prose({ children }: { children: ReactNode }) {
     return (
-        <div className="max-w-3xl space-y-5 text-base leading-relaxed text-white/80 [&_h3]:mt-8 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-white [&_li]:ml-5 [&_li]:list-disc [&_strong]:text-white [&_ul]:space-y-2">
+        <div className="max-w-3xl space-y-5 text-base leading-relaxed text-white/80 [&_h3]:mt-8 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-white [&_li]:ml-5 [&_li]:list-disc [&_a]:text-white [&_a]:underline [&_a]:underline-offset-4 [&_strong]:text-white [&_ul]:space-y-2">
             {children}
         </div>
     );

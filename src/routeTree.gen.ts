@@ -13,7 +13,9 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ChatbotWhatsappIaRouteImport } from './routes/chatbot-whatsapp-ia'
 import { Route as CrearPaginaWebRouteImport } from './routes/crear-pagina-web'
 import { Route as CvRouteImport } from './routes/cv'
+import { Route as DesarrolloDeAplicacionesRouteImport } from './routes/desarrollo-de-aplicaciones'
 import { Route as DesarrolloWebBogotaRouteImport } from './routes/desarrollo-web-bogota'
+import { Route as IngenieroDeSoftwareFreelanceRouteImport } from './routes/ingeniero-de-software-freelance'
 import { Route as ServiciosRouteImport } from './routes/servicios'
 
 const IndexRoute = IndexRouteImport.update({
@@ -36,11 +38,23 @@ const CvRoute = CvRouteImport.update({
   path: '/cv',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DesarrolloDeAplicacionesRoute =
+  DesarrolloDeAplicacionesRouteImport.update({
+    id: '/desarrollo-de-aplicaciones',
+    path: '/desarrollo-de-aplicaciones',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const DesarrolloWebBogotaRoute = DesarrolloWebBogotaRouteImport.update({
   id: '/desarrollo-web-bogota',
   path: '/desarrollo-web-bogota',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IngenieroDeSoftwareFreelanceRoute =
+  IngenieroDeSoftwareFreelanceRouteImport.update({
+    id: '/ingeniero-de-software-freelance',
+    path: '/ingeniero-de-software-freelance',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ServiciosRoute = ServiciosRouteImport.update({
   id: '/servicios',
   path: '/servicios',
@@ -52,7 +66,9 @@ export interface FileRoutesByFullPath {
   '/chatbot-whatsapp-ia': typeof ChatbotWhatsappIaRoute
   '/crear-pagina-web': typeof CrearPaginaWebRoute
   '/cv': typeof CvRoute
+  '/desarrollo-de-aplicaciones': typeof DesarrolloDeAplicacionesRoute
   '/desarrollo-web-bogota': typeof DesarrolloWebBogotaRoute
+  '/ingeniero-de-software-freelance': typeof IngenieroDeSoftwareFreelanceRoute
   '/servicios': typeof ServiciosRoute
 }
 export interface FileRoutesByTo {
@@ -60,7 +76,9 @@ export interface FileRoutesByTo {
   '/chatbot-whatsapp-ia': typeof ChatbotWhatsappIaRoute
   '/crear-pagina-web': typeof CrearPaginaWebRoute
   '/cv': typeof CvRoute
+  '/desarrollo-de-aplicaciones': typeof DesarrolloDeAplicacionesRoute
   '/desarrollo-web-bogota': typeof DesarrolloWebBogotaRoute
+  '/ingeniero-de-software-freelance': typeof IngenieroDeSoftwareFreelanceRoute
   '/servicios': typeof ServiciosRoute
 }
 export interface FileRoutesById {
@@ -69,7 +87,9 @@ export interface FileRoutesById {
   '/chatbot-whatsapp-ia': typeof ChatbotWhatsappIaRoute
   '/crear-pagina-web': typeof CrearPaginaWebRoute
   '/cv': typeof CvRoute
+  '/desarrollo-de-aplicaciones': typeof DesarrolloDeAplicacionesRoute
   '/desarrollo-web-bogota': typeof DesarrolloWebBogotaRoute
+  '/ingeniero-de-software-freelance': typeof IngenieroDeSoftwareFreelanceRoute
   '/servicios': typeof ServiciosRoute
 }
 export interface FileRouteTypes {
@@ -79,7 +99,9 @@ export interface FileRouteTypes {
     | '/chatbot-whatsapp-ia'
     | '/crear-pagina-web'
     | '/cv'
+    | '/desarrollo-de-aplicaciones'
     | '/desarrollo-web-bogota'
+    | '/ingeniero-de-software-freelance'
     | '/servicios'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -87,7 +109,9 @@ export interface FileRouteTypes {
     | '/chatbot-whatsapp-ia'
     | '/crear-pagina-web'
     | '/cv'
+    | '/desarrollo-de-aplicaciones'
     | '/desarrollo-web-bogota'
+    | '/ingeniero-de-software-freelance'
     | '/servicios'
   id:
     | '__root__'
@@ -95,7 +119,9 @@ export interface FileRouteTypes {
     | '/chatbot-whatsapp-ia'
     | '/crear-pagina-web'
     | '/cv'
+    | '/desarrollo-de-aplicaciones'
     | '/desarrollo-web-bogota'
+    | '/ingeniero-de-software-freelance'
     | '/servicios'
   fileRoutesById: FileRoutesById
 }
@@ -104,7 +130,9 @@ export interface RootRouteChildren {
   ChatbotWhatsappIaRoute: typeof ChatbotWhatsappIaRoute
   CrearPaginaWebRoute: typeof CrearPaginaWebRoute
   CvRoute: typeof CvRoute
+  DesarrolloDeAplicacionesRoute: typeof DesarrolloDeAplicacionesRoute
   DesarrolloWebBogotaRoute: typeof DesarrolloWebBogotaRoute
+  IngenieroDeSoftwareFreelanceRoute: typeof IngenieroDeSoftwareFreelanceRoute
   ServiciosRoute: typeof ServiciosRoute
 }
 
@@ -138,11 +166,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CvRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/desarrollo-de-aplicaciones': {
+      id: '/desarrollo-de-aplicaciones'
+      path: '/desarrollo-de-aplicaciones'
+      fullPath: '/desarrollo-de-aplicaciones'
+      preLoaderRoute: typeof DesarrolloDeAplicacionesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/desarrollo-web-bogota': {
       id: '/desarrollo-web-bogota'
       path: '/desarrollo-web-bogota'
       fullPath: '/desarrollo-web-bogota'
       preLoaderRoute: typeof DesarrolloWebBogotaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ingeniero-de-software-freelance': {
+      id: '/ingeniero-de-software-freelance'
+      path: '/ingeniero-de-software-freelance'
+      fullPath: '/ingeniero-de-software-freelance'
+      preLoaderRoute: typeof IngenieroDeSoftwareFreelanceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/servicios': {
@@ -160,7 +202,9 @@ const rootRouteChildren: RootRouteChildren = {
   ChatbotWhatsappIaRoute: ChatbotWhatsappIaRoute,
   CrearPaginaWebRoute: CrearPaginaWebRoute,
   CvRoute: CvRoute,
+  DesarrolloDeAplicacionesRoute: DesarrolloDeAplicacionesRoute,
   DesarrolloWebBogotaRoute: DesarrolloWebBogotaRoute,
+  IngenieroDeSoftwareFreelanceRoute: IngenieroDeSoftwareFreelanceRoute,
   ServiciosRoute: ServiciosRoute,
 }
 export const routeTree = rootRouteImport

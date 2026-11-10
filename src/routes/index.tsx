@@ -8,6 +8,7 @@ import { ProcessSection } from "@/sections/ProcessSection";
 import { StackSection } from "@/sections/StackSection";
 import { ProjectsSection } from "@/sections/ProjectsSection";
 import { ContactSection } from "@/sections/ContactSection";
+import { AboutSeoSection } from "@/sections/AboutSeoSection";
 
 // 1. Importamos i18n global (para los meta tags) y el hook (para el componente)
 import i18n from "@/i18n";
@@ -89,6 +90,7 @@ function LandingPage() {
                 {/* Nota: Los proyectos siguen viniendo de resume.json por ahora */}
                 <ProjectsSection projects={projects} />
                 <ContactSection contact={profile.contact} />
+                <AboutSeoSection />
             </main>
 
             {/* Enlaces internos a las páginas de servicios (navegación + SEO). */}
@@ -98,6 +100,8 @@ function LandingPage() {
                     <Link to={"/desarrollo-web-bogota" as never} className="hover:text-white">{t("footer.bogota", { defaultValue: "Desarrollador web en Bogotá" })}</Link>
                     <Link to={"/crear-pagina-web" as never} className="hover:text-white">{t("footer.website", { defaultValue: "Crear página web en Colombia" })}</Link>
                     <Link to={"/chatbot-whatsapp-ia" as never} className="hover:text-white">{t("footer.chatbot", { defaultValue: "Chatbot con IA para WhatsApp" })}</Link>
+                    <Link to={"/ingeniero-de-software-freelance" as never} className="hover:text-white">{t("footer.software", { defaultValue: "Ingeniero de software freelance" })}</Link>
+                    <Link to={"/desarrollo-de-aplicaciones" as never} className="hover:text-white">{t("footer.apps", { defaultValue: "Desarrollo de aplicaciones a medida" })}</Link>
                 </nav>
             </footer>
         </div>

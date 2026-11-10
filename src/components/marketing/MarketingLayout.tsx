@@ -6,6 +6,7 @@ const NAV = [
     { to: "/servicios", label: "Servicios y precios" },
     { to: "/crear-pagina-web", label: "Páginas web" },
     { to: "/chatbot-whatsapp-ia", label: "Chatbots IA" },
+    { to: "/desarrollo-de-aplicaciones", label: "Apps a medida" },
     { to: "/cv", label: "CV" },
 ] as const;
 
@@ -89,7 +90,7 @@ export function MarketingLayout({ children }: { children: ReactNode }) {
                     <div>
                         <p className="font-semibold text-white">Brayan Roa</p>
                         <p className="mt-3 leading-relaxed">
-                            Arquitecto de software y desarrollador web en Bogotá. Páginas web, tiendas online, chatbots con IA y
+                            Ingeniero y arquitecto de software, desarrollador web freelance en Bogotá. Páginas web, tiendas online, chatbots con IA y
                             software a la medida para empresas de toda Colombia.
                         </p>
                     </div>
@@ -100,6 +101,8 @@ export function MarketingLayout({ children }: { children: ReactNode }) {
                             <li><Link to={"/desarrollo-web-bogota" as never} className="hover:text-white">Desarrollador web en Bogotá</Link></li>
                             <li><Link to={"/crear-pagina-web" as never} className="hover:text-white">Crear página web en Colombia</Link></li>
                             <li><Link to={"/chatbot-whatsapp-ia" as never} className="hover:text-white">Chatbot con IA para WhatsApp</Link></li>
+                            <li><Link to={"/ingeniero-de-software-freelance" as never} className="hover:text-white">Ingeniero de software freelance</Link></li>
+                            <li><Link to={"/desarrollo-de-aplicaciones" as never} className="hover:text-white">Desarrollo de aplicaciones a medida</Link></li>
                             <li><Link to="/cv" className="hover:text-white">Hoja de vida</Link></li>
                         </ul>
                     </div>

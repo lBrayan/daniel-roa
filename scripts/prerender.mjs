@@ -22,6 +22,8 @@ const ROUTES = [
   "/desarrollo-web-bogota",
   "/crear-pagina-web",
   "/chatbot-whatsapp-ia",
+  "/ingeniero-de-software-freelance",
+  "/desarrollo-de-aplicaciones",
 ];
 const SERVER_ENTRY = join(process.cwd(), ".output/server/index.mjs");
 const PUBLIC_DIR = ".output/public";

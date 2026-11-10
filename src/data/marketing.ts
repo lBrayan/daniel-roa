@@ -105,6 +105,7 @@ export const SERVICES: Service[] = [
             "Soporte y evolución continua",
         ],
         idealFor: "Empresas que necesitan automatizar procesos o lanzar un producto digital",
+        href: "/desarrollo-de-aplicaciones",
     },
 ];
 

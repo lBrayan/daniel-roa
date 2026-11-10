@@ -1,6 +1,6 @@
 {
     "hero": {
-        "srTitle": "Brayan Roa",
+        "srTitle": "Brayan Roa — Engenheiro de software e desenvolvedor web freelancer na Colômbia",
         "greeting": "Olá, eu sou",
         "role1": "Desenvolvedor Sênior Fullstack | Líder",
         "role2": "Arquiteto de Software",
@@ -8,7 +8,7 @@
         "scrollHint": "Rolar para Baixo"
     },
     "meta": {
-        "title": "Brayan Roa — Desenvolvedor Sênior Fullstack & Líder | Arquiteto de Software | Inovador em IA",
+        "title": "Brayan Roa | Engenheiro de software e desenvolvedor web freelancer",
         "description": "Brayan Roa, arquiteto de software e desenvolvedor Full Stack na Colômbia. Desenvolvo sites, apps, sistemas sob medida, chatbots com IA e soluções em AWS para empresas.",
         "ogDescription": "Brayan Roa, arquiteto de software e desenvolvedor Full Stack na Colômbia. Desenvolvo sites, apps, sistemas sob medida, chatbots com IA e soluções em AWS para empresas."
     },
@@ -106,6 +106,42 @@
         "services": "Serviços e preços",
         "bogota": "Desenvolvedor web em Bogotá",
         "website": "Criar site na Colômbia",
-        "chatbot": "Chatbot com IA para WhatsApp"
+        "chatbot": "Chatbot com IA para WhatsApp",
+        "software": "Engenheiro de software freelancer",
+        "apps": "Desenvolvimento de aplicações sob medida"
+    },
+    "seo": {
+        "eyebrow": "Sobre mim",
+        "title": "Engenheiro de software e desenvolvedor web freelancer na Colômbia",
+        "p1": "Sou Brayan Roa, engenheiro de software, arquiteto de software e desenvolvedor full stack com mais de 10 anos de experiência construindo sistemas para empresas de diversos setores. Trabalho como desenvolvedor freelancer a partir de Bogotá para empresas, empreendedores e negócios de toda a América Latina.",
+        "p2": "Levo seu produto da ideia à produção: entendo seu negócio, desenho a arquitetura, desenvolvo o frontend e o backend, publico na nuvem e acompanho você depois da entrega. Você fala diretamente comigo, sem intermediários nem agências.",
+        "servicesTitle": "O que posso desenvolver para você",
+        "services": [
+            {
+                "t": "Sites e landing pages",
+                "d": "Sites rápidos, otimizados para celular e para o Google, que transformam visitas em clientes.",
+                "to": "/crear-pagina-web"
+            },
+            {
+                "t": "Aplicações web e mobile sob medida",
+                "d": "Sistemas de gestão, portais de clientes, estoque, reservas e produtos digitais completos.",
+                "to": "/desarrollo-de-aplicaciones"
+            },
+            {
+                "t": "Chatbots com inteligência artificial",
+                "d": "Assistentes para WhatsApp que respondem 24/7 com as informações do seu negócio.",
+                "to": "/chatbot-whatsapp-ia"
+            },
+            {
+                "t": "Desenvolvimento de software freelancer",
+                "d": "APIs, integrações, modernização de sistemas e arquitetura em nuvem na AWS.",
+                "to": "/ingeniero-de-software-freelance"
+            }
+        ],
+        "stackTitle": "Tecnologias com que trabalho",
+        "stack": "Angular, React, Node.js, Java com Spring Boot, PHP com Laravel, Python, bancos de dados SQL e NoSQL, Amazon Web Services (AWS) e inteligência artificial (OpenAI, RAG e agentes).",
+        "whyTitle": "Por que trabalhar com um desenvolvedor freelancer?",
+        "why": "Você tem a qualidade técnica de uma equipe de software corporativa com o atendimento próximo e os preços de um profissional independente. Todo projeto começa com uma proposta por escrito, preço fechado e data de entrega.",
+        "cta": "Ver serviços e preços"
     }
 }

@@ -1,6 +1,6 @@
 {
     "hero": {
-        "srTitle": "Brayan Roa",
+        "srTitle": "Brayan Roa — Freelance Software Engineer and Web Developer in Colombia",
         "greeting": "Hi, I am",
         "role1": "Senior Fullstack Developer | Leader",
         "role2": "Software Architect",
@@ -8,7 +8,7 @@
         "scrollHint": "Scroll Down"
     },
     "meta": {
-        "title": "Brayan Roa — Senior Fullstack Developer & Leader | Software Architect | AI Innovator",
+        "title": "Brayan Roa | Freelance software engineer and web developer",
         "description": "Brayan Roa, software architect and Full Stack developer based in Colombia. I build websites, apps, custom systems, AI chatbots and AWS cloud solutions for companies and startups.",
         "ogDescription": "Brayan Roa, software architect and Full Stack developer based in Colombia. I build websites, apps, custom systems, AI chatbots and AWS cloud solutions for companies and startups."
     },
@@ -106,6 +106,42 @@
         "services": "Services & pricing",
         "bogota": "Web developer in Bogotá",
         "website": "Build a website in Colombia",
-        "chatbot": "AI chatbot for WhatsApp"
+        "chatbot": "AI chatbot for WhatsApp",
+        "software": "Freelance software engineer",
+        "apps": "Custom app development"
+    },
+    "seo": {
+        "eyebrow": "About me",
+        "title": "Freelance software engineer and web developer in Colombia",
+        "p1": "I'm Brayan Roa, a software engineer, software architect and full stack developer with more than 10 years of experience building systems for companies in many industries. I work as a freelance developer from Bogotá for companies, entrepreneurs and businesses across Colombia, Latin America and beyond.",
+        "p2": "I take your product from idea to production: I understand your business, design the architecture, build the frontend and backend, deploy it to the cloud and support you after delivery. You talk directly to me, with no middlemen or agencies.",
+        "servicesTitle": "What I can build for you",
+        "services": [
+            {
+                "t": "Websites and landing pages",
+                "d": "Fast, mobile-first, search-optimized sites that turn visitors into customers.",
+                "to": "/crear-pagina-web"
+            },
+            {
+                "t": "Custom web and mobile applications",
+                "d": "Management systems, customer portals, inventory, bookings and complete digital products.",
+                "to": "/desarrollo-de-aplicaciones"
+            },
+            {
+                "t": "AI chatbots",
+                "d": "WhatsApp assistants that answer 24/7 using your business information.",
+                "to": "/chatbot-whatsapp-ia"
+            },
+            {
+                "t": "Freelance software development",
+                "d": "APIs, integrations, system modernization and cloud architecture on AWS.",
+                "to": "/ingeniero-de-software-freelance"
+            }
+        ],
+        "stackTitle": "Technologies I work with",
+        "stack": "Angular, React, Node.js, Java with Spring Boot, PHP with Laravel, Python, SQL and NoSQL databases, Amazon Web Services (AWS) and artificial intelligence (OpenAI, RAG and agents).",
+        "whyTitle": "Why work with a freelance developer?",
+        "why": "You get the engineering quality of an enterprise software team with the direct communication and pricing of an independent professional. Every project starts with a written proposal, a fixed price and a delivery date.",
+        "cta": "See services and pricing"
     }
 }
