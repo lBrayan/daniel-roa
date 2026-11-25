@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { BRAND } from "@/lib/site";
 import { MarketingLayout } from "@/components/marketing/MarketingLayout";
 import { CtaBand, FaqList, PageHero, PricingGrid, ProcessList, Prose, Section } from "@/components/marketing/Blocks";
 import type { Faq } from "@/data/marketing";
@@ -26,7 +27,7 @@ const FAQ_APPS: Faq[] = [
     },
     {
         q: "¿La aplicación y el código quedan a mi nombre?",
-        a: "Sí. El código, el dominio, las cuentas en la nube y los datos quedan a tu nombre. Te entrego la documentación para que cualquier desarrollador pueda continuar el proyecto.",
+        a: "Sí. El código, el dominio, las cuentas en la nube y los datos quedan a tu nombre. Te entregamos la documentación para que cualquier desarrollador pueda continuar el proyecto.",
     },
     {
         q: "¿Qué pasa después de la entrega?",
@@ -37,7 +38,7 @@ const FAQ_APPS: Faq[] = [
 export const Route = createFileRoute("/desarrollo-de-aplicaciones")({
     head: () =>
         pageHead({
-            title: "Desarrollo de aplicaciones web y móviles a la medida en Colombia | Brayan Roa",
+            title: `Desarrollo de aplicaciones web y móviles a la medida en Colombia | ${BRAND}`,
             description:
                 "Desarrollo de aplicaciones web y móviles a la medida en Bogotá y Colombia: sistemas de gestión, inventarios, reservas, portales de clientes y MVPs para startups. Precio cerrado y entregas por fases.",
             path: PATH,
@@ -54,7 +55,7 @@ function AppsPage() {
                 eyebrow="Software a la medida"
                 title="Desarrollo de aplicaciones web y móviles a la medida"
                 lead="Convierto los procesos de tu negocio en una aplicación que ahorra tiempo y reduce errores: sistemas de gestión, portales para tus clientes y productos digitales listos para crecer, desarrollados en Colombia."
-                waMessage="Hola Brayan, quiero desarrollar una aplicación para mi negocio."
+                waMessage="Hola, quiero desarrollar una aplicación para mi negocio."
                 bullets={[
                     "Aplicaciones web, PWA y móviles",
                     "Primera versión en semanas",
@@ -80,7 +81,7 @@ function AppsPage() {
                         <li><strong>MVPs para startups</strong>: la primera versión de tu producto para validarlo con usuarios reales.</li>
                         <li><strong>Aplicaciones móviles</strong> web progresivas (PWA) o híbridas para Android y iPhone.</li>
                     </ul>
-                    <h3>Cómo la construyo</h3>
+                    <h3>Cómo la construimos</h3>
                     <p>
                         Frontend con Angular o React, backend con Node.js, Java (Spring Boot), Laravel o Python, bases de datos
                         PostgreSQL, MySQL o DynamoDB, e infraestructura en Amazon Web Services con copias de seguridad,
@@ -120,8 +121,8 @@ function AppsPage() {
 
             <CtaBand
                 title="¿Qué proceso quieres convertir en aplicación?"
-                text="Cuéntame cómo funciona hoy y qué te gustaría mejorar. Te propongo una primera versión con precio y fechas."
-                waMessage="Hola Brayan, quiero cotizar una aplicación a la medida."
+                text="Cuéntanos cómo funciona hoy y qué te gustaría mejorar. Te proponemos una primera versión con precio y fechas."
+                waMessage="Hola, quiero cotizar una aplicación a la medida."
             />
         </MarketingLayout>
     );

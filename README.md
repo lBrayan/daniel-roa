@@ -27,3 +27,13 @@ npm run dev
 - TypeScript
 - React
 - Tailwind CSS
+
+## Sitio del equipo (diseño + tecnología)
+
+- Contenido editable sin tocar componentes: `src/content/site.json` (nombre del estudio, contacto),
+  `src/content/team.json` (integrantes; `published: false` oculta a alguien) y
+  `src/content/projects.json` (proyectos de diseño y desarrollo).
+- Español en la raíz (`/`, `/proyectos`, `/equipo`, `/servicios`…) e inglés bajo `/en`
+  (`/en/work`, `/en/team`, `/en/services`), con canonical, hreflang, Open Graph y JSON-LD.
+- `npm run build` prerenderiza todas las rutas (incluidas las de cada proyecto e integrante)
+  y genera `sitemap.xml` con las versiones en ambos idiomas.

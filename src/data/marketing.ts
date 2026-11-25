@@ -116,16 +116,16 @@ export function formatCOP(value: number) {
 export const PROCESS_STEPS = [
     { title: "Conversamos", text: "Una llamada o chat de 20 minutos para entender tu negocio, tus clientes y lo que necesitas lograr. Sin costo." },
     { title: "Propuesta clara", text: "Recibes alcance, precio cerrado y fecha de entrega por escrito. Sin letra pequeña." },
-    { title: "Diseño y desarrollo", text: "Te muestro avances durante el proceso para que opines antes de que esté terminado." },
-    { title: "Publicación", text: "Publicamos en tu dominio, configuramos Google y te enseño a administrarlo." },
+    { title: "Diseño y desarrollo", text: "Te mostramos avances durante el proceso para que opines antes de que esté terminado." },
+    { title: "Publicación", text: "Publicamos en tu dominio, configuramos Google y te enseñamos a administrarlo." },
     { title: "Acompañamiento", text: "Incluye soporte después de la entrega para ajustes y dudas." },
 ];
 
 export const DIFFERENTIATORS = [
-    { title: "Más de 10 años construyendo software", text: "He liderado equipos y proyectos para banca y empresas de distintos sectores. Tu página la construye un arquitecto de software, no una plantilla." },
+    { title: "Más de 10 años construyendo software", text: "Hemos liderado proyectos para empresas de distintos sectores. Tu página la diseña una diseñadora de marca y la construye un arquitecto de software, no una plantilla." },
     { title: "Pensado para vender", text: "Cada página tiene un objetivo: que te escriban, te llamen o te compren. Diseño, textos y botones van a eso." },
     { title: "Rápido y bien posicionado", text: "Sitios livianos, seguros (HTTPS) y con SEO técnico desde el día uno para que Google los encuentre." },
-    { title: "Trato directo", text: "Hablas conmigo de principio a fin, sin intermediarios ni agencias. Respuestas rápidas por WhatsApp." },
+    { title: "Diseño y tecnología juntos", text: "Un equipo pequeño de diseño y desarrollo: hablas con quienes hacen el trabajo, sin intermediarios. Respuestas rápidas por WhatsApp." },
 ];
 
 export type Faq = { q: string; a: string };
@@ -133,7 +133,7 @@ export type Faq = { q: string; a: string };
 export const FAQ_GENERAL: Faq[] = [
     {
         q: "¿Cuánto cuesta una página web en Colombia?",
-        a: "Depende del tipo de sitio. Una landing page arranca desde $350.000, una página web corporativa desde $900.000 y una tienda online desde $1.800.000. Siempre te doy un precio cerrado antes de empezar.",
+        a: "Depende del tipo de sitio. Una landing page arranca desde $350.000, una página web corporativa desde $900.000 y una tienda online desde $1.800.000. Siempre te damos un precio cerrado antes de empezar.",
     },
     {
         q: "¿Cuánto tiempo tarda en estar lista?",
@@ -145,18 +145,18 @@ export const FAQ_GENERAL: Faq[] = [
     },
     {
         q: "¿El dominio y el hosting están incluidos?",
-        a: "Te ayudo a comprar y configurar tu dominio (.com o .co) y el hosting. Su costo anual se paga aparte y queda a tu nombre, para que siempre sea tuyo.",
+        a: "Te ayudamos a comprar y configurar tu dominio (.com o .co) y el hosting. Su costo anual se paga aparte y queda a tu nombre, para que siempre sea tuyo.",
     },
     {
         q: "¿Mi página va a aparecer en Google?",
-        a: "Sí. Todas las páginas incluyen SEO técnico, sitemap y registro en Google Search Console. Posicionar en los primeros lugares para búsquedas competidas toma tiempo y contenido; te explico qué hacer para lograrlo.",
+        a: "Sí. Todas las páginas incluyen SEO técnico, sitemap y registro en Google Search Console. Posicionar en los primeros lugares para búsquedas competidas toma tiempo y contenido; te explicamos qué hacer para lograrlo.",
     },
     {
         q: "¿Puedo editar la página yo mismo?",
-        a: "Sí. En los planes corporativo y tienda online te dejo un panel para cambiar textos, fotos y productos, y te enseño a usarlo.",
+        a: "Sí. En los planes corporativo y tienda online te dejamos un panel para cambiar textos, fotos y productos, y te enseñamos a usarlo.",
     },
     {
-        q: "¿Trabajas solo en Bogotá?",
-        a: "Estoy en Bogotá, pero trabajo de forma remota con clientes de toda Colombia y Latinoamérica. Si estás en Bogotá también podemos reunirnos en persona.",
+        q: "¿Trabajan solo en Bogotá?",
+        a: "Estamos en Bogotá, pero trabajamos de forma remota con clientes de toda Colombia y Latinoamérica. Si estás en Bogotá también podemos reunirnos en persona.",
     },
 ];

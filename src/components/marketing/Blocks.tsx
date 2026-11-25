@@ -170,7 +170,7 @@ export function PricingGrid({ ids }: { ids?: string[] }) {
                         </ul>
                         <p className="mt-5 text-xs text-mist">Ideal para: {s.idealFor}</p>
                         <WhatsAppButton
-                            message={`Hola Brayan, quiero cotizar: ${s.name}.`}
+                            message={`Hola, quiero cotizar: ${s.name}.`}
                             variant={s.featured ? "primary" : "ghost"}
                             className="mt-6 w-full"
                         >
@@ -250,7 +250,7 @@ export function CtaBand({ title, text, waMessage }: { title: string; text: strin
                         <h2 className="mx-auto max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">{title}</h2>
                         <p className="mx-auto mt-4 max-w-xl text-mist">{text}</p>
                         <div className="mt-8 flex justify-center">
-                            <WhatsAppButton message={waMessage}>Escríbeme por WhatsApp</WhatsAppButton>
+                            <WhatsAppButton message={waMessage}>Escríbenos por WhatsApp</WhatsAppButton>
                         </div>
                         <p className="mt-4 text-xs text-mist">Respuesta el mismo día · Cotización sin costo</p>
                     </div>

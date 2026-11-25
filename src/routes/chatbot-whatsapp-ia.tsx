@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { BRAND } from "@/lib/site";
 import { MarketingLayout } from "@/components/marketing/MarketingLayout";
 import { CtaBand, FaqList, PageHero, PricingGrid, Prose, Section } from "@/components/marketing/Blocks";
 import type { Faq } from "@/data/marketing";
@@ -37,7 +38,7 @@ const FAQ_BOT: Faq[] = [
 export const Route = createFileRoute("/chatbot-whatsapp-ia")({
     head: () =>
         pageHead({
-            title: "Chatbot con IA para WhatsApp en Colombia | Atiende 24/7 | Brayan Roa",
+            title: `Chatbot con IA para WhatsApp en Colombia | Atiende 24/7 | ${BRAND}`,
             description:
                 "Chatbot con inteligencia artificial para WhatsApp Business: responde a tus clientes 24/7, agenda citas, toma pedidos y pasa a un asesor cuando hace falta. Implementación desde $600.000 COP.",
             path: PATH,
@@ -63,7 +64,7 @@ function ChatbotPage() {
                 eyebrow="Inteligencia artificial para tu negocio"
                 title="Chatbot con IA para WhatsApp que atiende a tus clientes 24/7"
                 lead="Tus clientes escriben por WhatsApp a cualquier hora. Un asistente con inteligencia artificial les responde al instante con la información de tu negocio, agenda citas, toma pedidos y te pasa los casos que necesitan a una persona."
-                waMessage="Hola Brayan, me interesa un chatbot con IA para WhatsApp."
+                waMessage="Hola, me interesa un chatbot con IA para WhatsApp."
                 bullets={[
                     "WhatsApp Business API oficial",
                     "Responde con la información de tu negocio",
@@ -123,8 +124,8 @@ function ChatbotPage() {
 
             <CtaBand
                 title="Deja de responder lo mismo todo el día"
-                text="Cuéntame qué preguntas recibes más por WhatsApp y te muestro cómo respondería tu asistente."
-                waMessage="Hola Brayan, quiero un chatbot con IA para el WhatsApp de mi negocio."
+                text="Cuéntanos qué preguntas recibes más por WhatsApp y te mostramos cómo respondería tu asistente."
+                waMessage="Hola, quiero un chatbot con IA para el WhatsApp de mi negocio."
             />
         </MarketingLayout>
     );

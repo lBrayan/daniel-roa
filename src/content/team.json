@@ -1,0 +1,81 @@
+[
+  {
+    "slug": "brayan-roa",
+    "name": "Brayan Roa",
+    "published": true,
+    "discipline": "development",
+    "initials": "BR",
+    "role": {
+      "es": "Arquitecto de software y líder técnico",
+      "en": "Software architect & tech lead"
+    },
+    "short": {
+      "es": "Arquitectura, desarrollo full stack, nube e inteligencia artificial.",
+      "en": "Architecture, full-stack development, cloud and AI."
+    },
+    "bio": {
+      "es": [
+        "Ingeniero de software con más de 10 años construyendo sistemas para empresas de distintos sectores. Lidera la parte técnica del estudio: entiende el negocio, diseña la arquitectura y acompaña cada proyecto hasta que está en producción.",
+        "Trabaja con frontend y backend por igual, despliega en Amazon Web Services y conecta los productos con inteligencia artificial cuando aporta valor real: chatbots, búsqueda sobre documentos y automatización de procesos."
+      ],
+      "en": [
+        "Software engineer with 10+ years building systems for companies across industries. He leads the studio's technical side: understands the business, designs the architecture and stays with every project until it is running in production.",
+        "He works across frontend and backend, deploys on Amazon Web Services and brings in AI where it adds real value: chatbots, document search and process automation."
+      ]
+    },
+    "skills": ["Arquitectura de software", "React", "Angular", "Node.js", "Java · Spring Boot", "PHP · Laravel", "Python", "AWS", "OpenAI · RAG · agentes", "Shopify", "WordPress"],
+    "links": [
+      { "label": "GitHub", "url": "https://github.com/lBrayan" }
+    ]
+  },
+  {
+    "slug": "angelica-roa",
+    "name": "Angélica Roa",
+    "published": true,
+    "discipline": "design",
+    "initials": "AR",
+    "role": {
+      "es": "Diseñadora gráfica · branding y diseño digital",
+      "en": "Graphic designer · branding & digital design"
+    },
+    "short": {
+      "es": "Identidad de marca, empaques, sistemas de marca y UI/UX.",
+      "en": "Brand identity, packaging, brand systems and UI/UX."
+    },
+    "bio": {
+      "es": [
+        "Diseñadora gráfica con alrededor de 6 años de experiencia en branding, diseño digital y desarrollo de sistemas de marca. Ha creado identidades para marcas de comida, bebidas, helados, café y productos de consumo en Colombia y otros países de Latinoamérica.",
+        "En el estudio lidera la dirección visual: la identidad de la marca, el empaque, las piezas digitales y el diseño de las interfaces que luego construye el equipo de tecnología."
+      ],
+      "en": [
+        "Graphic designer with around 6 years of experience in branding, digital design and brand systems. She has created identities for food, beverage, ice-cream, coffee and consumer brands in Colombia and across Latin America.",
+        "At the studio she leads visual direction: brand identity, packaging, digital assets and the interface design the technology team then builds."
+      ]
+    },
+    "skills": ["Branding", "Identidad visual", "Logotipos", "Empaques y etiquetas", "Sistemas de marca", "Diseño digital", "UI/UX", "Ilustración de personajes"],
+    "links": [
+      { "label": "Behance", "url": "https://www.behance.net/Yiro_dg" }
+    ]
+  },
+  {
+    "slug": "socio",
+    "name": "[Nombre del socio]",
+    "published": false,
+    "discipline": "development",
+    "initials": "—",
+    "role": {
+      "es": "Desarrollador · clientes en inglés",
+      "en": "Developer · client success (English)"
+    },
+    "short": {
+      "es": "Desarrollo y relación con clientes de habla inglesa.",
+      "en": "Development and English-speaking client relations."
+    },
+    "bio": {
+      "es": ["[Completar]"],
+      "en": ["[To be completed]"]
+    },
+    "skills": [],
+    "links": []
+  }
+]

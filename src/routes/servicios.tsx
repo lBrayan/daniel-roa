@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { BRAND } from "@/lib/site";
 import { MarketingLayout } from "@/components/marketing/MarketingLayout";
 import {
     CtaBand,
@@ -21,10 +22,11 @@ const CRUMBS = [
 export const Route = createFileRoute("/servicios")({
     head: () =>
         pageHead({
-            title: "Servicios de desarrollo web y precios en Colombia | Brayan Roa",
+            title: `Servicios de desarrollo web y precios en Colombia | ${BRAND}`,
             description:
                 "Precios claros para páginas web, landing pages, tiendas online, chatbots con IA para WhatsApp y software a la medida. Desarrollador web en Bogotá con más de 10 años de experiencia.",
             path: PATH,
+            alternates: { es: PATH, en: "/en/services" },
             schemas: [BUSINESS_SCHEMA, faqSchema(FAQ_GENERAL), breadcrumbSchema(CRUMBS)],
         }),
     component: ServicesPage,
@@ -38,7 +40,7 @@ function ServicesPage() {
                 eyebrow="Servicios y precios"
                 title="Desarrollo web y software a la medida en Colombia"
                 lead="Páginas web que venden, tiendas online, chatbots con inteligencia artificial y sistemas para tu empresa. Precios claros desde el inicio y trato directo con quien construye tu proyecto."
-                waMessage="Hola Brayan, vi tus servicios y quiero cotizar un proyecto."
+                waMessage="Hola, vi sus servicios y quiero cotizar un proyecto."
                 bullets={[
                     "Precio cerrado antes de empezar",
                     "Entregas desde 3 días",
@@ -57,9 +59,9 @@ function ServicesPage() {
             </Section>
 
             <Section
-                eyebrow="Por qué trabajar conmigo"
-                title="Un arquitecto de software construyendo tu página"
-                intro="No uso plantillas genéricas ni te paso a un equipo junior: diseño y programo tu proyecto con la misma calidad que aplico en sistemas para bancos y empresas."
+                eyebrow="Por qué trabajar con nosotros"
+                title="Diseño de marca y arquitectura de software en tu página"
+                intro="No usamos plantillas genéricas: diseñamos y programamos tu proyecto con la misma calidad que aplicamos en sistemas para empresas."
                 className="border-t border-white/10"
             >
                 <Differentiators />
@@ -75,16 +77,16 @@ function ServicesPage() {
                 className="border-t border-white/10"
             >
                 <p className="max-w-3xl leading-relaxed text-mist">
-                    Trabajo con React, Next.js, Angular, Node.js, Java Spring Boot y PHP Laravel,
-                    según lo que más le convenga a tu proyecto. Publico en Amazon Web Services (AWS) para que tu sitio
-                    sea rápido, seguro y no se caiga cuando crece el tráfico. Integro pasarelas de pago colombianas
+                    Trabajamos con React, Next.js, Angular, Node.js, Java Spring Boot y PHP Laravel,
+                    según lo que más le convenga a tu proyecto. Publicamos en Amazon Web Services (AWS) para que tu sitio
+                    sea rápido, seguro y no se caiga cuando crece el tráfico. Integramos pasarelas de pago colombianas
                     (Wompi, Mercado Pago, ePayco), WhatsApp Business API, Google Analytics y modelos de inteligencia
                     artificial como GPT y Claude.
                 </p>
                 <p className="mt-6 text-sm text-mist">
                     ¿Estás en Bogotá?{" "}
                     <Link to={"/desarrollo-web-bogota" as never} className="text-white underline underline-offset-4">
-                        Conoce mi servicio de desarrollo web en Bogotá
+                        Conoce nuestro servicio de desarrollo web en Bogotá
                     </Link>
                     . ¿Quieres saber cuánto cuesta tu sitio?{" "}
                     <Link to={"/crear-pagina-web" as never} className="text-white underline underline-offset-4">
@@ -94,14 +96,14 @@ function ServicesPage() {
                 </p>
             </Section>
 
-            <Section eyebrow="Preguntas frecuentes" title="Lo que más me preguntan" className="border-t border-white/10">
+            <Section eyebrow="Preguntas frecuentes" title="Lo que más nos preguntan" className="border-t border-white/10">
                 <FaqList faqs={FAQ_GENERAL} />
             </Section>
 
             <CtaBand
-                title="Cuéntame tu idea y te cotizo hoy mismo"
-                text="Escríbeme por WhatsApp con lo que necesitas. Te respondo con preguntas concretas y una propuesta con precio y fecha de entrega."
-                waMessage="Hola Brayan, quiero cotizar un proyecto. Te cuento: "
+                title="Cuéntanos tu idea y te cotizamos hoy mismo"
+                text="Escríbenos por WhatsApp con lo que necesitas. Te respondemos con preguntas concretas y una propuesta con precio y fecha de entrega."
+                waMessage="Hola, quiero cotizar un proyecto. Te cuento: "
             />
         </MarketingLayout>
     );

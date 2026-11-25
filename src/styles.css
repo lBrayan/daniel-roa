@@ -218,9 +218,9 @@
 
 /* ---------- Landing cinematográfica ---------- */
 :root {
-    --stage: #050505;
-    --mist: #9ca3af;
-    --arc: #7c8cff;
+    --stage: #0b0b0c;
+    --mist: #a3a3a8;
+    --arc: #ff6a3d;
 }
 
 @theme inline {
@@ -242,5 +242,53 @@
 .stage h1,
 .stage h2,
 .stage h3 {
+    font-family: var(--font-grotesk);
+    letter-spacing: -0.02em;
+}
+
+/* ---------- Sitio del equipo (diseño + tecnología) ---------- */
+:root {
+    --ink: #0b0b0c;
+    --ink-2: #151517;
+    --line: #26262b;
+    --paper: #f2f0eb;
+    --soft: #c9c7c2;
+    --dim: #a3a3a8;
+    --brand: #ff6a3d;
+}
+
+@theme inline {
+    --color-ink: var(--ink);
+    --color-ink-2: var(--ink-2);
+    --color-line: var(--line);
+    --color-paper: var(--paper);
+    --color-soft: var(--soft);
+    --color-dim: var(--dim);
+    --color-brand: var(--brand);
+    --font-grotesk: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+}
+
+.site {
     font-family: var(--font-inter);
+}
+
+.site h1,
+.site h2,
+.site h3 {
+    font-family: var(--font-grotesk);
+    letter-spacing: -0.03em;
+}
+
+.site a:focus-visible,
+.site button:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal {
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
 }

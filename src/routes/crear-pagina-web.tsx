@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { BRAND } from "@/lib/site";
 import { MarketingLayout } from "@/components/marketing/MarketingLayout";
 import { CtaBand, FaqList, PageHero, PricingGrid, Prose, Section } from "@/components/marketing/Blocks";
 import type { Faq } from "@/data/marketing";
@@ -30,14 +31,14 @@ const FAQ_CREAR: Faq[] = [
     },
     {
         q: "¿La página web es mía?",
-        a: "Sí. El dominio, el hosting y el contenido quedan a tu nombre. Al final te entrego los accesos para que tengas control total.",
+        a: "Sí. El dominio, el hosting y el contenido quedan a tu nombre. Al final te entregamos los accesos para que tengas control total.",
     },
 ];
 
 export const Route = createFileRoute("/crear-pagina-web")({
     head: () =>
         pageHead({
-            title: "Crear página web en Colombia: precios 2026 y cómo hacerlo | Brayan Roa",
+            title: `Crear página web en Colombia: precios 2026 y cómo hacerlo | ${BRAND}`,
             description:
                 "¿Cuánto cuesta crear una página web en Colombia? Precios reales de landing pages, páginas corporativas y tiendas online, qué incluyen y cómo elegir. Cotiza con un desarrollador web.",
             path: PATH,
@@ -54,7 +55,7 @@ function CreateWebsitePage() {
                 eyebrow="Guía de precios 2026"
                 title="Crear una página web en Colombia: precios y lo que debes saber"
                 lead="Si estás pensando en crear la página web de tu negocio, aquí tienes precios reales del mercado colombiano, qué tipo de sitio te conviene y cómo evitar pagar de más."
-                waMessage="Hola Brayan, quiero crear una página web para mi negocio."
+                waMessage="Hola, quiero crear una página web para mi negocio."
             />
 
             <Section eyebrow="Precios" title="¿Cuánto cuesta una página web en Colombia?">
@@ -105,7 +106,7 @@ function CreateWebsitePage() {
                     <h3>3. Prepara el contenido</h3>
                     <p>
                         Logo, fotos reales de tu negocio, una lista de servicios con precios o rangos y las preguntas que
-                        más te hacen tus clientes. Si no tienes los textos, te ayudo a redactarlos pensando en Google.
+                        más te hacen tus clientes. Si no tienes los textos, te ayudamos a redactarlos pensando en Google.
                     </p>
                     <h3>4. Diseño y desarrollo</h3>
                     <p>
@@ -155,8 +156,8 @@ function CreateWebsitePage() {
 
             <CtaBand
                 title="Crea tu página web con un desarrollador experto"
-                text="Cuéntame qué hace tu negocio y qué quieres lograr. Te recomiendo el plan que de verdad necesitas, sin venderte de más."
-                waMessage="Hola Brayan, quiero crear una página web. ¿Me ayudas a cotizar?"
+                text="Cuéntanos qué hace tu negocio y qué quieres lograr. Te recomendamos el plan que de verdad necesitas, sin venderte de más."
+                waMessage="Hola, quiero crear una página web. ¿Me ayudas a cotizar?"
             />
         </MarketingLayout>
     );

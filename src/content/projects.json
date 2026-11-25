@@ -1,0 +1,766 @@
+[
+  {
+    "slug": "iqoop",
+    "title": "iQoop",
+    "client": "Producto propio",
+    "year": 2026,
+    "discipline": "development",
+    "team": [
+      "brayan-roa"
+    ],
+    "featured": true,
+    "services": {
+      "es": [
+        "Producto digital",
+        "Arquitectura",
+        "Punto de venta (POS)",
+        "Marketplace"
+      ],
+      "en": [
+        "Digital product",
+        "Architecture",
+        "Point of sale (POS)",
+        "Marketplace"
+      ]
+    },
+    "stack": [
+      "React",
+      "Node.js",
+      "AWS Lambda",
+      "Infraestructura como código"
+    ],
+    "summary": {
+      "es": "Marketplace de negocios locales con punto de venta, tienda online y domicilios para cada comercio.",
+      "en": "A local-business marketplace with point of sale, online store and delivery for every shop."
+    },
+    "challenge": {
+      "es": "Los negocios de barrio venden por WhatsApp y en caja, pero no tienen dónde mostrar su catálogo ni cómo recibir pedidos en línea sin pagar plataformas costosas.",
+      "en": "Neighbourhood businesses sell over WhatsApp and at the counter, but have no place to show their catalogue or take online orders without paying for expensive platforms."
+    },
+    "solution": {
+      "es": "Diseñamos una plataforma multi-tienda donde cada negocio tiene su propia tienda online, inventario, punto de venta y reglas de domicilio por zonas. La arquitectura es serverless sobre AWS y el dominio de punto de venta se está separando en un servicio propio para que escale sin frenar el resto del producto.",
+      "en": "We designed a multi-tenant platform where every business gets its own online store, inventory, point of sale and zone-based delivery rules. The architecture is serverless on AWS, and the point-of-sale domain is being split into its own service so it can scale without slowing down the rest of the product."
+    },
+    "cover": {
+      "src": "/images/projects/iqoop.webp",
+      "width": 960,
+      "height": 784,
+      "alt": {
+        "es": "Página de inicio de iQoop con categorías de negocios locales",
+        "en": "iQoop home page with local business categories"
+      }
+    },
+    "gallery": [],
+    "links": [
+      {
+        "label": "iqoop.com",
+        "url": "https://iqoop.com"
+      }
+    ]
+  },
+  {
+    "slug": "colo-coffee",
+    "title": "Colo Coffee Roasters",
+    "client": "Colo Coffee Roasters",
+    "year": 2024,
+    "discipline": "both",
+    "team": [
+      "angelica-roa",
+      "brayan-roa"
+    ],
+    "featured": true,
+    "services": {
+      "es": [
+        "Diseño web",
+        "UX/UI",
+        "Tienda Shopify",
+        "E-commerce"
+      ],
+      "en": [
+        "Web design",
+        "UX/UI",
+        "Shopify store",
+        "E-commerce"
+      ]
+    },
+    "stack": [
+      "Shopify",
+      "Liquid",
+      "UX/UI"
+    ],
+    "summary": {
+      "es": "Diseño UX/UI y desarrollo de la tienda Shopify de una marca de cafés especiales colombianos.",
+      "en": "UX/UI design and Shopify store development for a Colombian specialty coffee brand."
+    },
+    "challenge": {
+      "es": "La marca vende café de origen en Colombia y Estados Unidos y necesitaba una tienda que transmitiera su identidad tropical y permitiera comprar de forma sencilla en ambos mercados.",
+      "en": "The brand sells single-origin coffee in Colombia and the United States and needed a store that carried its tropical identity and made buying easy in both markets."
+    },
+    "solution": {
+      "es": "Diseño y desarrollo trabajaron como un solo equipo: diseñamos la experiencia y la interfaz a partir de la identidad de la marca y la construimos como una plantilla de Shopify personalizada, con catálogo por líneas de café y un recorrido de compra fluido en celular.",
+      "en": "Design and development worked as one team: we designed the experience and interface from the brand identity and built it as a custom Shopify theme, with the catalogue organised by coffee lines and a smooth mobile checkout journey."
+    },
+    "cover": {
+      "src": "https://mir-s3-cdn-cf.behance.net/projects/max_808/8e6f61227486157.Y3JvcCwxMTg3LDkyOSwxMDUsMA.jpg",
+      "width": 808,
+      "height": 632,
+      "alt": {
+        "es": "Diseño de la tienda online de Colo Coffee Roasters",
+        "en": "Colo Coffee Roasters online store design"
+      }
+    },
+    "gallery": [
+      {
+        "src": "/images/projects/colo-shopify.webp",
+        "width": 664,
+        "height": 1022,
+        "alt": {
+          "es": "Tienda Shopify de Colo Coffee en celular",
+          "en": "Colo Coffee Shopify store on mobile"
+        }
+      },
+      {
+        "src": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/d9fab1227486157.6840cf3c5cf24.jpg",
+        "width": 1400,
+        "height": 1050,
+        "alt": {
+          "es": "Pantallas del diseño UX/UI de Colo Coffee",
+          "en": "Colo Coffee UX/UI design screens"
+        }
+      }
+    ],
+    "links": [
+      {
+        "label": "Behance",
+        "url": "https://www.behance.net/gallery/227486157/ColoCoffee-WEBUXUI"
+      }
+    ]
+  },
+  {
+    "slug": "cerveza-germania",
+    "title": "Cerveza Germania",
+    "client": "Cervecería Germania",
+    "year": 2024,
+    "discipline": "development",
+    "team": [
+      "brayan-roa"
+    ],
+    "featured": true,
+    "services": {
+      "es": [
+        "Landing page",
+        "WordPress",
+        "Diseño responsive"
+      ],
+      "en": [
+        "Landing page",
+        "WordPress",
+        "Responsive design"
+      ]
+    },
+    "stack": [
+      "WordPress",
+      "PHP",
+      "CSS"
+    ],
+    "summary": {
+      "es": "Landing page a la medida en WordPress para el regreso de una marca de cerveza con historia en Bogotá.",
+      "en": "A custom WordPress landing page for the comeback of a historic Bogotá beer brand."
+    },
+    "challenge": {
+      "es": "Una marca de 1903 volvía al mercado y necesitaba contar su historia y presentar su nueva lager con una experiencia que funcionara perfecto en celular, incluida la verificación de edad.",
+      "en": "A brand founded in 1903 was coming back to market and needed to tell its story and launch its new lager with an experience that worked perfectly on mobile, including age verification."
+    },
+    "solution": {
+      "es": "Construimos una landing page en WordPress con verificación de mayoría de edad, la historia de la cervecería en carrusel, galería, ubicación del local y botones de compra, optimizada para todos los dispositivos.",
+      "en": "We built a WordPress landing page with age verification, the brewery's story in a carousel, a gallery, the venue location and buy buttons, optimised for every device."
+    },
+    "cover": {
+      "src": "/images/projects/germania.webp",
+      "width": 616,
+      "height": 1094,
+      "alt": {
+        "es": "Landing page de Cerveza Germania en celular",
+        "en": "Cerveza Germania landing page on mobile"
+      }
+    },
+    "gallery": [],
+    "links": []
+  },
+  {
+    "slug": "mis-finanzas-en-casa",
+    "title": "Mis Finanzas en Casa",
+    "client": "Sector financiero",
+    "year": null,
+    "discipline": "development",
+    "team": [
+      "brayan-roa"
+    ],
+    "featured": false,
+    "services": {
+      "es": [
+        "Progressive Web App",
+        "API REST",
+        "Seguridad"
+      ],
+      "en": [
+        "Progressive web app",
+        "REST API",
+        "Security"
+      ]
+    },
+    "stack": [
+      "Angular",
+      "PHP",
+      "API REST",
+      "RSA"
+    ],
+    "summary": {
+      "es": "Progressive Web App de educación financiera con una API REST protegida con cifrado RSA.",
+      "en": "A financial-education progressive web app backed by a REST API secured with RSA encryption."
+    },
+    "challenge": {
+      "es": "Una aplicación para usuarios de banca debía funcionar como app en el celular sin pasar por las tiendas y proteger la información que viaja entre el cliente y el servidor.",
+      "en": "An app for banking users had to work like a mobile app without going through app stores, while protecting the data travelling between client and server."
+    },
+    "solution": {
+      "es": "Desarrollamos una PWA en Angular instalable desde el navegador y una API REST en PHP con mecanismos de seguridad basados en RSA.",
+      "en": "We built an installable Angular PWA and a PHP REST API with RSA-based security mechanisms."
+    },
+    "cover": null,
+    "gallery": [],
+    "links": []
+  },
+  {
+    "slug": "clinica-de-ventas",
+    "title": "Clínica de Ventas",
+    "client": "MVP",
+    "year": null,
+    "discipline": "development",
+    "team": [
+      "brayan-roa"
+    ],
+    "featured": false,
+    "services": {
+      "es": [
+        "MVP",
+        "Video en tiempo real",
+        "Grabación de sesiones"
+      ],
+      "en": [
+        "MVP",
+        "Real-time video",
+        "Session recording"
+      ]
+    },
+    "stack": [
+      "WebRTC",
+      "Node.js",
+      "JavaScript"
+    ],
+    "summary": {
+      "es": "MVP con videollamadas en tiempo real y grabación de sesiones para entrenar equipos comerciales.",
+      "en": "An MVP with real-time video calls and session recording to train sales teams."
+    },
+    "challenge": {
+      "es": "El cliente quería validar rápido una plataforma para practicar y revisar conversaciones de venta.",
+      "en": "The client wanted to quickly validate a platform to practise and review sales conversations."
+    },
+    "solution": {
+      "es": "Construimos un MVP con comunicación en tiempo real mediante WebRTC y grabación de las sesiones para revisarlas después en procesos comerciales y de capacitación.",
+      "en": "We built an MVP with real-time communication over WebRTC and session recording so conversations can be reviewed later for sales and training."
+    },
+    "cover": null,
+    "gallery": [],
+    "links": []
+  },
+  {
+    "slug": "encuestas-360",
+    "title": "Encuestas 360",
+    "client": "Recursos humanos",
+    "year": null,
+    "discipline": "development",
+    "team": [
+      "brayan-roa"
+    ],
+    "featured": false,
+    "services": {
+      "es": [
+        "Plataforma web",
+        "Indicadores",
+        "Reportes"
+      ],
+      "en": [
+        "Web platform",
+        "KPIs",
+        "Reports"
+      ]
+    },
+    "stack": [
+      "Web app",
+      "Base de datos",
+      "Gráficos"
+    ],
+    "summary": {
+      "es": "Plataforma para medir el clima organizacional con plantillas dinámicas, indicadores y reportes gráficos.",
+      "en": "A platform to measure workplace climate with dynamic templates, KPIs and visual reports."
+    },
+    "challenge": {
+      "es": "Las evaluaciones de clima se hacían con formularios sueltos y hojas de cálculo, sin indicadores consolidados.",
+      "en": "Climate surveys ran on scattered forms and spreadsheets, with no consolidated indicators."
+    },
+    "solution": {
+      "es": "Desarrollamos una plataforma con plantillas de evaluación dinámicas, cálculo automático de indicadores y reportes gráficos para la toma de decisiones.",
+      "en": "We built a platform with dynamic survey templates, automatic KPI calculation and visual reports for decision-making."
+    },
+    "cover": null,
+    "gallery": [],
+    "links": []
+  },
+  {
+    "slug": "pan-y-fuego",
+    "title": "Pan & Fuego",
+    "client": "Pan & Fuego",
+    "year": 2025,
+    "discipline": "design",
+    "team": [
+      "angelica-roa"
+    ],
+    "featured": true,
+    "services": {
+      "es": [
+        "Branding",
+        "Identidad visual",
+        "Aplicaciones de marca"
+      ],
+      "en": [
+        "Branding",
+        "Visual identity",
+        "Brand applications"
+      ]
+    },
+    "stack": [],
+    "summary": {
+      "es": "Identidad visual para un restaurante de sándwiches y carnes a la parrilla, inspirada en el fuego y la madera.",
+      "en": "Visual identity for a grilled-sandwich and steak restaurant, inspired by fire and wood."
+    },
+    "challenge": null,
+    "solution": null,
+    "cover": {
+      "src": "https://mir-s3-cdn-cf.behance.net/projects/max_808/b16474229937855.Y3JvcCwxNjE2LDEyNjQsMCww.jpg",
+      "width": 808,
+      "height": 632,
+      "alt": {
+        "es": "Identidad visual de Pan & Fuego",
+        "en": "Pan & Fuego visual identity"
+      }
+    },
+    "gallery": [
+      {
+        "src": "https://mir-s3-cdn-cf.behance.net/project_modules/1400/a1c41f229937855.689bb7e6a005f.jpg",
+        "width": 1400,
+        "height": 1050,
+        "alt": {
+          "es": "Pan & Fuego, aplicación de marca",
+          "en": "Pan & Fuego brand application"
+        }
+      },
+      {
+        "src": "https://mir-s3-cdn-cf.behance.net/project_modules/1400/4ef8ff229937855.689bb7e6a07e9.jpg",
+        "width": 1400,
+        "height": 1050,
+        "alt": {
+          "es": "Pan & Fuego, piezas de marca",
+          "en": "Pan & Fuego brand pieces"
+        }
+      },
+      {
+        "src": "https://mir-s3-cdn-cf.behance.net/project_modules/1400/b591b1229937855.689bb7e752cd1.jpg",
+        "width": 1400,
+        "height": 1050,
+        "alt": {
+          "es": "Pan & Fuego, empaque",
+          "en": "Pan & Fuego packaging"
+        }
+      }
+    ],
+    "links": [
+      {
+        "label": "Behance",
+        "url": "https://www.behance.net/gallery/229937855/Pan-Fuego"
+      }
+    ]
+  },
+  {
+    "slug": "el-chamuco",
+    "title": "El Chamuco",
+    "client": "El Chamuco · Oaxaca, México",
+    "year": 2025,
+    "discipline": "design",
+    "team": [
+      "angelica-roa"
+    ],
+    "featured": true,
+    "services": {
+      "es": [
+        "Branding",
+        "Etiquetas",
+        "Packaging"
+      ],
+      "en": [
+        "Branding",
+        "Labels",
+        "Packaging"
+      ]
+    },
+    "stack": [],
+    "summary": {
+      "es": "Branding y etiquetas para un destilado artesanal de Oaxaca, México.",
+      "en": "Branding and labels for a craft spirit from Oaxaca, Mexico."
+    },
+    "challenge": null,
+    "solution": null,
+    "cover": {
+      "src": "https://mir-s3-cdn-cf.behance.net/projects/max_808/7755e8230312641.Y3JvcCwxMzY2LDEwNjgsMTMsMA.jpg",
+      "width": 808,
+      "height": 632,
+      "alt": {
+        "es": "Etiqueta y branding de El Chamuco",
+        "en": "El Chamuco label and branding"
+      }
+    },
+    "gallery": [
+      {
+        "src": "https://mir-s3-cdn-cf.behance.net/project_modules/1400/5e65aa230312641.69b2de38d0160.jpg",
+        "width": 1400,
+        "height": 1050,
+        "alt": {
+          "es": "El Chamuco, botella y etiqueta",
+          "en": "El Chamuco bottle and label"
+        }
+      },
+      {
+        "src": "https://mir-s3-cdn-cf.behance.net/project_modules/1400/a91288230312641.69b320bf90e45.jpg",
+        "width": 1400,
+        "height": 1050,
+        "alt": {
+          "es": "El Chamuco, aplicaciones de marca",
+          "en": "El Chamuco brand applications"
+        }
+      },
+      {
+        "src": "https://mir-s3-cdn-cf.behance.net/project_modules/1400/6d101a230312641.69b320bf92d23.jpg",
+        "width": 1400,
+        "height": 1050,
+        "alt": {
+          "es": "El Chamuco, detalle de etiqueta",
+          "en": "El Chamuco label detail"
+        }
+      }
+    ],
+    "links": [
+      {
+        "label": "Behance",
+        "url": "https://www.behance.net/gallery/230312641/El-Chamuco"
+      }
+    ]
+  },
+  {
+    "slug": "neuro-poppers",
+    "title": "Neuro Poppers",
+    "client": "Neuro Poppers",
+    "year": 2026,
+    "discipline": "design",
+    "team": [
+      "angelica-roa"
+    ],
+    "featured": false,
+    "services": {
+      "es": [
+        "Identidad de marca",
+        "Personaje",
+        "Packaging"
+      ],
+      "en": [
+        "Brand identity",
+        "Character design",
+        "Packaging"
+      ]
+    },
+    "stack": [],
+    "summary": {
+      "es": "Identidad divertida y expresiva para una marca de gomitas, con tipografía fuerte, colores vibrantes y un personaje propio.",
+      "en": "A playful, expressive identity for a gummy brand, with bold type, vibrant colours and its own character."
+    },
+    "challenge": null,
+    "solution": null,
+    "cover": {
+      "src": "https://mir-s3-cdn-cf.behance.net/projects/max_808/ab712b258529047.Y3JvcCwxNjE2LDEyNjQsMCww.jpg",
+      "width": 808,
+      "height": 632,
+      "alt": {
+        "es": "Identidad visual de Neuro Poppers",
+        "en": "Neuro Poppers visual identity"
+      }
+    },
+    "gallery": [
+      {
+        "src": "https://mir-s3-cdn-cf.behance.net/project_modules/1400/efaf8f258529047.6af9d3a5e770f.jpg",
+        "width": 1400,
+        "height": 1050,
+        "alt": {
+          "es": "Neuro Poppers, personaje y empaque",
+          "en": "Neuro Poppers character and packaging"
+        }
+      },
+      {
+        "src": "https://mir-s3-cdn-cf.behance.net/project_modules/1400/a90bcc258529047.6af9d3a595ec3.jpg",
+        "width": 1400,
+        "height": 1050,
+        "alt": {
+          "es": "Neuro Poppers, aplicaciones",
+          "en": "Neuro Poppers applications"
+        }
+      }
+    ],
+    "links": [
+      {
+        "label": "Behance",
+        "url": "https://www.behance.net/gallery/258529047/NEURO-POPPERS-GUMMY"
+      }
+    ]
+  },
+  {
+    "slug": "loucura-ice-cream",
+    "title": "Loucura Ice Cream",
+    "client": "Loucura",
+    "year": 2025,
+    "discipline": "design",
+    "team": [
+      "angelica-roa"
+    ],
+    "featured": true,
+    "services": {
+      "es": [
+        "Branding",
+        "Logotipo",
+        "Etiquetas",
+        "Packaging"
+      ],
+      "en": [
+        "Branding",
+        "Logo",
+        "Labels",
+        "Packaging"
+      ]
+    },
+    "stack": [],
+    "summary": {
+      "es": "Identidad visual, logotipo y etiquetas para una marca de helados.",
+      "en": "Visual identity, logo and labels for an ice-cream brand."
+    },
+    "challenge": null,
+    "solution": null,
+    "cover": {
+      "src": "https://mir-s3-cdn-cf.behance.net/projects/max_808/5f2f2c227959573.Y3JvcCwxMjA1LDk0MywzNTUsMTM0.png",
+      "width": 808,
+      "height": 632,
+      "alt": {
+        "es": "Identidad de Loucura Ice Cream",
+        "en": "Loucura Ice Cream identity"
+      }
+    },
+    "gallery": [
+      {
+        "src": "https://mir-s3-cdn-cf.behance.net/project_modules/1400/6613b7227959573.684a1646b208c.png",
+        "width": 1400,
+        "height": 1050,
+        "alt": {
+          "es": "Loucura, empaques",
+          "en": "Loucura packaging"
+        }
+      },
+      {
+        "src": "https://mir-s3-cdn-cf.behance.net/project_modules/1400/6cb6ed227959573.684a16428c524.png",
+        "width": 1400,
+        "height": 1050,
+        "alt": {
+          "es": "Loucura, logotipo",
+          "en": "Loucura logo"
+        }
+      }
+    ],
+    "links": [
+      {
+        "label": "Behance",
+        "url": "https://www.behance.net/gallery/227959573/Loucura-Ice-Cream"
+      }
+    ]
+  },
+  {
+    "slug": "levadura-royal",
+    "title": "Levadura Royal",
+    "client": "Levadura Royal",
+    "year": 2025,
+    "discipline": "design",
+    "team": [
+      "angelica-roa"
+    ],
+    "featured": false,
+    "services": {
+      "es": [
+        "Branding de alimentos",
+        "Logotipo",
+        "Packaging"
+      ],
+      "en": [
+        "Food branding",
+        "Logotype",
+        "Packaging"
+      ]
+    },
+    "stack": [],
+    "summary": {
+      "es": "Diseño de logotipo y empaque para una marca de levadura para panadería.",
+      "en": "Logotype and packaging design for a baking-yeast brand."
+    },
+    "challenge": null,
+    "solution": null,
+    "cover": {
+      "src": "https://mir-s3-cdn-cf.behance.net/projects/max_808/e39f1c227386793.Y3JvcCwxMTk1LDkzNSwzNjAsMTky.png",
+      "width": 808,
+      "height": 632,
+      "alt": {
+        "es": "Empaque de Levadura Royal",
+        "en": "Levadura Royal packaging"
+      }
+    },
+    "gallery": [
+      {
+        "src": "https://mir-s3-cdn-cf.behance.net/project_modules/1400/0a24ed227386793.683f2405bf514.png",
+        "width": 1400,
+        "height": 1050,
+        "alt": {
+          "es": "Levadura Royal, empaque",
+          "en": "Levadura Royal packaging"
+        }
+      }
+    ],
+    "links": [
+      {
+        "label": "Behance",
+        "url": "https://www.behance.net/gallery/227386793/Levadura-Royal"
+      }
+    ]
+  },
+  {
+    "slug": "club-roll",
+    "title": "Club Roll",
+    "client": "Club Roll",
+    "year": 2025,
+    "discipline": "design",
+    "team": [
+      "angelica-roa"
+    ],
+    "featured": false,
+    "services": {
+      "es": [
+        "Identidad de marca",
+        "Logotipo",
+        "Packaging"
+      ],
+      "en": [
+        "Brand identity",
+        "Logo design",
+        "Packaging"
+      ]
+    },
+    "stack": [],
+    "summary": {
+      "es": "Identidad de marca, logotipo y diseño de empaque para una línea de productos.",
+      "en": "Brand identity, logo and packaging design for a product line."
+    },
+    "challenge": null,
+    "solution": null,
+    "cover": {
+      "src": "https://mir-s3-cdn-cf.behance.net/projects/max_808/58e561227414023.Y3JvcCwxMzgwLDEwODAsNTM2LDA.png",
+      "width": 808,
+      "height": 632,
+      "alt": {
+        "es": "Identidad de marca de Club Roll",
+        "en": "Club Roll brand identity"
+      }
+    },
+    "gallery": [
+      {
+        "src": "https://mir-s3-cdn-cf.behance.net/project_modules/1400/882151227414023.683fa2856d7f4.png",
+        "width": 1400,
+        "height": 1050,
+        "alt": {
+          "es": "Club Roll, empaque",
+          "en": "Club Roll packaging"
+        }
+      }
+    ],
+    "links": [
+      {
+        "label": "Behance",
+        "url": "https://www.behance.net/gallery/227414023/Club-Roll"
+      }
+    ]
+  },
+  {
+    "slug": "parrilla",
+    "title": "Parrilla",
+    "client": "Parrilla",
+    "year": 2023,
+    "discipline": "design",
+    "team": [
+      "angelica-roa"
+    ],
+    "featured": false,
+    "services": {
+      "es": [
+        "Diseño gráfico",
+        "Piezas de marca"
+      ],
+      "en": [
+        "Graphic design",
+        "Brand pieces"
+      ]
+    },
+    "stack": [],
+    "summary": {
+      "es": "Piezas gráficas para un restaurante de parrilla.",
+      "en": "Graphic pieces for a grill restaurant."
+    },
+    "challenge": null,
+    "solution": null,
+    "cover": {
+      "src": "https://mir-s3-cdn-cf.behance.net/projects/max_808/0cdcd4168099261.Y3JvcCwxMTEyLDg3MCw5Myww.jpg",
+      "width": 808,
+      "height": 632,
+      "alt": {
+        "es": "Diseño para Parrilla",
+        "en": "Parrilla design"
+      }
+    },
+    "gallery": [
+      {
+        "src": "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/99ac4d168099261.6434eab6a3aa5.jpg",
+        "width": 1200,
+        "height": 900,
+        "alt": {
+          "es": "Parrilla, pieza gráfica",
+          "en": "Parrilla graphic piece"
+        }
+      }
+    ],
+    "links": [
+      {
+        "label": "Behance",
+        "url": "https://www.behance.net/gallery/168099261/Parrilla"
+      }
+    ]
+  }
+]

@@ -12,11 +12,20 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ChatbotWhatsappIaRouteImport } from './routes/chatbot-whatsapp-ia'
 import { Route as CrearPaginaWebRouteImport } from './routes/crear-pagina-web'
-import { Route as CvRouteImport } from './routes/cv'
 import { Route as DesarrolloDeAplicacionesRouteImport } from './routes/desarrollo-de-aplicaciones'
 import { Route as DesarrolloWebBogotaRouteImport } from './routes/desarrollo-web-bogota'
 import { Route as IngenieroDeSoftwareFreelanceRouteImport } from './routes/ingeniero-de-software-freelance'
 import { Route as ServiciosRouteImport } from './routes/servicios'
+import { Route as EnIndexRouteImport } from './routes/en/index'
+import { Route as EnServicesRouteImport } from './routes/en/services'
+import { Route as EquipoIndexRouteImport } from './routes/equipo/index'
+import { Route as EquipoSlugRouteImport } from './routes/equipo/$slug'
+import { Route as ProyectosIndexRouteImport } from './routes/proyectos/index'
+import { Route as ProyectosSlugRouteImport } from './routes/proyectos/$slug'
+import { Route as EnTeamIndexRouteImport } from './routes/en/team/index'
+import { Route as EnTeamSlugRouteImport } from './routes/en/team/$slug'
+import { Route as EnWorkIndexRouteImport } from './routes/en/work/index'
+import { Route as EnWorkSlugRouteImport } from './routes/en/work/$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -31,11 +40,6 @@ const ChatbotWhatsappIaRoute = ChatbotWhatsappIaRouteImport.update({
 const CrearPaginaWebRoute = CrearPaginaWebRouteImport.update({
   id: '/crear-pagina-web',
   path: '/crear-pagina-web',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CvRoute = CvRouteImport.update({
-  id: '/cv',
-  path: '/cv',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DesarrolloDeAplicacionesRoute =
@@ -60,37 +64,114 @@ const ServiciosRoute = ServiciosRouteImport.update({
   path: '/servicios',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EnIndexRoute = EnIndexRouteImport.update({
+  id: '/en/',
+  path: '/en/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnServicesRoute = EnServicesRouteImport.update({
+  id: '/en/services',
+  path: '/en/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EquipoIndexRoute = EquipoIndexRouteImport.update({
+  id: '/equipo/',
+  path: '/equipo/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EquipoSlugRoute = EquipoSlugRouteImport.update({
+  id: '/equipo/$slug',
+  path: '/equipo/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProyectosIndexRoute = ProyectosIndexRouteImport.update({
+  id: '/proyectos/',
+  path: '/proyectos/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProyectosSlugRoute = ProyectosSlugRouteImport.update({
+  id: '/proyectos/$slug',
+  path: '/proyectos/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnTeamIndexRoute = EnTeamIndexRouteImport.update({
+  id: '/en/team/',
+  path: '/en/team/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnTeamSlugRoute = EnTeamSlugRouteImport.update({
+  id: '/en/team/$slug',
+  path: '/en/team/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnWorkIndexRoute = EnWorkIndexRouteImport.update({
+  id: '/en/work/',
+  path: '/en/work/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnWorkSlugRoute = EnWorkSlugRouteImport.update({
+  id: '/en/work/$slug',
+  path: '/en/work/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/chatbot-whatsapp-ia': typeof ChatbotWhatsappIaRoute
   '/crear-pagina-web': typeof CrearPaginaWebRoute
-  '/cv': typeof CvRoute
   '/desarrollo-de-aplicaciones': typeof DesarrolloDeAplicacionesRoute
   '/desarrollo-web-bogota': typeof DesarrolloWebBogotaRoute
   '/ingeniero-de-software-freelance': typeof IngenieroDeSoftwareFreelanceRoute
   '/servicios': typeof ServiciosRoute
+  '/en/services': typeof EnServicesRoute
+  '/equipo/$slug': typeof EquipoSlugRoute
+  '/proyectos/$slug': typeof ProyectosSlugRoute
+  '/en/': typeof EnIndexRoute
+  '/equipo/': typeof EquipoIndexRoute
+  '/proyectos/': typeof ProyectosIndexRoute
+  '/en/team/$slug': typeof EnTeamSlugRoute
+  '/en/work/$slug': typeof EnWorkSlugRoute
+  '/en/team/': typeof EnTeamIndexRoute
+  '/en/work/': typeof EnWorkIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/chatbot-whatsapp-ia': typeof ChatbotWhatsappIaRoute
   '/crear-pagina-web': typeof CrearPaginaWebRoute
-  '/cv': typeof CvRoute
   '/desarrollo-de-aplicaciones': typeof DesarrolloDeAplicacionesRoute
   '/desarrollo-web-bogota': typeof DesarrolloWebBogotaRoute
   '/ingeniero-de-software-freelance': typeof IngenieroDeSoftwareFreelanceRoute
   '/servicios': typeof ServiciosRoute
+  '/en/services': typeof EnServicesRoute
+  '/equipo/$slug': typeof EquipoSlugRoute
+  '/proyectos/$slug': typeof ProyectosSlugRoute
+  '/en': typeof EnIndexRoute
+  '/equipo': typeof EquipoIndexRoute
+  '/proyectos': typeof ProyectosIndexRoute
+  '/en/team/$slug': typeof EnTeamSlugRoute
+  '/en/work/$slug': typeof EnWorkSlugRoute
+  '/en/team': typeof EnTeamIndexRoute
+  '/en/work': typeof EnWorkIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/chatbot-whatsapp-ia': typeof ChatbotWhatsappIaRoute
   '/crear-pagina-web': typeof CrearPaginaWebRoute
-  '/cv': typeof CvRoute
   '/desarrollo-de-aplicaciones': typeof DesarrolloDeAplicacionesRoute
   '/desarrollo-web-bogota': typeof DesarrolloWebBogotaRoute
   '/ingeniero-de-software-freelance': typeof IngenieroDeSoftwareFreelanceRoute
   '/servicios': typeof ServiciosRoute
+  '/en/services': typeof EnServicesRoute
+  '/equipo/$slug': typeof EquipoSlugRoute
+  '/proyectos/$slug': typeof ProyectosSlugRoute
+  '/en/': typeof EnIndexRoute
+  '/equipo/': typeof EquipoIndexRoute
+  '/proyectos/': typeof ProyectosIndexRoute
+  '/en/team/$slug': typeof EnTeamSlugRoute
+  '/en/work/$slug': typeof EnWorkSlugRoute
+  '/en/team/': typeof EnTeamIndexRoute
+  '/en/work/': typeof EnWorkIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -98,42 +179,78 @@ export interface FileRouteTypes {
     | '/'
     | '/chatbot-whatsapp-ia'
     | '/crear-pagina-web'
-    | '/cv'
     | '/desarrollo-de-aplicaciones'
     | '/desarrollo-web-bogota'
     | '/ingeniero-de-software-freelance'
     | '/servicios'
+    | '/en/services'
+    | '/equipo/$slug'
+    | '/proyectos/$slug'
+    | '/en/'
+    | '/equipo/'
+    | '/proyectos/'
+    | '/en/team/$slug'
+    | '/en/work/$slug'
+    | '/en/team/'
+    | '/en/work/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/chatbot-whatsapp-ia'
     | '/crear-pagina-web'
-    | '/cv'
     | '/desarrollo-de-aplicaciones'
     | '/desarrollo-web-bogota'
     | '/ingeniero-de-software-freelance'
     | '/servicios'
+    | '/en/services'
+    | '/equipo/$slug'
+    | '/proyectos/$slug'
+    | '/en'
+    | '/equipo'
+    | '/proyectos'
+    | '/en/team/$slug'
+    | '/en/work/$slug'
+    | '/en/team'
+    | '/en/work'
   id:
     | '__root__'
     | '/'
     | '/chatbot-whatsapp-ia'
     | '/crear-pagina-web'
-    | '/cv'
     | '/desarrollo-de-aplicaciones'
     | '/desarrollo-web-bogota'
     | '/ingeniero-de-software-freelance'
     | '/servicios'
+    | '/en/services'
+    | '/equipo/$slug'
+    | '/proyectos/$slug'
+    | '/en/'
+    | '/equipo/'
+    | '/proyectos/'
+    | '/en/team/$slug'
+    | '/en/work/$slug'
+    | '/en/team/'
+    | '/en/work/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ChatbotWhatsappIaRoute: typeof ChatbotWhatsappIaRoute
   CrearPaginaWebRoute: typeof CrearPaginaWebRoute
-  CvRoute: typeof CvRoute
   DesarrolloDeAplicacionesRoute: typeof DesarrolloDeAplicacionesRoute
   DesarrolloWebBogotaRoute: typeof DesarrolloWebBogotaRoute
   IngenieroDeSoftwareFreelanceRoute: typeof IngenieroDeSoftwareFreelanceRoute
   ServiciosRoute: typeof ServiciosRoute
+  EnServicesRoute: typeof EnServicesRoute
+  EquipoSlugRoute: typeof EquipoSlugRoute
+  ProyectosSlugRoute: typeof ProyectosSlugRoute
+  EnIndexRoute: typeof EnIndexRoute
+  EquipoIndexRoute: typeof EquipoIndexRoute
+  ProyectosIndexRoute: typeof ProyectosIndexRoute
+  EnTeamSlugRoute: typeof EnTeamSlugRoute
+  EnWorkSlugRoute: typeof EnWorkSlugRoute
+  EnTeamIndexRoute: typeof EnTeamIndexRoute
+  EnWorkIndexRoute: typeof EnWorkIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -157,13 +274,6 @@ declare module '@tanstack/react-router' {
       path: '/crear-pagina-web'
       fullPath: '/crear-pagina-web'
       preLoaderRoute: typeof CrearPaginaWebRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/cv': {
-      id: '/cv'
-      path: '/cv'
-      fullPath: '/cv'
-      preLoaderRoute: typeof CvRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/desarrollo-de-aplicaciones': {
@@ -194,6 +304,76 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServiciosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/en/': {
+      id: '/en/'
+      path: '/en'
+      fullPath: '/en/'
+      preLoaderRoute: typeof EnIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/services': {
+      id: '/en/services'
+      path: '/en/services'
+      fullPath: '/en/services'
+      preLoaderRoute: typeof EnServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/equipo/': {
+      id: '/equipo/'
+      path: '/equipo'
+      fullPath: '/equipo/'
+      preLoaderRoute: typeof EquipoIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/equipo/$slug': {
+      id: '/equipo/$slug'
+      path: '/equipo/$slug'
+      fullPath: '/equipo/$slug'
+      preLoaderRoute: typeof EquipoSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/proyectos/': {
+      id: '/proyectos/'
+      path: '/proyectos'
+      fullPath: '/proyectos/'
+      preLoaderRoute: typeof ProyectosIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/proyectos/$slug': {
+      id: '/proyectos/$slug'
+      path: '/proyectos/$slug'
+      fullPath: '/proyectos/$slug'
+      preLoaderRoute: typeof ProyectosSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/team/': {
+      id: '/en/team/'
+      path: '/en/team'
+      fullPath: '/en/team/'
+      preLoaderRoute: typeof EnTeamIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/team/$slug': {
+      id: '/en/team/$slug'
+      path: '/en/team/$slug'
+      fullPath: '/en/team/$slug'
+      preLoaderRoute: typeof EnTeamSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/work/': {
+      id: '/en/work/'
+      path: '/en/work'
+      fullPath: '/en/work/'
+      preLoaderRoute: typeof EnWorkIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/work/$slug': {
+      id: '/en/work/$slug'
+      path: '/en/work/$slug'
+      fullPath: '/en/work/$slug'
+      preLoaderRoute: typeof EnWorkSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -201,11 +381,20 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ChatbotWhatsappIaRoute: ChatbotWhatsappIaRoute,
   CrearPaginaWebRoute: CrearPaginaWebRoute,
-  CvRoute: CvRoute,
   DesarrolloDeAplicacionesRoute: DesarrolloDeAplicacionesRoute,
   DesarrolloWebBogotaRoute: DesarrolloWebBogotaRoute,
   IngenieroDeSoftwareFreelanceRoute: IngenieroDeSoftwareFreelanceRoute,
   ServiciosRoute: ServiciosRoute,
+  EnServicesRoute: EnServicesRoute,
+  EquipoSlugRoute: EquipoSlugRoute,
+  ProyectosSlugRoute: ProyectosSlugRoute,
+  EnIndexRoute: EnIndexRoute,
+  EquipoIndexRoute: EquipoIndexRoute,
+  ProyectosIndexRoute: ProyectosIndexRoute,
+  EnTeamSlugRoute: EnTeamSlugRoute,
+  EnWorkSlugRoute: EnWorkSlugRoute,
+  EnTeamIndexRoute: EnTeamIndexRoute,
+  EnWorkIndexRoute: EnWorkIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

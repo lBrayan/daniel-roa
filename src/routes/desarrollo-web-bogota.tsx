@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { BRAND } from "@/lib/site";
 import { MarketingLayout } from "@/components/marketing/MarketingLayout";
 import {
     CtaBand,
@@ -23,7 +24,7 @@ const CRUMBS = [
 const FAQ_BOGOTA: Faq[] = [
     {
         q: "¿Por qué contratar un desarrollador web independiente en Bogotá y no una agencia?",
-        a: "Hablas directamente con quien diseña y programa tu sitio, sin intermediarios. Eso se traduce en respuestas más rápidas, precios más bajos que los de una agencia y la misma calidad técnica.",
+        a: "Hablas directamente con quienes diseñan y programan tu sitio, sin intermediarios. Eso se traduce en respuestas más rápidas, precios más bajos que los de una agencia grande y la misma calidad técnica.",
     },
     {
         q: "¿Podemos reunirnos en persona?",
@@ -39,14 +40,14 @@ const FAQ_BOGOTA: Faq[] = [
     },
     {
         q: "¿Qué necesito tener listo para empezar?",
-        a: "Tu logo, los textos básicos de tu negocio y algunas fotos. Si no los tienes, te ayudo a redactar los textos y a elegir imágenes profesionales.",
+        a: "Tu logo, los textos básicos de tu negocio y algunas fotos. Si no los tienes, te ayudamos a redactar los textos y a elegir imágenes profesionales.",
     },
 ];
 
 export const Route = createFileRoute("/desarrollo-web-bogota")({
     head: () =>
         pageHead({
-            title: "Desarrollador web en Bogotá | Páginas web profesionales | Brayan Roa",
+            title: `Desarrollador web en Bogotá | Páginas web profesionales | ${BRAND}`,
             description:
                 "Desarrollador web freelance en Bogotá. Diseño de páginas web, landing pages y tiendas online para negocios y empresas, con SEO local y Google Maps. Cotiza por WhatsApp.",
             path: PATH,
@@ -63,12 +64,12 @@ function BogotaPage() {
                 eyebrow="Desarrollo web en Bogotá"
                 title="Desarrollador web en Bogotá para negocios que quieren vender más"
                 lead="Diseño y desarrollo páginas web, landing pages y tiendas online para negocios de Bogotá. Sitios rápidos, que se ven bien en el celular, aparecen en Google y llevan a tus clientes directo a WhatsApp."
-                waMessage="Hola Brayan, tengo un negocio en Bogotá y quiero una página web."
+                waMessage="Hola, tengo un negocio en Bogotá y quiero una página web."
                 bullets={[
                     "Reunión presencial en Bogotá si la necesitas",
                     "SEO local y Google Maps",
                     "Precios desde $350.000 COP",
-                    "Hablas directo con el desarrollador",
+                    "Hablas directo con quien diseña y programa",
                 ]}
             />
 
@@ -83,11 +84,11 @@ function BogotaPage() {
                         bien hecha, esos clientes terminan en tu competencia.
                     </p>
                     <p>
-                        Soy <strong>Brayan Roa</strong>, desarrollador web y arquitecto de software con más de 10 años de
-                        experiencia. He construido plataformas para banca y empresas, y hoy pongo esa experiencia al
-                        servicio de negocios bogotanos que necesitan una página profesional, sin pagar precios de agencia.
+                        Somos un estudio de diseño y desarrollo en Bogotá, liderado por un arquitecto de software con más de
+                        10 años de experiencia y una diseñadora de marca. Ponemos esa experiencia al servicio de negocios
+                        bogotanos que necesitan una página profesional, sin pagar precios de agencia grande.
                     </p>
-                    <h3>¿Qué incluye trabajar conmigo?</h3>
+                    <h3>¿Qué incluye trabajar con nosotros?</h3>
                     <ul>
                         <li><strong>Diseño a la medida</strong>, pensado para tu tipo de cliente y no una plantilla genérica.</li>
                         <li><strong>Optimización para celular</strong>: la mayoría de tus visitas llegan desde el teléfono.</li>
@@ -96,7 +97,7 @@ function BogotaPage() {
                         <li><strong>WhatsApp y formularios</strong> para que convertir una visita en cliente sea fácil.</li>
                         <li><strong>Hosting rápido y seguro</strong> con certificado HTTPS.</li>
                     </ul>
-                    <h3>Sectores con los que trabajo</h3>
+                    <h3>Sectores con los que trabajamos</h3>
                     <p>
                         Consultorios médicos y odontológicos, abogados y contadores, restaurantes y cafés, inmobiliarias,
                         gimnasios, salones de belleza, talleres, colegios y academias, constructoras y tiendas de barrio
@@ -136,8 +137,8 @@ function BogotaPage() {
 
             <CtaBand
                 title="¿Listo para tener la página web de tu negocio?"
-                text="Cuéntame qué hace tu negocio y en qué zona de Bogotá estás. Te envío una propuesta con precio y fecha de entrega."
-                waMessage="Hola Brayan, tengo un negocio en Bogotá y quiero cotizar una página web."
+                text="Cuéntanos qué hace tu negocio y en qué zona de Bogotá estás. Te enviamos una propuesta con precio y fecha de entrega."
+                waMessage="Hola, tengo un negocio en Bogotá y quiero cotizar una página web."
             />
         </MarketingLayout>
     );

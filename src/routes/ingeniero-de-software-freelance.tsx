@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { BRAND } from "@/lib/site";
 import { MarketingLayout } from "@/components/marketing/MarketingLayout";
 import { CtaBand, Differentiators, FaqList, PageHero, ProcessList, Prose, Section } from "@/components/marketing/Blocks";
 import type { Faq } from "@/data/marketing";
@@ -14,19 +15,19 @@ const CRUMBS = [
 const FAQ_FREELANCE: Faq[] = [
     {
         q: "¿Cuánto cobra un ingeniero de software freelance en Colombia?",
-        a: "Depende del alcance. Trabajo por proyecto con precio cerrado, por horas o con una bolsa mensual de soporte. Después de una conversación corta te envío una propuesta por escrito con el valor, las entregas y las fechas, sin costo.",
+        a: "Depende del alcance. Trabajamos por proyecto con precio cerrado, por horas o con una bolsa mensual de soporte. Después de una conversación corta te enviamos una propuesta por escrito con el valor, las entregas y las fechas, sin costo.",
     },
     {
         q: "¿Es mejor contratar un freelance, una agencia o un empleado?",
         a: "Un freelance senior te da la calidad técnica de una agencia sin sus costos fijos ni intermediarios, y sin la carga de contratar a alguien de tiempo completo. Es ideal para proyectos con alcance definido, para lanzar un MVP o para reforzar a tu equipo en una etapa puntual.",
     },
     {
-        q: "¿Trabajas de forma remota?",
-        a: "Sí. Trabajo de forma remota con clientes de toda Colombia y Latinoamérica, con videollamadas y avances frecuentes. Si estás en Bogotá también podemos reunirnos en persona.",
+        q: "¿Trabajan de forma remota?",
+        a: "Sí. Trabajamos de forma remota con clientes de toda Colombia y Latinoamérica, con videollamadas y avances frecuentes. Si estás en Bogotá también podemos reunirnos en persona.",
     },
     {
-        q: "¿Puedes continuar un proyecto que empezó otro desarrollador?",
-        a: "Sí. Primero reviso el código y la infraestructura, te entrego un diagnóstico con riesgos y prioridades, y luego continuamos con las correcciones y nuevas funcionalidades.",
+        q: "¿Pueden continuar un proyecto que empezó otro desarrollador?",
+        a: "Sí. Primero revisamos el código y la infraestructura, te entregamos un diagnóstico con riesgos y prioridades, y luego continuamos con las correcciones y nuevas funcionalidades.",
     },
     {
         q: "¿Firmas acuerdos de confidencialidad?",
@@ -37,7 +38,7 @@ const FAQ_FREELANCE: Faq[] = [
 export const Route = createFileRoute("/ingeniero-de-software-freelance")({
     head: () =>
         pageHead({
-            title: "Ingeniero de software freelance en Colombia | Desarrollador full stack | Brayan Roa",
+            title: `Ingeniero de software freelance en Colombia | Desarrollador full stack | ${BRAND}`,
             description:
                 "Ingeniero de software y desarrollador full stack freelance en Bogotá, Colombia. Desarrollo de sistemas a la medida, APIs, integraciones, migraciones y arquitectura en AWS. Más de 10 años de experiencia.",
             path: PATH,
@@ -53,25 +54,25 @@ function FreelancePage() {
                 breadcrumbs={CRUMBS}
                 eyebrow="Desarrollo de software freelance"
                 title="Ingeniero de software freelance para tu proyecto en Colombia"
-                lead="Soy ingeniero de software y desarrollador full stack con más de 10 años de experiencia. Diseño, programo y despliego software a la medida para empresas, startups y emprendedores, de forma remota o en Bogotá."
-                waMessage="Hola Brayan, necesito un ingeniero de software para un proyecto."
+                lead="Un equipo liderado por un ingeniero de software y desarrollador full stack con más de 10 años de experiencia. Diseñamos, programamos y desplegamos software a la medida para empresas, startups y emprendedores, de forma remota o en Bogotá."
+                waMessage="Hola, necesito un ingeniero de software para un proyecto."
                 bullets={[
                     "Más de 10 años de experiencia",
                     "Frontend, backend y nube",
                     "Precio cerrado por proyecto",
-                    "Trato directo, sin intermediarios",
+                    "Diseño y desarrollo en un solo equipo",
                 ]}
             />
 
-            <Section eyebrow="Qué hago" title="Un desarrollador de software freelance que cubre todo el proyecto">
+            <Section eyebrow="Qué hacemos" title="Un desarrollador de software freelance que cubre todo el proyecto">
                 <Prose>
                     <p>
                         Contratar un <strong>programador freelance</strong> no debería significar recibir solo código. Como
-                        ingeniero y <strong>arquitecto de software</strong>, me encargo del proyecto completo: entiendo el
-                        problema de tu negocio, propongo la arquitectura, desarrollo el frontend y el backend, lo publico en la
-                        nube y te dejo la documentación para que el sistema pueda crecer.
+                        equipo liderado por un <strong>arquitecto de software</strong>, nos encargamos del proyecto completo: entendemos el
+                        problema de tu negocio, proponemos la arquitectura, desarrollamos el frontend y el backend, lo publicamos en la
+                        nube y te dejamos la documentación para que el sistema pueda crecer.
                     </p>
-                    <h3>Proyectos en los que puedo ayudarte</h3>
+                    <h3>Proyectos en los que podemos ayudarte</h3>
                     <ul>
                         <li><strong>Sistemas a la medida</strong>: inventarios, puntos de venta, facturación, reservas, CRM y paneles administrativos.</li>
                         <li><strong>APIs e integraciones</strong> con pasarelas de pago, facturación electrónica, ERPs y servicios externos.</li>
@@ -113,9 +114,9 @@ function FreelancePage() {
             </Section>
 
             <CtaBand
-                title="Cuéntame tu proyecto"
-                text="Explícame qué necesitas construir o mejorar. Te respondo el mismo día con preguntas y, después, con una propuesta por escrito."
-                waMessage="Hola Brayan, quiero cotizar un proyecto de software."
+                title="Cuéntanos tu proyecto"
+                text="Explícanos qué necesitas construir o mejorar. Te respondemos el mismo día con preguntas y, después, con una propuesta por escrito."
+                waMessage="Hola, quiero cotizar un proyecto de software."
             />
         </MarketingLayout>
     );
