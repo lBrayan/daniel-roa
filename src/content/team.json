@@ -87,7 +87,12 @@
         "label": "Behance",
         "url": "https://www.behance.net/Yiro_dg"
       }
-    ]
+    ],
+    "photo": {
+      "src": "/images/team/angelica-roa.webp",
+      "width": 320,
+      "height": 400
+    }
   },
   {
     "slug": "miguel-tovar",
