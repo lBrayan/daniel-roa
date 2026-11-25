@@ -1,3 +1,4 @@
+import type React from "react";
 import type { ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
@@ -8,7 +9,7 @@ export function ProjectPage({ project, locale }: { project: Project; locale: Loc
     const t = UI[locale];
     const other: Locale = locale === "es" ? "en" : "es";
     const more = PROJECTS.filter(
-        (p) => p.slug !== project.slug && (p.discipline === project.discipline || p.discipline === "both" || project.discipline === "both"),
+        (p) => p.listed && p.slug !== project.slug && (p.discipline === project.discipline || p.discipline === "both" || project.discipline === "both"),
     ).slice(0, 2);
     const facts: { label: string; value: ReactNode }[] = [
         { label: t.client, value: project.client },
@@ -31,7 +32,7 @@ export function ProjectPage({ project, locale }: { project: Project; locale: Loc
                         ]}
                     />
                     <Kicker className="mt-10">{t.disciplines[project.discipline]}</Kicker>
-                    <h1 className="mt-4 text-6xl font-bold sm:text-8xl">{project.title}</h1>
+                    <h1 className="rise mt-4 text-6xl font-bold sm:text-8xl" style={{ "--d": "80ms" } as React.CSSProperties}>{project.title}</h1>
                     <p className="mt-6 max-w-3xl text-2xl leading-snug text-soft">{project.summary[locale]}</p>
                 </Container>
 

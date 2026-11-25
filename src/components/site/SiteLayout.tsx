@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { BRAND, PATHS, SITE, UI, whatsappLink, type Locale } from "@/lib/site";
 import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
+import { useReveal } from "@/components/site/Motion";
 
 /** Logotipo de texto del estudio. */
 export function BrandMark({ className = "" }: { className?: string }) {
@@ -29,6 +30,7 @@ export function SiteLayout({
     alternate?: string;
     children: ReactNode;
 }) {
+    useReveal();
     const t = UI[locale];
     const other: Locale = locale === "es" ? "en" : "es";
     const nav = [
@@ -129,7 +131,7 @@ function ContactBand({ locale }: { locale: Locale }) {
     const t = UI[locale];
     return (
         <section id="contacto" aria-labelledby="contacto-titulo" className="mx-auto max-w-7xl px-5 pb-24 sm:px-8">
-            <div className="flex flex-wrap items-end justify-between gap-10 rounded-[2rem] bg-brand px-8 py-14 text-ink sm:px-14 sm:py-16">
+            <div data-reveal className="flex flex-wrap items-end justify-between gap-10 rounded-[2rem] bg-brand px-8 py-14 text-ink sm:px-14 sm:py-16">
                 <div className="max-w-2xl">
                     <h2 id="contacto-titulo" className="text-4xl leading-[0.95] font-bold sm:text-6xl">
                         {t.contactTitle}

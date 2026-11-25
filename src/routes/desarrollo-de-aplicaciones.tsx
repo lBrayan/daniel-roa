@@ -3,7 +3,7 @@ import { BRAND } from "@/lib/site";
 import { MarketingLayout } from "@/components/marketing/MarketingLayout";
 import { CtaBand, FaqList, PageHero, PricingGrid, ProcessList, Prose, Section } from "@/components/marketing/Blocks";
 import type { Faq } from "@/data/marketing";
-import { BUSINESS_SCHEMA, breadcrumbSchema, faqSchema, pageHead } from "@/lib/seo";
+import { organizationSchema, breadcrumbSchema, faqSchema, pageHead } from "@/lib/seo";
 
 const PATH = "/desarrollo-de-aplicaciones";
 const CRUMBS = [
@@ -42,7 +42,7 @@ export const Route = createFileRoute("/desarrollo-de-aplicaciones")({
             description:
                 "Desarrollo de aplicaciones web y móviles a la medida en Bogotá y Colombia: sistemas de gestión, inventarios, reservas, portales de clientes y MVPs para startups. Precio cerrado y entregas por fases.",
             path: PATH,
-            schemas: [BUSINESS_SCHEMA, faqSchema(FAQ_APPS), breadcrumbSchema(CRUMBS)],
+            schemas: [organizationSchema("es"), faqSchema(FAQ_APPS), breadcrumbSchema(CRUMBS)],
         }),
     component: AppsPage,
 });

@@ -22,6 +22,8 @@ export type Project = {
     discipline: Discipline;
     team: string[];
     featured: boolean;
+    /** false = no aparece en el portafolio del estudio (p. ej. trabajo de agencia de un integrante). */
+    listed: boolean;
     services: L10n<string[]>;
     stack: string[];
     summary: L10n;
@@ -53,13 +55,14 @@ export const BRAND = site.brand;
 export const PROJECTS = projectsData as Project[];
 export const TEAM = (teamData as Member[]).filter((m) => m.published);
 
+export const LISTED = PROJECTS.filter((p) => p.listed);
 export const getProject = (slug: string) => PROJECTS.find((p) => p.slug === slug);
 export const getMember = (slug: string) => TEAM.find((m) => m.slug === slug);
 export const projectsBy = (memberSlug: string) => PROJECTS.filter((p) => p.team.includes(memberSlug));
 
 /** Orden de portafolio: destacados primero, y alternando diseño y desarrollo. */
 export function orderedProjects(filter?: "design" | "development") {
-    const list = PROJECTS.filter(
+    const list = PROJECTS.filter((p) => p.listed).filter(
         (p) => !filter || p.discipline === filter || p.discipline === "both",
     );
     return [...list].sort((a, b) => Number(b.featured) - Number(a.featured));
@@ -110,6 +113,8 @@ export const UI = {
         visit: "Ver en",
         meet: "Conocer",
         projectsOf: "Proyectos de",
+        agencyWork: "Trayectoria en agencia",
+        agencyNote: (n: string) => `Campañas y piezas para marcas de consumo masivo en las que ${n} participó como director de arte en agencia, por fuera del estudio.`,
         skills: "Especialidades",
         back: "Volver",
         breadcrumbHome: "Inicio",
@@ -146,6 +151,8 @@ export const UI = {
         visit: "View on",
         meet: "Meet",
         projectsOf: "Work by",
+        agencyWork: "Agency background",
+        agencyNote: (n: string) => `Campaigns and assets for consumer brands that ${n} worked on as an agency art director, outside the studio.`,
         skills: "Expertise",
         back: "Back",
         breadcrumbHome: "Home",

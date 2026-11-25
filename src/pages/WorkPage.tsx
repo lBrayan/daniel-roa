@@ -1,3 +1,4 @@
+import type React from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Breadcrumbs, Container, Kicker, ProjectGrid } from "@/components/site/Blocks";
 import { PATHS, UI, orderedProjects, type Locale } from "@/lib/site";
@@ -44,7 +45,7 @@ export function WorkPage({ locale, filter, onFilter }: { locale: Locale; filter:
                 <div className="mt-10 mb-14 flex flex-wrap items-end justify-between gap-8">
                     <div className="max-w-3xl">
                         <Kicker>{t.tagline}</Kicker>
-                        <h1 className="mt-5 text-6xl font-bold sm:text-8xl">{c.h1}</h1>
+                        <h1 className="rise mt-5 text-6xl font-bold sm:text-8xl" style={{ "--d": "80ms" } as React.CSSProperties}>{c.h1}</h1>
                         <p className="mt-6 text-xl leading-relaxed text-soft">{c.lead}</p>
                     </div>
                     <div role="group" aria-label={locale === "es" ? "Filtrar proyectos" : "Filter work"} className="flex flex-wrap gap-2">

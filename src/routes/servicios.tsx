@@ -11,7 +11,7 @@ import {
     Section,
 } from "@/components/marketing/Blocks";
 import { FAQ_GENERAL } from "@/data/marketing";
-import { BUSINESS_SCHEMA, breadcrumbSchema, faqSchema, pageHead } from "@/lib/seo";
+import { organizationSchema, breadcrumbSchema, faqSchema, pageHead } from "@/lib/seo";
 
 const PATH = "/servicios";
 const CRUMBS = [
@@ -27,7 +27,7 @@ export const Route = createFileRoute("/servicios")({
                 "Precios claros para páginas web, landing pages, tiendas online, chatbots con IA para WhatsApp y software a la medida. Desarrollador web en Bogotá con más de 10 años de experiencia.",
             path: PATH,
             alternates: { es: PATH, en: "/en/services" },
-            schemas: [BUSINESS_SCHEMA, faqSchema(FAQ_GENERAL), breadcrumbSchema(CRUMBS)],
+            schemas: [organizationSchema("es"), faqSchema(FAQ_GENERAL), breadcrumbSchema(CRUMBS)],
         }),
     component: ServicesPage,
 });

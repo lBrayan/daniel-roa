@@ -162,7 +162,7 @@ export function projectListSchema(locale: Locale, pathFor: (slug: string) => str
     return {
         "@context": "https://schema.org",
         "@type": "ItemList",
-        itemListElement: PROJECTS.map((p, i) => ({
+        itemListElement: PROJECTS.filter((p) => p.listed).map((p, i) => ({
             "@type": "ListItem",
             position: i + 1,
             url: `${SITE_URL}${pathFor(p.slug)}`,
@@ -170,9 +170,6 @@ export function projectListSchema(locale: Locale, pathFor: (slug: string) => str
         })),
     };
 }
-
-/** Compatibilidad con las páginas de servicios existentes. */
-export const BUSINESS_SCHEMA = organizationSchema("es");
 
 export function faqSchema(faqs: Faq[]) {
     return {

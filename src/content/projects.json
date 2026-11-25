@@ -56,7 +56,8 @@
         "label": "iqoop.com",
         "url": "https://iqoop.com"
       }
-    ]
+    ],
+    "listed": true
   },
   {
     "slug": "colo-coffee",
@@ -134,7 +135,8 @@
         "label": "Behance",
         "url": "https://www.behance.net/gallery/227486157/ColoCoffee-WEBUXUI"
       }
-    ]
+    ],
+    "listed": true
   },
   {
     "slug": "cerveza-germania",
@@ -185,7 +187,8 @@
       }
     },
     "gallery": [],
-    "links": []
+    "links": [],
+    "listed": true
   },
   {
     "slug": "mis-finanzas-en-casa",
@@ -229,7 +232,8 @@
     },
     "cover": null,
     "gallery": [],
-    "links": []
+    "links": [],
+    "listed": true
   },
   {
     "slug": "clinica-de-ventas",
@@ -272,7 +276,8 @@
     },
     "cover": null,
     "gallery": [],
-    "links": []
+    "links": [],
+    "listed": true
   },
   {
     "slug": "encuestas-360",
@@ -315,7 +320,8 @@
     },
     "cover": null,
     "gallery": [],
-    "links": []
+    "links": [],
+    "listed": true
   },
   {
     "slug": "pan-y-fuego",
@@ -389,7 +395,8 @@
         "label": "Behance",
         "url": "https://www.behance.net/gallery/229937855/Pan-Fuego"
       }
-    ]
+    ],
+    "listed": true
   },
   {
     "slug": "el-chamuco",
@@ -398,6 +405,7 @@
     "year": 2025,
     "discipline": "design",
     "team": [
+      "andres-tovar",
       "angelica-roa"
     ],
     "featured": true,
@@ -463,7 +471,8 @@
         "label": "Behance",
         "url": "https://www.behance.net/gallery/230312641/El-Chamuco"
       }
-    ]
+    ],
+    "listed": true
   },
   {
     "slug": "neuro-poppers",
@@ -472,6 +481,7 @@
     "year": 2026,
     "discipline": "design",
     "team": [
+      "andres-tovar",
       "angelica-roa"
     ],
     "featured": false,
@@ -528,7 +538,8 @@
         "label": "Behance",
         "url": "https://www.behance.net/gallery/258529047/NEURO-POPPERS-GUMMY"
       }
-    ]
+    ],
+    "listed": true
   },
   {
     "slug": "loucura-ice-cream",
@@ -595,7 +606,8 @@
         "label": "Behance",
         "url": "https://www.behance.net/gallery/227959573/Loucura-Ice-Cream"
       }
-    ]
+    ],
+    "listed": true
   },
   {
     "slug": "levadura-royal",
@@ -651,7 +663,8 @@
         "label": "Behance",
         "url": "https://www.behance.net/gallery/227386793/Levadura-Royal"
       }
-    ]
+    ],
+    "listed": true
   },
   {
     "slug": "club-roll",
@@ -660,6 +673,7 @@
     "year": 2025,
     "discipline": "design",
     "team": [
+      "andres-tovar",
       "angelica-roa"
     ],
     "featured": false,
@@ -707,7 +721,8 @@
         "label": "Behance",
         "url": "https://www.behance.net/gallery/227414023/Club-Roll"
       }
-    ]
+    ],
+    "listed": true
   },
   {
     "slug": "parrilla",
@@ -760,6 +775,241 @@
       {
         "label": "Behance",
         "url": "https://www.behance.net/gallery/168099261/Parrilla"
+      }
+    ],
+    "listed": true
+  },
+  {
+    "slug": "old-spice-latotas",
+    "title": "Old Spice · Latotas y Barrotas",
+    "client": "Old Spice Latinoamérica",
+    "year": 2025,
+    "discipline": "design",
+    "team": [
+      "andres-tovar"
+    ],
+    "featured": false,
+    "listed": false,
+    "services": {
+      "es": [
+        "Dirección de arte",
+        "Campaña digital",
+        "Concepto creativo"
+      ],
+      "en": [
+        "Art direction",
+        "Digital campaign",
+        "Creative concept"
+      ]
+    },
+    "stack": [],
+    "summary": {
+      "es": "Trabajo de Andrés Tovar como director de arte en agencia. Campaña digital de lanzamiento para presentar los nuevos formatos 34% más grandes, con el humor y la exageración característicos de la marca.",
+      "en": "Work by Andrés Tovar as an agency art director. A digital launch campaign introducing the new 34% larger formats, built on the brand's trademark humour and exaggeration."
+    },
+    "challenge": null,
+    "solution": null,
+    "cover": {
+      "src": "https://mir-s3-cdn-cf.behance.net/projects/max_808/0f6ed1239785785.Y3JvcCw4MDgsNjMyLDAsMA.jpg",
+      "width": 808,
+      "height": 632,
+      "alt": {
+        "es": "Campaña Latotas y Barrotas de Old Spice",
+        "en": "Old Spice Latotas y Barrotas campaign"
+      }
+    },
+    "gallery": [
+      {
+        "src": "https://mir-s3-cdn-cf.behance.net/project_modules/1400/28bcdf239785785.695d5f6f4619a.jpg",
+        "width": 1400,
+        "height": 1050,
+        "alt": {
+          "es": "Piezas de la campaña Latotas",
+          "en": "Latotas campaign assets"
+        }
+      },
+      {
+        "src": "https://mir-s3-cdn-cf.behance.net/project_modules/1400/0b8470239785785.695d751e857bb.jpg",
+        "width": 1400,
+        "height": 1050,
+        "alt": {
+          "es": "Latotas y Barrotas, aplicaciones digitales",
+          "en": "Latotas y Barrotas digital applications"
+        }
+      }
+    ],
+    "links": [
+      {
+        "label": "Behance",
+        "url": "https://www.behance.net/gallery/239785785/Old-Spice-LATOTAS"
+      }
+    ]
+  },
+  {
+    "slug": "old-spice-dragonblast",
+    "title": "Old Spice · Dragonblast",
+    "client": "Old Spice",
+    "year": 2025,
+    "discipline": "design",
+    "team": [
+      "andres-tovar"
+    ],
+    "featured": false,
+    "listed": false,
+    "services": {
+      "es": [
+        "Dirección de arte",
+        "Campaña",
+        "Concepto creativo"
+      ],
+      "en": [
+        "Art direction",
+        "Campaign",
+        "Creative concept"
+      ]
+    },
+    "stack": [],
+    "summary": {
+      "es": "Trabajo de Andrés Tovar como director de arte en agencia. Campaña de inspiración medieval que lleva la audacia de la marca a un terreno épico, con dragones y la nobleza del cedro.",
+      "en": "Work by Andrés Tovar as an agency art director. A medieval-inspired campaign that takes the brand's boldness into epic territory, with dragons and the nobility of cedarwood."
+    },
+    "challenge": null,
+    "solution": null,
+    "cover": {
+      "src": "https://mir-s3-cdn-cf.behance.net/projects/max_808/34cd61230528482.Y3JvcCw4MTYsNjM4LDAsNA.jpg",
+      "width": 808,
+      "height": 632,
+      "alt": {
+        "es": "Campaña Dragonblast de Old Spice",
+        "en": "Old Spice Dragonblast campaign"
+      }
+    },
+    "gallery": [
+      {
+        "src": "https://mir-s3-cdn-cf.behance.net/project_modules/1400/6eb563230528482.68d421acd5126.jpg",
+        "width": 1400,
+        "height": 1050,
+        "alt": {
+          "es": "Dragonblast, pieza principal",
+          "en": "Dragonblast key visual"
+        }
+      }
+    ],
+    "links": [
+      {
+        "label": "Behance",
+        "url": "https://www.behance.net/gallery/230528482/Old-Spice-Dragonblast-A-Medieval-Battle-Against-Odor"
+      }
+    ]
+  },
+  {
+    "slug": "old-spice-operation-mini",
+    "title": "Old Spice · Operation: Mini",
+    "client": "Old Spice",
+    "year": 2026,
+    "discipline": "design",
+    "team": [
+      "andres-tovar"
+    ],
+    "featured": false,
+    "listed": false,
+    "services": {
+      "es": [
+        "Dirección de arte",
+        "Redes sociales",
+        "Piezas publicitarias"
+      ],
+      "en": [
+        "Art direction",
+        "Social media",
+        "Advertising assets"
+      ]
+    },
+    "stack": [],
+    "summary": {
+      "es": "Trabajo de Andrés Tovar como director de arte en agencia. Piezas para redes y publicidad del formato mini, con un universo visual de juguetes de guerra.",
+      "en": "Work by Andrés Tovar as an agency art director. Social and advertising assets for the mini format, set in a toy-soldier visual universe."
+    },
+    "challenge": null,
+    "solution": null,
+    "cover": {
+      "src": "https://mir-s3-cdn-cf.behance.net/projects/max_808/df45aa242876551.Y3JvcCw4MDgsNjMyLDAsMA.png",
+      "width": 808,
+      "height": 632,
+      "alt": {
+        "es": "Campaña Operation: Mini de Old Spice",
+        "en": "Old Spice Operation: Mini campaign"
+      }
+    },
+    "gallery": [
+      {
+        "src": "https://mir-s3-cdn-cf.behance.net/project_modules/1400/74bea5242876551.69778e70c9863.png",
+        "width": 1400,
+        "height": 1050,
+        "alt": {
+          "es": "Operation: Mini, piezas",
+          "en": "Operation: Mini assets"
+        }
+      },
+      {
+        "src": "https://mir-s3-cdn-cf.behance.net/project_modules/1400/bbf972242876551.6976721f776f1.png",
+        "width": 1400,
+        "height": 1050,
+        "alt": {
+          "es": "Operation: Mini, redes sociales",
+          "en": "Operation: Mini social media"
+        }
+      }
+    ],
+    "links": [
+      {
+        "label": "Behance",
+        "url": "https://www.behance.net/gallery/242876551/Old-Spice-OPERATIONMINI"
+      }
+    ]
+  },
+  {
+    "slug": "pantene-biotinamina-b3",
+    "title": "Pantene · Biotinamina B3",
+    "client": "Pantene",
+    "year": 2025,
+    "discipline": "design",
+    "team": [
+      "andres-tovar"
+    ],
+    "featured": false,
+    "listed": false,
+    "services": {
+      "es": [
+        "Dirección de arte",
+        "Lanzamiento de producto"
+      ],
+      "en": [
+        "Art direction",
+        "Product launch"
+      ]
+    },
+    "stack": [],
+    "summary": {
+      "es": "Trabajo de Andrés Tovar como director de arte en agencia. Lanzamiento de la línea anticaída Biotinamina B3: una fórmula científica traducida en una narrativa visual atractiva.",
+      "en": "Work by Andrés Tovar as an agency art director. Launch of the Biotinamide B3 anti-hair-fall line: an advanced formula translated into a compelling visual narrative."
+    },
+    "challenge": null,
+    "solution": null,
+    "cover": {
+      "src": "https://mir-s3-cdn-cf.behance.net/projects/max_808/29dc83239344613.Y3JvcCw4MDgsNjMyLDAsMA.jpg",
+      "width": 808,
+      "height": 632,
+      "alt": {
+        "es": "Lanzamiento Pantene Biotinamina B3",
+        "en": "Pantene Biotinamide B3 launch"
+      }
+    },
+    "gallery": [],
+    "links": [
+      {
+        "label": "Behance",
+        "url": "https://www.behance.net/gallery/239344613/Pantene-BIOTINAMINA-B3"
       }
     ]
   }

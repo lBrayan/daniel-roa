@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import type React from "react";
 import { Link } from "@tanstack/react-router";
 import { UI, getMember, memberPath, projectPath, type Img, type Locale, type Member, type Project } from "@/lib/site";
 
@@ -97,17 +98,27 @@ export function ResponsiveImg({
     );
 }
 
-export function ProjectCard({ project, locale, eager = false }: { project: Project; locale: Locale; eager?: boolean }) {
+export function ProjectCard({
+    project,
+    locale,
+    eager = false,
+    index = 0,
+}: {
+    project: Project;
+    locale: Locale;
+    eager?: boolean;
+    index?: number;
+}) {
     const t = UI[locale];
     return (
-        <article className="group">
+        <article className="group" data-reveal style={{ "--d": `${(index % 2) * 120}ms` } as React.CSSProperties}>
             <Link to={projectPath(project.slug, locale) as never} className="flex flex-col gap-4">
-                <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-ink-2">
+                <div className="card-lift aspect-[4/3] overflow-hidden rounded-2xl bg-ink-2">
                     <ProjectCover
                         project={project}
                         locale={locale}
                         eager={eager}
-                        className="transition-transform duration-500 group-hover:scale-[1.03]"
+                        className="transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]"
                     />
                 </div>
                 <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
@@ -127,7 +138,7 @@ export function ProjectGrid({ projects, locale, eagerFirst = false }: { projects
     return (
         <div className="grid gap-x-8 gap-y-14 sm:grid-cols-2">
             {projects.map((p, i) => (
-                <ProjectCard key={p.slug} project={p} locale={locale} eager={eagerFirst && i < 2} />
+                <ProjectCard key={p.slug} project={p} locale={locale} eager={eagerFirst && i < 2} index={i} />
             ))}
         </div>
     );
@@ -165,11 +176,15 @@ export function Avatar({ member, size = "lg", eager = false }: { member: Member;
     );
 }
 
-export function MemberCard({ member, locale }: { member: Member; locale: Locale }) {
+export function MemberCard({ member, locale, index = 0 }: { member: Member; locale: Locale; index?: number }) {
     return (
-        <article>
+        <article data-reveal style={{ "--d": `${index * 110}ms` } as React.CSSProperties}>
             <Link to={memberPath(member.slug, locale) as never} className="group flex flex-col gap-4">
-                <Avatar member={member} />
+                <div className="card-lift overflow-hidden rounded-2xl">
+                    <div className="transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]">
+                        <Avatar member={member} />
+                    </div>
+                </div>
                 <h3 className="text-3xl font-bold group-hover:text-brand">{member.name}</h3>
                 <p className="text-soft">{member.role[locale]}</p>
                 <p className="text-sm text-dim">{member.short[locale]}</p>

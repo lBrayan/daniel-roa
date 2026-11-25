@@ -49,6 +49,55 @@
     }
   },
   {
+    "slug": "andres-tovar",
+    "name": "Andrés Tovar",
+    "published": true,
+    "discipline": "design",
+    "initials": "AT",
+    "photo": {
+      "src": "/images/team/andres-tovar.webp",
+      "width": 720,
+      "height": 900
+    },
+    "role": {
+      "es": "Director de diseño · dirección de arte",
+      "en": "Design director · art direction"
+    },
+    "short": {
+      "es": "Dirección de arte, branding y campañas para marcas de alto impacto.",
+      "en": "Art direction, branding and campaigns for high-impact brands."
+    },
+    "bio": {
+      "es": [
+        "Director de arte senior con más de 8 años de experiencia en agencias de publicidad y proyectos de branding para marcas de alto impacto. Ha liderado equipos de diseño para marcas multinacionales de consumo masivo, combinando visión estratégica, criterio visual y liderazgo creativo.",
+        "En el estudio dirige el diseño: define el concepto creativo de cada proyecto, cuida la consistencia de las marcas y acompaña al equipo para que cada pieza conecte a la marca con las personas. Se formó en la Corporación Universitaria Taller 5."
+      ],
+      "en": [
+        "Senior art director with 8+ years of experience in advertising agencies and branding projects for high-impact brands. He has led design teams for multinational consumer brands, combining strategic vision, strong visual judgment and creative leadership.",
+        "At the studio he leads design: he sets the creative concept for each project, keeps brands consistent and guides the team so every piece connects the brand with people. He studied at Corporación Universitaria Taller 5."
+      ]
+    },
+    "skills": [
+      "Dirección de arte",
+      "Dirección creativa",
+      "Branding",
+      "Campañas digitales",
+      "Packaging",
+      "Liderazgo de equipos de diseño",
+      "Conceptualización"
+    ],
+    "links": [
+      {
+        "label": "Behance",
+        "url": "https://www.behance.net/AndyLeto"
+      },
+      {
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/in/andrestovart/"
+      }
+    ]
+  },
+  {
     "slug": "angelica-roa",
     "name": "Angélica Roa",
     "published": true,

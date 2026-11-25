@@ -12,7 +12,7 @@ import {
     Section,
 } from "@/components/marketing/Blocks";
 import type { Faq } from "@/data/marketing";
-import { BUSINESS_SCHEMA, breadcrumbSchema, faqSchema, pageHead } from "@/lib/seo";
+import { organizationSchema, breadcrumbSchema, faqSchema, pageHead } from "@/lib/seo";
 
 const PATH = "/desarrollo-web-bogota";
 const CRUMBS = [
@@ -51,7 +51,7 @@ export const Route = createFileRoute("/desarrollo-web-bogota")({
             description:
                 "Desarrollador web freelance en Bogotá. Diseño de páginas web, landing pages y tiendas online para negocios y empresas, con SEO local y Google Maps. Cotiza por WhatsApp.",
             path: PATH,
-            schemas: [BUSINESS_SCHEMA, faqSchema(FAQ_BOGOTA), breadcrumbSchema(CRUMBS)],
+            schemas: [organizationSchema("es"), faqSchema(FAQ_BOGOTA), breadcrumbSchema(CRUMBS)],
         }),
     component: BogotaPage,
 });

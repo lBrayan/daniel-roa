@@ -1,3 +1,4 @@
+import type React from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Avatar, Breadcrumbs, Container, Kicker, MemberCard, ProjectGrid } from "@/components/site/Blocks";
 import { PATHS, TEAM, UI, memberPath, projectsBy, type Locale, type Member } from "@/lib/site";
@@ -34,12 +35,12 @@ export function TeamPage({ locale }: { locale: Locale }) {
                 />
                 <div className="mt-10 mb-16 max-w-3xl">
                     <Kicker>{t.tagline}</Kicker>
-                    <h1 className="mt-5 text-6xl font-bold sm:text-8xl">{c.h1}</h1>
+                    <h1 className="rise mt-5 text-6xl font-bold sm:text-8xl" style={{ "--d": "80ms" } as React.CSSProperties}>{c.h1}</h1>
                     <p className="mt-6 text-xl leading-relaxed text-soft">{c.lead}</p>
                 </div>
-                <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
-                    {TEAM.map((m) => (
-                        <MemberCard key={m.slug} member={m} locale={locale} />
+                <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+                    {TEAM.map((m, i) => (
+                        <MemberCard key={m.slug} member={m} locale={locale} index={i} />
                     ))}
                 </div>
             </Container>
@@ -50,7 +51,9 @@ export function TeamPage({ locale }: { locale: Locale }) {
 export function MemberPage({ member, locale }: { member: Member; locale: Locale }) {
     const t = UI[locale];
     const other: Locale = locale === "es" ? "en" : "es";
-    const work = projectsBy(member.slug);
+    const all = projectsBy(member.slug);
+    const work = all.filter((p) => p.listed);
+    const agency = all.filter((p) => !p.listed);
     return (
         <SiteLayout locale={locale} alternate={memberPath(member.slug, other)}>
             <Container className="pt-14">
@@ -65,7 +68,7 @@ export function MemberPage({ member, locale }: { member: Member; locale: Locale 
                 <div className="mt-12 grid items-start gap-12 lg:grid-cols-[2fr_1fr]">
                     <div>
                         <Kicker>{t.disciplines[member.discipline]}</Kicker>
-                        <h1 className="mt-5 text-6xl font-bold sm:text-8xl">{member.name}</h1>
+                        <h1 className="rise mt-5 text-6xl font-bold sm:text-8xl" style={{ "--d": "80ms" } as React.CSSProperties}>{member.name}</h1>
                         <p className="mt-4 text-2xl text-brand">{member.role[locale]}</p>
                         <div className="mt-8 flex max-w-3xl flex-col gap-5 text-xl leading-relaxed text-soft">
                             {member.bio[locale].map((p) => (
@@ -109,6 +112,17 @@ export function MemberPage({ member, locale }: { member: Member; locale: Locale 
                         {t.projectsOf} {member.name.split(" ")[0]}
                     </h2>
                     <ProjectGrid projects={work} locale={locale} />
+                </Container>
+            )}
+            {agency.length > 0 && (
+                <Container className="pb-24">
+                    <h2 className="text-4xl font-bold" data-reveal>
+                        {t.agencyWork}
+                    </h2>
+                    <p className="mt-3 mb-10 max-w-2xl text-soft" data-reveal>
+                        {t.agencyNote(member.name.split(" ")[0] ?? member.name)}
+                    </p>
+                    <ProjectGrid projects={agency} locale={locale} />
                 </Container>
             )}
         </SiteLayout>

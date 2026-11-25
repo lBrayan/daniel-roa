@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Container, Kicker, MemberCard, ProjectGrid } from "@/components/site/Blocks";
@@ -93,16 +94,19 @@ const COPY = {
 export function HomePage({ locale }: { locale: Locale }) {
     const c = COPY[locale];
     const t = UI[locale];
-    const featured = PROJECTS.filter((p) => p.featured);
+    const featured = PROJECTS.filter((p) => p.featured && p.listed);
 
     return (
         <SiteLayout locale={locale} alternate={PATHS.home[locale === "es" ? "en" : "es"]}>
             <Container className="pt-20 pb-16 sm:pt-28">
-                <Kicker>{c.kicker}</Kicker>
+                <Kicker className="rise">{c.kicker}</Kicker>
                 <h1 className="mt-7 max-w-5xl text-[clamp(3rem,8vw,7.5rem)] leading-[0.95] font-bold">
-                    {c.h1a} <span className="text-brand">{c.h1b}</span> {c.h1c}
+                    <span className="rise inline-block" style={{ "--d": "120ms" } as CSSProperties}>{c.h1a}</span>{" "}
+                    <span className="rise inline-block" style={{ "--d": "260ms" } as CSSProperties}>
+                        <span className="text-brand">{c.h1b}</span> {c.h1c}
+                    </span>
                 </h1>
-                <div className="mt-12 flex flex-wrap items-end justify-between gap-8">
+                <div className="rise mt-12 flex w-full flex-wrap items-end justify-between gap-8" style={{ "--d": "440ms" } as CSSProperties}>
                     <p className="max-w-2xl text-xl leading-relaxed text-soft">{c.lead}</p>
                     <div className="flex flex-wrap gap-3">
                         <Link
@@ -124,27 +128,36 @@ export function HomePage({ locale }: { locale: Locale }) {
             </Container>
 
             <div className="border-y border-line">
-                <Container className="flex flex-wrap justify-between gap-x-10 gap-y-3 py-6 font-mono text-xs tracking-[0.12em] text-dim uppercase">
-                    {c.strip.map((s) => (
-                        <span key={s}>{s}</span>
-                    ))}
-                </Container>
+                <div className="overflow-hidden py-6 font-mono text-xs tracking-[0.12em] text-dim uppercase" aria-label={c.strip.join(", ")}>
+                    <div className="marquee" aria-hidden>
+                        {[0, 1].map((k) => (
+                            <div key={k} className="flex shrink-0 gap-14 pr-14">
+                                {c.strip.map((s) => (
+                                    <span key={s} className="flex items-center gap-14 whitespace-nowrap">
+                                        {s}
+                                        <span className="text-brand">✦</span>
+                                    </span>
+                                ))}
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
 
             <Container className="py-24">
                 <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
-                    <h2 className="text-5xl font-bold sm:text-6xl">{c.workTitle}</h2>
-                    <Link to={PATHS.work[locale] as never} className="inline-flex min-h-11 items-center font-semibold hover:text-brand">
-                        {t.viewAll} →
+                    <h2 data-reveal className="text-5xl font-bold sm:text-6xl">{c.workTitle}</h2>
+                    <Link to={PATHS.work[locale] as never} className="arrow-nudge inline-flex min-h-11 items-center font-semibold hover:text-brand">
+                        {t.viewAll} <span className="arrow">→</span>
                     </Link>
                 </div>
                 <ProjectGrid projects={featured} locale={locale} eagerFirst />
             </Container>
 
             <Container className="py-16">
-                <h2 className="mb-12 text-5xl font-bold sm:text-6xl">{c.servicesTitle}</h2>
+                <h2 data-reveal className="mb-12 text-5xl font-bold sm:text-6xl">{c.servicesTitle}</h2>
                 <div className="grid gap-6 lg:grid-cols-2">
-                    <div className="flex flex-col gap-6 rounded-3xl border border-line bg-ink-2 p-9">
+                    <div data-reveal className="flex flex-col gap-6 rounded-3xl border border-line bg-ink-2 p-9">
                         <Kicker className="!text-brand">{c.design.kicker}</Kicker>
                         <h3 className="text-4xl font-bold">{c.design.title}</h3>
                         <ul className="flex flex-col text-lg text-soft">
@@ -158,7 +171,7 @@ export function HomePage({ locale }: { locale: Locale }) {
                             {c.design.link.label} →
                         </a>
                     </div>
-                    <div className="flex flex-col gap-6 rounded-3xl border border-line bg-ink-2 p-9">
+                    <div data-reveal style={{ "--d": "140ms" } as CSSProperties} className="flex flex-col gap-6 rounded-3xl border border-line bg-ink-2 p-9">
                         <Kicker className="!text-brand">{c.tech.kicker}</Kicker>
                         <h3 className="text-4xl font-bold">{c.tech.title}</h3>
                         <ul className="flex flex-col text-lg text-soft">
@@ -180,22 +193,22 @@ export function HomePage({ locale }: { locale: Locale }) {
             <section className="my-16 bg-paper text-ink">
                 <Container className="py-24">
                     <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
-                        <h2 className="text-5xl font-bold sm:text-6xl">{c.teamTitle}</h2>
-                        <p className="max-w-md text-lg text-ink/70">{c.teamLead}</p>
+                        <h2 data-reveal className="text-5xl font-bold sm:text-6xl">{c.teamTitle}</h2>
+                        <p data-reveal className="max-w-md text-lg text-ink/70">{c.teamLead}</p>
                     </div>
-                    <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 [&_.text-soft]:text-ink/80 [&_.text-dim]:text-ink/60">
-                        {TEAM.map((m) => (
-                            <MemberCard key={m.slug} member={m} locale={locale} />
+                    <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 [&_.text-soft]:text-ink/80 [&_.text-dim]:text-ink/60">
+                        {TEAM.map((m, i) => (
+                            <MemberCard key={m.slug} member={m} locale={locale} index={i} />
                         ))}
                     </div>
                 </Container>
             </section>
 
             <Container className="py-16">
-                <h2 className="mb-12 text-5xl font-bold sm:text-6xl">{c.processTitle}</h2>
+                <h2 data-reveal className="mb-12 text-5xl font-bold sm:text-6xl">{c.processTitle}</h2>
                 <ol className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
                     {c.process.map(([title, text], i) => (
-                        <li key={title} className="flex flex-col gap-3 border-t-2 border-brand pt-6">
+                        <li key={title} data-reveal style={{ "--d": `${i * 110}ms` } as CSSProperties} className="flex flex-col gap-3 border-t-2 border-brand pt-6">
                             <span className="font-mono text-xs text-dim">0{i + 1}</span>
                             <strong className="font-grotesk text-2xl">{title}</strong>
                             <span className="leading-relaxed text-soft">{text}</span>
@@ -205,7 +218,7 @@ export function HomePage({ locale }: { locale: Locale }) {
             </Container>
 
             <Container className="pt-8 pb-24">
-                <div className="max-w-3xl">
+                <div data-reveal className="max-w-3xl">
                     <h2 className="text-3xl font-bold">{c.seoTitle}</h2>
                     <p className="mt-5 text-lg leading-relaxed text-soft">{c.seoText}</p>
                 </div>

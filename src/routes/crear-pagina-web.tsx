@@ -3,7 +3,7 @@ import { BRAND } from "@/lib/site";
 import { MarketingLayout } from "@/components/marketing/MarketingLayout";
 import { CtaBand, FaqList, PageHero, PricingGrid, Prose, Section } from "@/components/marketing/Blocks";
 import type { Faq } from "@/data/marketing";
-import { BUSINESS_SCHEMA, breadcrumbSchema, faqSchema, pageHead } from "@/lib/seo";
+import { organizationSchema, breadcrumbSchema, faqSchema, pageHead } from "@/lib/seo";
 
 const PATH = "/crear-pagina-web";
 const CRUMBS = [
@@ -42,7 +42,7 @@ export const Route = createFileRoute("/crear-pagina-web")({
             description:
                 "¿Cuánto cuesta crear una página web en Colombia? Precios reales de landing pages, páginas corporativas y tiendas online, qué incluyen y cómo elegir. Cotiza con un desarrollador web.",
             path: PATH,
-            schemas: [BUSINESS_SCHEMA, faqSchema(FAQ_CREAR), breadcrumbSchema(CRUMBS)],
+            schemas: [organizationSchema("es"), faqSchema(FAQ_CREAR), breadcrumbSchema(CRUMBS)],
         }),
     component: CreateWebsitePage,
 });

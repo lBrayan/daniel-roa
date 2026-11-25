@@ -3,7 +3,7 @@ import { BRAND } from "@/lib/site";
 import { MarketingLayout } from "@/components/marketing/MarketingLayout";
 import { CtaBand, Differentiators, FaqList, PageHero, ProcessList, Prose, Section } from "@/components/marketing/Blocks";
 import type { Faq } from "@/data/marketing";
-import { BUSINESS_SCHEMA, breadcrumbSchema, faqSchema, pageHead } from "@/lib/seo";
+import { organizationSchema, breadcrumbSchema, faqSchema, pageHead } from "@/lib/seo";
 
 const PATH = "/ingeniero-de-software-freelance";
 const CRUMBS = [
@@ -42,7 +42,7 @@ export const Route = createFileRoute("/ingeniero-de-software-freelance")({
             description:
                 "Ingeniero de software y desarrollador full stack freelance en Bogotá, Colombia. Desarrollo de sistemas a la medida, APIs, integraciones, migraciones y arquitectura en AWS. Más de 10 años de experiencia.",
             path: PATH,
-            schemas: [BUSINESS_SCHEMA, faqSchema(FAQ_FREELANCE), breadcrumbSchema(CRUMBS)],
+            schemas: [organizationSchema("es"), faqSchema(FAQ_FREELANCE), breadcrumbSchema(CRUMBS)],
         }),
     component: FreelancePage,
 });

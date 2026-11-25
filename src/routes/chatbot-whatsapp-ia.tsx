@@ -3,7 +3,7 @@ import { BRAND } from "@/lib/site";
 import { MarketingLayout } from "@/components/marketing/MarketingLayout";
 import { CtaBand, FaqList, PageHero, PricingGrid, Prose, Section } from "@/components/marketing/Blocks";
 import type { Faq } from "@/data/marketing";
-import { BUSINESS_SCHEMA, breadcrumbSchema, faqSchema, pageHead } from "@/lib/seo";
+import { organizationSchema, breadcrumbSchema, faqSchema, pageHead } from "@/lib/seo";
 
 const PATH = "/chatbot-whatsapp-ia";
 const CRUMBS = [
@@ -42,7 +42,7 @@ export const Route = createFileRoute("/chatbot-whatsapp-ia")({
             description:
                 "Chatbot con inteligencia artificial para WhatsApp Business: responde a tus clientes 24/7, agenda citas, toma pedidos y pasa a un asesor cuando hace falta. Implementación desde $600.000 COP.",
             path: PATH,
-            schemas: [BUSINESS_SCHEMA, faqSchema(FAQ_BOT), breadcrumbSchema(CRUMBS)],
+            schemas: [organizationSchema("es"), faqSchema(FAQ_BOT), breadcrumbSchema(CRUMBS)],
         }),
     component: ChatbotPage,
 });
