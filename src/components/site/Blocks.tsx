@@ -139,7 +139,20 @@ const AVATAR_TONES: Record<string, string> = {
     both: "bg-soft text-ink",
 };
 
-export function Avatar({ member, size = "lg" }: { member: Member; size?: "lg" | "xl" }) {
+export function Avatar({ member, size = "lg", eager = false }: { member: Member; size?: "lg" | "xl"; eager?: boolean }) {
+    if (member.photo) {
+        return (
+            <img
+                src={member.photo.src}
+                alt={member.name}
+                width={member.photo.width}
+                height={member.photo.height}
+                loading={eager ? "eager" : "lazy"}
+                decoding="async"
+                className="aspect-[4/5] w-full rounded-2xl object-cover"
+            />
+        );
+    }
     return (
         <div
             aria-hidden

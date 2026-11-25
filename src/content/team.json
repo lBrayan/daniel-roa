@@ -23,10 +23,30 @@
         "He works across frontend and backend, deploys on Amazon Web Services and brings in AI where it adds real value: chatbots, document search and process automation."
       ]
     },
-    "skills": ["Arquitectura de software", "React", "Angular", "Node.js", "Java · Spring Boot", "PHP · Laravel", "Python", "AWS", "OpenAI · RAG · agentes", "Shopify", "WordPress"],
+    "skills": [
+      "Arquitectura de software",
+      "React",
+      "Angular",
+      "Node.js",
+      "Java · Spring Boot",
+      "PHP · Laravel",
+      "Python",
+      "AWS",
+      "OpenAI · RAG · agentes",
+      "Shopify",
+      "WordPress"
+    ],
     "links": [
-      { "label": "GitHub", "url": "https://github.com/lBrayan" }
-    ]
+      {
+        "label": "GitHub",
+        "url": "https://github.com/lBrayan"
+      }
+    ],
+    "photo": {
+      "src": "/images/team/brayan-roa.webp",
+      "width": 800,
+      "height": 1000
+    }
   },
   {
     "slug": "angelica-roa",
@@ -52,30 +72,56 @@
         "At the studio she leads visual direction: brand identity, packaging, digital assets and the interface design the technology team then builds."
       ]
     },
-    "skills": ["Branding", "Identidad visual", "Logotipos", "Empaques y etiquetas", "Sistemas de marca", "Diseño digital", "UI/UX", "Ilustración de personajes"],
+    "skills": [
+      "Branding",
+      "Identidad visual",
+      "Logotipos",
+      "Empaques y etiquetas",
+      "Sistemas de marca",
+      "Diseño digital",
+      "UI/UX",
+      "Ilustración de personajes"
+    ],
     "links": [
-      { "label": "Behance", "url": "https://www.behance.net/Yiro_dg" }
+      {
+        "label": "Behance",
+        "url": "https://www.behance.net/Yiro_dg"
+      }
     ]
   },
   {
-    "slug": "socio",
-    "name": "[Nombre del socio]",
-    "published": false,
+    "slug": "miguel-tovar",
+    "name": "Miguel Ángel Tovar",
+    "published": true,
     "discipline": "development",
-    "initials": "—",
+    "initials": "MT",
     "role": {
-      "es": "Desarrollador · clientes en inglés",
-      "en": "Developer · client success (English)"
+      "es": "Desarrollador de software · clientes en inglés",
+      "en": "Software developer · English-speaking clients"
     },
     "short": {
-      "es": "Desarrollo y relación con clientes de habla inglesa.",
-      "en": "Development and English-speaking client relations."
+      "es": "Desarrollo de software y relación con clientes de habla inglesa.",
+      "en": "Software development and relations with English-speaking clients."
     },
     "bio": {
-      "es": ["[Completar]"],
-      "en": ["[To be completed]"]
+      "es": [
+        "Tecnólogo en Análisis y Desarrollo de Software (ADSO). Apoya el desarrollo de los proyectos del estudio y es el punto de contacto con los clientes de habla inglesa: lleva las reuniones en inglés, aterriza los requerimientos con el cliente y acompaña las entregas."
+      ],
+      "en": [
+        "Software Analysis and Development technologist (ADSO). He supports development across the studio's projects and is the main contact for English-speaking clients: he runs meetings in English, turns client needs into clear requirements and follows each delivery through."
+      ]
     },
-    "skills": [],
-    "links": []
+    "skills": [
+      "Análisis y desarrollo de software",
+      "Inglés fluido",
+      "Reuniones con clientes",
+      "Levantamiento de requerimientos"
+    ],
+    "links": [
+      {
+        "label": "Correo",
+        "url": "mailto:mattdev9898@gmail.com"
+      }
+    ]
   }
 ]

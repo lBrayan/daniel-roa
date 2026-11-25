@@ -20,6 +20,7 @@ export const Route = createFileRoute("/equipo/$slug")({
             path,
             locale: L,
             type: "profile",
+            ...(m.photo ? { image: m.photo.src } : {}),
             alternates: { es: memberPath(m.slug, "es"), en: memberPath(m.slug, "en") },
             schemas: [
                 { "@context": "https://schema.org", "@type": "ProfilePage", mainEntity: personSchema(m, L) },

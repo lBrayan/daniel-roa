@@ -85,7 +85,8 @@ export function personSchema(m: Member, locale: Locale) {
         url: `${SITE_URL}${locale === "es" ? "/equipo/" : "/en/team/"}${m.slug}`,
         worksFor: { "@id": ORG_ID },
         knowsAbout: m.skills,
-        sameAs: m.links.map((l) => l.url),
+        sameAs: m.links.map((l) => l.url).filter((u) => u.startsWith("http")),
+        ...(m.photo ? { image: abs(m.photo.src) } : {}),
     };
 }
 

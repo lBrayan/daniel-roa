@@ -38,6 +38,7 @@ export type Member = {
     published: boolean;
     discipline: Discipline;
     initials: string;
+    photo?: { src: string; width: number; height: number };
     role: L10n;
     short: L10n;
     bio: L10n<string[]>;

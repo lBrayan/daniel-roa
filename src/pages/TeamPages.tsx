@@ -99,7 +99,7 @@ export function MemberPage({ member, locale }: { member: Member; locale: Locale 
                         </div>
                     </div>
                     <div className="mx-auto w-full max-w-sm">
-                        <Avatar member={member} size="xl" />
+                        <Avatar member={member} size="xl" eager />
                     </div>
                 </div>
             </Container>
