@@ -43,9 +43,9 @@
       }
     ],
     "photo": {
-      "src": "/images/team/brayan-roa.webp",
-      "width": 800,
-      "height": 1000
+      "src": "/images/team/brayan-roa-2.webp",
+      "width": 640,
+      "height": 800
     }
   },
   {
@@ -122,6 +122,11 @@
         "label": "Correo",
         "url": "mailto:mattdev9898@gmail.com"
       }
-    ]
+    ],
+    "photo": {
+      "src": "/images/team/miguel-tovar.webp",
+      "width": 800,
+      "height": 1000
+    }
   }
 ]
