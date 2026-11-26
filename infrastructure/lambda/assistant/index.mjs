@@ -239,6 +239,6 @@ export async function handler(event) {
                 console.error("lead_fallback_error", e?.message);
             }
         }
-        return json(200, { reply: FALLBACK[lang], error: true });
+        return json(200, { reply: FALLBACK[lang], error: true, code: err?.name ?? "Error" });
     }
 }
