@@ -236,7 +236,12 @@ export async function handler(event) {
                 ];
                 continue;
             }
-            const text = content.filter((c) => c.text).map((c) => c.text).join("\n").replace(/\*\*|__|^#+\s*/gm, "").trim();
+            const text = content.filter((c) => c.text).map((c) => c.text).join("\n")
+                .replace(/<thinking>[\s\S]*?<\/thinking>/gi, "")
+                .replace(/<\/?(thinking|response|answer)>/gi, "")
+                .replace(/\*\*|__|^#+\s*/gm, "")
+                .replace(/\n{3,}/g, "\n\n")
+                .trim();
             return json(200, { reply: text || FALLBACK[lang], done: Boolean(leadId), leadId });
         }
         return json(200, { reply: FALLBACK[lang], done: Boolean(leadId), leadId });
