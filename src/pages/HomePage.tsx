@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 import { Link } from "@tanstack/react-router";
-import { SiteLayout } from "@/components/site/SiteLayout";
+import { SiteLayout, openAssistant } from "@/components/site/SiteLayout";
 import { Container, Kicker, MemberCard, ProjectGrid } from "@/components/site/Blocks";
 import { PATHS, PROJECTS, TEAM, UI, whatsappLink, type Locale } from "@/lib/site";
 
@@ -115,14 +115,13 @@ export function HomePage({ locale }: { locale: Locale }) {
                         >
                             {c.seeWork}
                         </Link>
-                        <a
-                            href={whatsappLink(t.waDefault)}
-                            target="_blank"
-                            rel="noopener"
+                        <button
+                            type="button"
+                            onClick={openAssistant}
                             className="inline-flex min-h-12 items-center rounded-full bg-paper px-6 font-semibold text-ink hover:bg-soft"
                         >
                             {c.talk}
-                        </a>
+                        </button>
                     </div>
                 </div>
             </Container>

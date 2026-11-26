@@ -3,6 +3,9 @@ import { Link } from "@tanstack/react-router";
 import { BRAND, PATHS, SITE, UI, whatsappLink, type Locale } from "@/lib/site";
 import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
 import { useReveal } from "@/components/site/Motion";
+import { AssistantWidget } from "@/components/site/AssistantWidget";
+
+export const openAssistant = () => window.dispatchEvent(new Event("open-assistant"));
 
 /** Logotipo de texto del estudio. */
 export function BrandMark({ className = "" }: { className?: string }) {
@@ -77,14 +80,13 @@ export function SiteLayout({
                             <span className="sr-only">{t.langSwitch}</span>
                             <span aria-hidden>{other}</span>
                         </a>
-                        <a
-                            href={whatsappLink(t.waDefault)}
-                            target="_blank"
-                            rel="noopener"
+                        <button
+                            type="button"
+                            onClick={openAssistant}
                             className="inline-flex min-h-11 items-center rounded-full bg-brand px-5 text-sm font-semibold text-ink transition-opacity hover:opacity-90"
                         >
                             {t.cta} ↗
-                        </a>
+                        </button>
                     </div>
                 </div>
             </header>
@@ -92,6 +94,8 @@ export function SiteLayout({
             <main id="contenido">{children}</main>
 
             <ContactBand locale={locale} />
+
+            <AssistantWidget locale={locale} />
 
             <footer className="border-t border-line">
                 <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 text-sm text-dim sm:grid-cols-3 sm:px-8">
@@ -139,6 +143,13 @@ function ContactBand({ locale }: { locale: Locale }) {
                     <p className="mt-5 max-w-xl text-lg text-ink/80">{t.contactLead}</p>
                 </div>
                 <div className="flex flex-col gap-3">
+                    <button
+                        type="button"
+                        onClick={openAssistant}
+                        className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-paper px-7 font-semibold text-ink hover:bg-paper/85"
+                    >
+                        {t.quoteAssistant}
+                    </button>
                     <a
                         href={whatsappLink(t.waDefault)}
                         target="_blank"

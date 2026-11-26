@@ -123,6 +123,7 @@ export const UI = {
         contactTitle: "¿Tienes un proyecto en mente?",
         contactLead: "Cuéntanos qué necesitas y te respondemos en menos de 24 horas con una propuesta clara.",
         whatsapp: "Escríbenos por WhatsApp",
+        quoteAssistant: "Cotiza con nuestro asistente",
         email: "Escríbenos un correo",
         footerAbout:
             "Diseño de marca, páginas web, tiendas online, apps y software a la medida para negocios de Colombia y el exterior.",
@@ -161,6 +162,7 @@ export const UI = {
         contactTitle: "Have a project in mind?",
         contactLead: "Tell us what you need and we'll get back to you within 24 hours with a clear proposal.",
         whatsapp: "Message us on WhatsApp",
+        quoteAssistant: "Get a quote with our assistant",
         email: "Send us an email",
         footerAbout:
             "Brand design, websites, online stores, apps and custom software for businesses in Colombia and abroad.",
