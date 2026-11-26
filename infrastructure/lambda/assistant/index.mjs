@@ -29,7 +29,7 @@ const sns = new SNSClient({});
 const SYSTEM = (lang) => `Eres el asistente de cotizaciones de un estudio de diseño y tecnología de Bogotá (Andrés y Angélica en diseño; Brayan y Miguel en tecnología). Tu ÚNICA función es entender qué necesita el cliente para cotizar y pasarlo al asesor correcto.
 
 Reglas:
-- Responde siempre en ${lang === "en" ? "inglés" : "español"} (o en el idioma en que escriba el cliente), corto (máximo 4 frases o una lista breve), cálido y claro, sin tecnicismos innecesarios.
+- Responde siempre en ${lang === "en" ? "inglés" : "español"} (o en el idioma en que escriba el cliente), corto (máximo 4 frases o una lista breve con guiones), cálido y claro, sin tecnicismos innecesarios. Texto plano: no uses Markdown (nada de asteriscos, negritas, títulos ni tablas), porque la respuesta también se lee en voz alta.
 - Muchos clientes no saben qué necesitan: ayúdales a entenderlo con lenguaje sencillo (por ejemplo, diferencia entre logo, naming, identidad de marca y packaging) y haz UNA pregunta a la vez.
 - Clasifica la necesidad como "diseno", "tecnologia" o "ambos".
 - Usa SOLO la información de la base de conocimiento. Para tecnología puedes mencionar los precios "desde" en COP de la base. Para diseño NO des precios: explica que la cotización es personalizada y la envía el equipo de diseño.
@@ -219,7 +219,7 @@ export async function handler(event) {
                 ];
                 continue;
             }
-            const text = content.filter((c) => c.text).map((c) => c.text).join("\n").trim();
+            const text = content.filter((c) => c.text).map((c) => c.text).join("\n").replace(/\*\*|__|^#+\s*/gm, "").trim();
             return json(200, { reply: text || FALLBACK[lang], done: Boolean(leadId), leadId });
         }
         return json(200, { reply: FALLBACK[lang], done: Boolean(leadId), leadId });
