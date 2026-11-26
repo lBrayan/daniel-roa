@@ -104,6 +104,7 @@ function handler(event) {
       }),
       environment: {
         MODEL_ID: modelId,
+        FALLBACK_MODEL_ID: this.node.tryGetContext("assistantFallbackModel") ?? "us.amazon.nova-lite-v1:0",
         TABLE_NAME: leadsTable.tableName,
         TOPIC_ARN: leadsTopic.topicArn,
       },

@@ -15,6 +15,9 @@ import { SNSClient, PublishCommand } from "@aws-sdk/client-sns";
 
 const KNOWLEDGE = readFileSync(new URL("./knowledge.md", import.meta.url), "utf8");
 const MODEL_ID = process.env.MODEL_ID;
+// Si el modelo principal no está habilitado en la cuenta (p. ej. falta el
+// formulario de uso de Anthropic en Bedrock), se usa este de respaldo.
+const FALLBACK_MODEL_ID = process.env.FALLBACK_MODEL_ID;
 const TABLE = process.env.TABLE_NAME;
 const TOPIC = process.env.TOPIC_ARN;
 const MAX_TURNS = 14; // mensajes totales (cliente + asistente)
@@ -73,6 +76,28 @@ const TOOL = {
         },
     ],
 };
+
+let activeModel = MODEL_ID;
+
+async function converse(messages, lang) {
+    const input = (modelId) =>
+        new ConverseCommand({
+            modelId,
+            system: [{ text: SYSTEM(lang) }],
+            messages,
+            toolConfig: TOOL,
+            inferenceConfig: { maxTokens: 500, temperature: 0.3 },
+        });
+    try {
+        return await bedrock.send(input(activeModel));
+    } catch (err) {
+        const unavailable = ["ResourceNotFoundException", "AccessDeniedException", "ValidationException"].includes(err?.name);
+        if (!unavailable || !FALLBACK_MODEL_ID || activeModel === FALLBACK_MODEL_ID) throw err;
+        console.warn("primary_model_unavailable", activeModel, err?.name, err?.message);
+        activeModel = FALLBACK_MODEL_ID; // se queda en el respaldo mientras la Lambda esté caliente
+        return await bedrock.send(input(activeModel));
+    }
+}
 
 const json = (status, body) => ({
     statusCode: status,
@@ -196,15 +221,7 @@ export async function handler(event) {
     try {
         let leadId = null;
         for (let step = 0; step < 2; step++) {
-            const out = await bedrock.send(
-                new ConverseCommand({
-                    modelId: MODEL_ID,
-                    system: [{ text: SYSTEM(lang) }],
-                    messages,
-                    toolConfig: TOOL,
-                    inferenceConfig: { maxTokens: 500, temperature: 0.3 },
-                }),
-            );
+            const out = await converse(messages, lang);
             const content = out.output?.message?.content || [];
             const toolUse = content.find((c) => c.toolUse)?.toolUse;
             if (out.stopReason === "tool_use" && toolUse && !leadId) {
