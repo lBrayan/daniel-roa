@@ -13,6 +13,7 @@ import * as sns from "aws-cdk-lib/aws-sns";
 import * as subs from "aws-cdk-lib/aws-sns-subscriptions";
 import * as iam from "aws-cdk-lib/aws-iam";
 import * as logs from "aws-cdk-lib/aws-logs";
+import * as secretsmanager from "aws-cdk-lib/aws-secretsmanager";
 import * as path from "node:path";
 
 export class PortfolioStack extends cdk.Stack {
@@ -92,6 +93,12 @@ function handler(event) {
     const modelId =
       this.node.tryGetContext("assistantModel") ?? "us.anthropic.claude-haiku-4-5-20251001-v1:0";
 
+    // Llave para firmar los retos y tokens de la verificación "soy humano".
+    const assistantSigningKey = new secretsmanager.Secret(this, "AssistantSigningKey", {
+      description: "Firma de retos y sesiones del asistente de brayanroa.com",
+      generateSecretString: { passwordLength: 48, excludePunctuation: true },
+    });
+
     const assistantFn = new lambda.Function(this, "AssistantFunction", {
       runtime: lambda.Runtime.NODEJS_22_X,
       handler: "index.handler",
@@ -107,10 +114,13 @@ function handler(event) {
         FALLBACK_MODEL_ID: this.node.tryGetContext("assistantFallbackModel") ?? "us.amazon.nova-lite-v1:0",
         TABLE_NAME: leadsTable.tableName,
         TOPIC_ARN: leadsTopic.topicArn,
+        SIGNING_SECRET_ARN: assistantSigningKey.secretArn,
+        POW_DIFFICULTY: "18",
       },
     });
     leadsTable.grantReadWriteData(assistantFn);
     leadsTopic.grantPublish(assistantFn);
+    assistantSigningKey.grantRead(assistantFn);
     assistantFn.addToRolePolicy(
       new iam.PolicyStatement({
         actions: ["bedrock:InvokeModel", "bedrock:InvokeModelWithResponseStream"],

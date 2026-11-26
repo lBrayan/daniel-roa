@@ -12,6 +12,7 @@ import { randomUUID } from "node:crypto";
 import { BedrockRuntimeClient, ConverseCommand } from "@aws-sdk/client-bedrock-runtime";
 import { DynamoDBClient, PutItemCommand, UpdateItemCommand } from "@aws-sdk/client-dynamodb";
 import { SNSClient, PublishCommand } from "@aws-sdk/client-sns";
+import { checkSolution, makeChallenge, makeToken, readToken } from "./human.mjs";
 
 const KNOWLEDGE = readFileSync(new URL("./knowledge.md", import.meta.url), "utf8");
 const MODEL_ID = process.env.MODEL_ID;
@@ -24,6 +25,8 @@ const MAX_TURNS = 14; // mensajes totales (cliente + asistente)
 const MAX_CHARS = 1500; // por mensaje del cliente
 const PER_IP_PER_DAY = 60;
 const GLOBAL_PER_DAY = 800;
+const PER_SESSION = 24; // consultas al asistente por sesión verificada
+const CHALLENGES_PER_IP_PER_DAY = 30;
 
 const bedrock = new BedrockRuntimeClient({});
 const ddb = new DynamoDBClient({});
@@ -178,21 +181,87 @@ async function saveLead(lead, transcript, ip) {
     return id;
 }
 
+/** Marca un reto como usado; false si ya se había usado. */
+async function consumeChallenge(salt) {
+    try {
+        await ddb.send(
+            new PutItemCommand({
+                TableName: TABLE,
+                Item: { pk: { S: `pow#${salt}` }, expiresAt: { N: String(Math.floor(Date.now() / 1000) + 86400) } },
+                ConditionExpression: "attribute_not_exists(pk)",
+            }),
+        );
+        return true;
+    } catch {
+        return false;
+    }
+}
+
+/** Cuenta consultas de una sesión verificada; false si superó el límite. */
+async function underSessionLimit(sid) {
+    try {
+        const r = await ddb.send(
+            new UpdateItemCommand({
+                TableName: TABLE,
+                Key: { pk: { S: `sess#${sid}` } },
+                UpdateExpression: "ADD hits :one SET expiresAt = :ttl",
+                ExpressionAttributeValues: {
+                    ":one": { N: "1" },
+                    ":ttl": { N: String(Math.floor(Date.now() / 1000) + 86400) },
+                },
+                ReturnValues: "UPDATED_NEW",
+            }),
+        );
+        return Number(r.Attributes.hits.N) <= PER_SESSION;
+    } catch {
+        return true;
+    }
+}
+
+function parseBody(event) {
+    try {
+        return JSON.parse(event.isBase64Encoded ? Buffer.from(event.body, "base64").toString() : event.body || "{}");
+    } catch {
+        return null;
+    }
+}
+
 const FALLBACK = {
     es: "En este momento no puedo procesar tu solicitud. Escríbenos por WhatsApp desde el botón de la página y un asesor te atiende.",
     en: "I can't process your request right now. Please message us on WhatsApp from the button on the page and someone from the team will help you.",
 };
 
 export async function handler(event) {
-    if (event.requestContext?.http?.method === "OPTIONS") return json(204, {});
-    if (event.requestContext?.http?.method !== "POST") return json(405, { error: "method" });
+    const method = event.requestContext?.http?.method;
+    const path = (event.rawPath || "").replace(/\/+$/, "");
+    if (method === "OPTIONS") return json(204, {});
+    if (method !== "POST") return json(405, { error: "method" });
+    const ip = clientIp(event);
 
-    let body;
-    try {
-        body = JSON.parse(event.isBase64Encoded ? Buffer.from(event.body, "base64").toString() : event.body || "{}");
-    } catch {
-        return json(400, { error: "json" });
+    // 1) Reto de verificación humana.
+    if (path.endsWith("/assistant/challenge")) {
+        if (!(await underLimit(`chal#${ip}`, CHALLENGES_PER_IP_PER_DAY))) return json(429, { error: "limit" });
+        return json(200, await makeChallenge());
     }
+
+    // 2) Validar la solución y entregar token de sesión.
+    if (path.endsWith("/assistant/verify")) {
+        const b = parseBody(event);
+        if (!b || b.website) return json(400, { error: "invalid" }); // campo trampa para bots
+        const salt = await checkSolution(b);
+        if (!salt || !(await consumeChallenge(salt))) return json(400, { error: "invalid" });
+        return json(200, { token: await makeToken(ip) });
+    }
+
+    // 3) Conversación: solo con token válido.
+    const session = await readToken(event.headers?.["x-assistant-token"]);
+    if (!session) return json(401, { error: "human_check_required" });
+    if (!(await underSessionLimit(session.sid))) {
+        return json(200, { reply: "Para seguir, escríbenos por WhatsApp y un asesor continúa contigo. / To continue, please message us on WhatsApp.", done: true });
+    }
+
+    const body = parseBody(event);
+    if (!body) return json(400, { error: "json" });
     const lang = body.lang === "en" ? "en" : "es";
     const msgs = Array.isArray(body.messages) ? body.messages : [];
     if (!msgs.length || msgs.length > MAX_TURNS) {
@@ -209,7 +278,6 @@ export async function handler(event) {
         .map((m) => ({ role: m.role, content: m.content.slice(0, MAX_CHARS) }));
     if (transcript[transcript.length - 1]?.role !== "user") return json(400, { error: "last" });
 
-    const ip = clientIp(event);
     if (!(await underLimit(`ip#${ip}`, PER_IP_PER_DAY)) || !(await underLimit("global", GLOBAL_PER_DAY))) {
         return json(200, { reply: FALLBACK[lang], done: true });
     }

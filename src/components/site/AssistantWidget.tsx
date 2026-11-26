@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { UI, whatsappLink, type Locale } from "@/lib/site";
+import { clearToken, savedToken, verifyHuman } from "@/lib/humanCheck";
 
 /**
  * Asistente de cotizaciones: el cliente escribe o habla (dictado del
@@ -33,6 +34,12 @@ const COPY = {
         noMic: "Tu navegador no permite dictado; puedes escribir tu mensaje.",
         privacy: "Usamos tus datos solo para responder tu solicitud.",
         speechLang: "es-CO",
+        humanTitle: "Antes de empezar",
+        humanText: "Confirma que eres una persona para usar el asistente.",
+        humanCheck: "No soy un robot",
+        humanVerifying: "Verificando…",
+        humanDone: "Verificado",
+        humanError: "No pudimos verificar. Intenta de nuevo.",
     },
     en: {
         open: "Get a quote",
@@ -54,6 +61,12 @@ const COPY = {
         noMic: "Your browser doesn't support dictation; you can type your message.",
         privacy: "We only use your details to answer your request.",
         speechLang: "en-US",
+        humanTitle: "Before we start",
+        humanText: "Please confirm you're a person to use the assistant.",
+        humanCheck: "I'm not a robot",
+        humanVerifying: "Verifying…",
+        humanDone: "Verified",
+        humanError: "We couldn't verify you. Please try again.",
     },
 };
 
@@ -88,6 +101,9 @@ export function AssistantWidget({ locale }: { locale: Locale }) {
     const [listening, setListening] = useState(false);
     const [voiceMode, setVoiceMode] = useState(false);
     const [micSupported, setMicSupported] = useState(true);
+    const [token, setToken] = useState<string | null>(null);
+    const [human, setHuman] = useState<"idle" | "checking" | "error">("idle");
+    const honeypotRef = useRef<HTMLInputElement>(null);
     const recRef = useRef<SpeechRec | null>(null);
     const listRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -97,6 +113,7 @@ export function AssistantWidget({ locale }: { locale: Locale }) {
     // Restaurar la conversación de esta pestaña.
     useEffect(() => {
         setMicSupported(Boolean(getRecognizer()));
+        setToken(savedToken());
         try {
             const saved = sessionStorage.getItem(STORE_KEY);
             if (saved) {
@@ -154,9 +171,16 @@ export function AssistantWidget({ locale }: { locale: Locale }) {
             try {
                 const res = await fetch("/api/assistant", {
                     method: "POST",
-                    headers: { "content-type": "application/json" },
+                    headers: { "content-type": "application/json", "x-assistant-token": token ?? "" },
                     body: JSON.stringify({ lang: locale, messages: next }),
                 });
+                if (res.status === 401) {
+                    clearToken();
+                    setToken(null);
+                    setMessages(messages);
+                    setInput(content);
+                    return;
+                }
                 const data = (await res.json()) as { reply?: string; done?: boolean };
                 const reply = data.reply || c.error;
                 setMessages((m) => [...m, { role: "assistant", content: reply }]);
@@ -169,7 +193,7 @@ export function AssistantWidget({ locale }: { locale: Locale }) {
             }
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        [messages, busy, done, locale, c.error, speak],
+        [messages, busy, done, locale, c.error, speak, token],
     );
 
     const sendRef = useRef(send);
@@ -214,6 +238,19 @@ export function AssistantWidget({ locale }: { locale: Locale }) {
     function stopListening() {
         recRef.current?.stop();
         setListening(false);
+    }
+
+    async function checkHuman() {
+        if (human === "checking") return;
+        setHuman("checking");
+        try {
+            const t = await verifyHuman(honeypotRef.current?.value ?? "");
+            setToken(t);
+            setHuman("idle");
+            setTimeout(() => inputRef.current?.focus(), 50);
+        } catch {
+            setHuman("error");
+        }
     }
 
     function reset() {
@@ -309,6 +346,48 @@ export function AssistantWidget({ locale }: { locale: Locale }) {
                     )}
                 </div>
 
+                {!token ? (
+                    <div className="border-t border-line p-4">
+                        <p className="font-semibold">{c.humanTitle}</p>
+                        <p className="mt-1 text-sm text-dim">{c.humanText}</p>
+                        {/* Campo trampa: invisible para personas, los bots lo llenan. */}
+                        <input
+                            ref={honeypotRef}
+                            type="text"
+                            name="website"
+                            tabIndex={-1}
+                            autoComplete="off"
+                            aria-hidden="true"
+                            className="absolute -left-[9999px] h-0 w-0 opacity-0"
+                        />
+                        <button
+                            type="button"
+                            onClick={() => void checkHuman()}
+                            aria-busy={human === "checking"}
+                            className="mt-4 flex min-h-14 w-full items-center gap-4 rounded-2xl border border-line bg-ink px-4 text-left transition-colors hover:border-soft"
+                        >
+                            <span
+                                className={`flex size-7 shrink-0 items-center justify-center rounded-md border-2 ${
+                                    human === "checking" ? "border-brand" : "border-soft"
+                                }`}
+                                aria-hidden
+                            >
+                                {human === "checking" && <span className="size-4 animate-spin rounded-full border-2 border-brand border-t-transparent" />}
+                            </span>
+                            <span className="flex-1">{human === "checking" ? c.humanVerifying : c.humanCheck}</span>
+                            <span className="font-mono text-[10px] tracking-widest text-dim uppercase">anti-bot</span>
+                        </button>
+                        {human === "error" && <p className="mt-2 text-sm text-brand">{c.humanError}</p>}
+                        <a
+                            href={whatsappLink(UI[locale].waDefault)}
+                            target="_blank"
+                            rel="noopener"
+                            className="mt-3 inline-block text-xs text-dim underline underline-offset-4 hover:text-paper"
+                        >
+                            {c.advisor}
+                        </a>
+                    </div>
+                ) : (
                 <form
                     className="border-t border-line p-4"
                     onSubmit={(e) => {
@@ -385,6 +464,7 @@ export function AssistantWidget({ locale }: { locale: Locale }) {
                     </div>
                     <p className="mt-2 text-[11px] text-dim">{c.privacy}</p>
                 </form>
+                )}
             </div>
         </>
     );
